@@ -1,0 +1,20 @@
+.mypage { margin: 80px 0; }
+.mypage h2 { margin-bottom: 20px; }
+.mypage .info-area { display: flex; justify-content: space-between; align-items: center; margin-bottom: 80px; }
+.mypage .info-area .btn-gray { padding: 8px; }
+
+.mypage-body { margin-bottom: 60px; }
+.mypage-body .mypage-header { width: 100%; margin: 60px 0; padding: 60px; text-align: center; border: 6px solid #E8E8E8; }
+
+
+/* PROFILE CSS */
+.mypage-body .mypage-header h3 { font-weight: 700; margin-bottom: 20px; }
+.mypage-body #pills-profile .mypage-header .profile_image { width: 160px; height: 160px; border-radius: 50%; }
+.mypage-body #pills-profile .mypage-header .fake-btn { width: 20px; margin-left: -25px; cursor: pointer; }
+.mypage-body #pills-profile .mypage-header h4 { margin-top: 40px; }
+.mypage-body #pills-profile .form-group #id_gender { width: 50%; }
+.mypage-body #pills-profile .form-group .help-block { color: #2699FB; }
+.mypage-body #pills-profile .btn-full { margin: 32px 0 60px; }
+.mypage-body #pills-profile .btn-wrap { display: flex; justify-content: flex-end; align-items: center; }
+.mypage-body #pills-profile .btn-wrap a { margin: 0 20px; }
+.mypage-body #pills-profile .form-wrap h4 { margin-bottom: 20px; }

@@ -1,0 +1,48 @@
+/* DETAIL INFO STYLE */
+.post-info { position: fixed; top: 124px; left: calc(50% + 600px); width: 320px; }
+.post-info .info-wrap { border: 1px solid #C3C5C7; }
+.post-info h4 { font-weight: 700; }
+.post-info label { margin-top: 20px; }
+.post-info .btn-full { margin-top: 20px; }
+
+.post-info .info-header { padding: 24px; border-bottom: 1px solid #C3C5C7; }
+.post-info .info-header label { margin-top: 0; }
+.post-info .info-header h4 { margin-top: 12px; }
+.post-info .info-header span { font-size: 10px; line-height: 16px; color: #C3C5C7; }
+
+.post-info .info-body { padding: 0px 20px 20px; }
+.post-info .info-body .conditions-wrap { display: flex; justify-content: space-around; border-bottom: 1px solid #C3C5C7; background-image: url('/static/img/conditions-background.png'); background-size: contain; background-position: center; background-repeat: no-repeat; margin: 0 -20px; padding: 12px; text-align: center; }
+.post-info .info-body .dead-line { display: flex; align-items: baseline; justify-content: center; margin: 12px -20px 0; padding-bottom: 20px; border-bottom: 1px solid #C3C5C7; }
+.post-info .info-body .dead-line p { margin-right: 8px; }
+.post-info .info-body .tag-list { margin-top: 12px; }
+
+
+/* DETAIL BODY STYLE */
+.post-body { padding: 60px 84px; border: 1px solid #C3C5C7; }
+.post-body h2 { font-size: 34px; line-height: 60px; }
+.post-body .detail-header { display: flex; justify-content: space-between; align-items: center; padding: 48px 0; border-bottom: 4px solid #3d3d3d; }
+.post-body .detail-header .btn-wrap { display: flex; flex-direction: row; align-items: center; }
+.post-body .detail-header .btn-wrap .btn { margin-right: 20px; }
+.post-body .detail-header .btn-wrap .btn-line { border-color: #C3C5C7; color: #C3C5C7 !important; }
+.post-body .detail-header .btn-wrap .share-sns { display: flex; flex-direction: row; align-items: center; }
+.post-body .detail-header .btn-wrap .share-sns a { display: block; width: 40px; height: 40px; margin-left: 12px; }
+.post-body .detail-header .btn-wrap .share-sns img { width: 100%; background-color: #3D3D3D; }
+.post-body .detail-header .btn-wrap .share-sns #linkInput { border: 0; opacity: 0; width: 1px; height: 1px; margin: 0; padding: 0; }
+
+.post-body .detail-body { margin-top: 60px; }
+.post-body .detail-body .thumbnail { max-width: 100%; margin-bottom: 32px; text-align: center; }
+.post-body .detail-body .thumbnail img { max-width: 100%; }
+.post-body .detail-body .post-background p { font-size: 16px; line-height: 32px; font-weight: 400; color: #3d3d3d; }
+
+
+/* OPINION STYLE */
+.opinion { padding: 48px 84px; border: 1px solid #C3C5C7; }
+.opinion h2 { font-size: 34px; line-height: 60px; }
+
+.comment_title { margin: 8px 0; }
+.comment_title .col-6 { display: flex; justify-content: space-between; padding: 24px; max-width: calc(50% - 4px); border: 1px solid #C3C5C7; }
+.comment_title .col-6 img { width: 32px; height: 32px; cursor: pointer; }
+.comment_title .pro-title { margin-right: 4px; }
+.comment_title .con-title { margin-left: 4px; }
+.comment_title .pro-title h5 { color: #41CC90; }
+.comment_title .con-title h5 { color: #FF725C; }

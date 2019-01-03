@@ -1,0 +1,20 @@
+/* Category CSS */
+.category { display: flex; width: 100%; }
+.category .category-link { margin-right: 20px; text-align: center; }
+.category .category-link .category-icon { width: 64px; height: 64px; margin-bottom: 6px; }
+
+.sort-button { display: flex; }
+.sort-button .select-change h5 { margin-right: 20px; color: #C3C5C7; }
+
+
+/* POST_LIST CSS */
+.columns { column-width:320px; column-gap: 36px; }
+.columns figure { display: inline-block; border: 6px solid #E8E8E8; margin-bottom: 36px; }
+.columns figure .tag-list { margin: 30px 20px 20px; }
+.columns figure img { width: 100%; }
+.columns figure h3 { margin: 0 20px 20px; }
+.columns figure .background { max-height: 100px; overflow: hidden; margin: 0 20px 20px; }
+.columns figure .btn-area { display: flex; margin: 0 20px; padding-bottom: 20px; #C3C5C7 }
+.columns figure .btn-area img { margin-top: 5px; width: 16px; height: 16px; }
+.columns figure .btn-area h6 { display: inline; margin: 0 28px 0 8px; color: #C3C5C7; font-weight: 700; }
+.columns figure .btn-area span { line-height: 24px; color: #C3C5C7; }

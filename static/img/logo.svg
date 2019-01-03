@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 143 36">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2699fb;
+        font-size: 24px;
+        font-family: NotoSansCJKkr-Black, Noto Sans CJK KR;
+        font-weight: 800;
+      }
+    </style>
+  </defs>
+  <text id="Chatter_Box" data-name="Chatter Box" class="cls-1" transform="translate(0 28)"><tspan x="0" y="0">Chatter Box</tspan></text>
+</svg>

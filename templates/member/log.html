@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block title %}User Log{% endblock %}
+
+{% block customCSS %}
+	<link rel="stylesheet" href="{% static 'css/member/my_page.css' %}">
+	<link rel="stylesheet" href="{% static 'css/member/log.css' %}">
+	<link rel="stylesheet" href="{% static 'css/post/post_list.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-7 mypage">
+			<h2>My Page</h2>
+            <div class="info-area">
+				{% if user.bio %}
+					<h6>{{ user.bio }}</h6>
+				{% else %}
+	                <h6>자기소개가 비어있습니다.<br />간단하게 프로필을 작성해보아요!</h6>
+				{% endif %}
+                <a class="btn btn-gray" href="{% url 'member:logout' %}">LOG OUT</a>
+            </div>
+
+            <div class="mypage-body">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item"><a class="tab-link" href="{% url 'member:my_page' %}"><h5>프로필</h5></a></li>
+                    <li class="nav-item"><a class="tab-link active" href="#"><h5>활동로그</h5></a></li>
+                    <li class="nav-item"><a class="tab-link" href="{% url 'member:contact' %}"><h5>문의하기</h5></a></li>
+                </ul>
+
+                <div class="tab-pane" id="pills-log">
+                    <div class="mypage-header">
+                        <h3>사람들과 소통한 기록 보기</h3>
+                        <h6>채터박스를 만들거나 공유하거나<br />의견을 내거나 공감을 누르거나 했던<br />모든 활동을 볼 수 있어요.</h6>
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control sort-select" onchange="location = this.value;" name="?sort={{ sort }}">
+                            <option value="?sort=my_posts">내가 만든 채터박스 보기</option>
+                            <option value="?sort=my_comments">직접 남긴 의견 보기</option>
+                            <option value="?sort=like_hate">추천/비추천한 의견 보기</option>
+                        </select>
+                    </div>
+
+                    <div class="load-log">
+                        {% for log in log_sorted reversed %}
+                            {% if log in posts_log %}
+                                <div class="m60">
+                                    <div class="log-header">
+                                        <h4>채터박스를 만들었어요</h4>
+                                        <p>{{ log.created_at }}</p>
+                                    </div>
+                                    <div class="log-body">
+                                        <label>Main Title</label>
+                                        <h5>{{ log.title }}</h5>
+                                        <label>Background</label>
+                                        <div class="background">
+                                            <h6>{{ log.background|safe|truncatechars:160 }}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if log in comments_sorted %}
+                                <div class="m60">
+                                    <div class="log-header">
+                                        <h4>직접 의견을 남겼어요</h4>
+                                        <p>{{ log.created_at }}</p>
+                                    </div>
+                                    <div class="log-body">
+                                        <label>Main Title</label>
+                                        <h5>{{ log.post.title }}</h5>
+                                        {% if log in comments_pro %}
+                                        <div class="post-title pro">
+                                            {{ log.post.pro_title }}
+                                        </div>
+                                        {% endif %}
+                                        {% if log in comments_con %}
+                                        <div class="post-title con">
+                                            {{ log.post.con_title }}
+                                        </div>
+                                        {% endif %}
+                                        <div class="background">
+                                            <div class="comment-header">
+                                                {% if log.author.profile_image %}
+                                                    <img src="/media/{{ log.author.profile_image }}" alt="">
+                                                {% else %}
+                                                    <img src="/media/default/user.png" alt="">
+                                                {% endif %}
+                                                <h6>{{ log.author }}</h6>
+                                            </div>
+                                            <h6>{{ log.content }}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            {% if log in lh_sorted %}
+                                <div class="m60">
+                                    <div class="log-header">
+                                        <h4>의견을
+                                            {% if log in likes_pro or log in likes_con %}
+                                                추천했어요
+                                            {% endif %}
+                                            {% if log in hates_pro or log in hates_con %}
+                                                비추천했어요
+                                            {% endif %}
+                                            </h4>
+                                        <p>{{ log.created_at }}</p>
+                                    </div>
+                                    <div class="log-body">
+                                        <label>Main Title</label>
+                                        <h5>{{ log.post.title }}</h5>
+                                        {% if log in likes_pro or log in hates_pro %}
+                                            <div class="post-title pro">
+                                                {{ log.post.pro_title }}
+                                            </div>
+                                        {% endif %}
+                                        {% if log in likes_con or log in hates_con %}
+                                            <div class="post-title con">
+                                                {{ log.post.con_title }}
+                                            </div>
+                                        {% endif %}
+                                        <div class="background">
+                                            <div class="comment-header">
+                                                {% if log.author.profile_image %}
+                                                    <img src="/media/{{ log.author.profile_image }}" alt="">
+                                                {% else %}
+                                                    <img src="/media/default/user.png" alt="">
+                                                {% endif %}
+                                                <h6>{{ log.author }}</h6>
+                                            </div>
+                                            <h6>{{ log.content }}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block customJS %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            var sort = $('.sort-select').attr('name');
+            $('.sort-select option[value="' + sort + '"]').attr('selected','selected');
+        });
+    </script>
+{% endblock %}

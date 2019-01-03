@@ -1,0 +1,26 @@
+{% load static  %}
+<div class="sort-button" onchange="location = this.value;">
+    <a class="select-change" data-val="?sort=likes"><h5>지금 인기</h5></a>
+    <a class="select-change" data-val="?sort=vs"><h5>의견팽팽한순</h5></a>
+    <a class="select-change" data-val="?sort=closing"><h5>마감임박순</h5></a>
+    <a class="select-change" data-val="?sort=new"><h5>최신순</h5></a>
+    <a class="select-change" data-val="?sort=views"><h5>조회순</h5></a>
+    <a class="select-change" data-val="?sort=comments"><h5>댓글순</h5></a>
+</div>
+
+<select class="sort-select d-none" onchange="location = this.value;">
+    <option value="?sort=likes">지금 인기</option>
+    <option value="?sort=vs">의견팽팽한순</option>
+    <option value="?sort=closing">마감임박순</option>
+    <option value="?sort=new">최신순</option>
+    <option value="?sort=views">조회순</option>
+    <option value="?sort=comments">댓글순</option>
+</select>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+<script>
+$('.select-change').click(function(){
+    $('.sort-select').val($(this).data('val')).trigger('change');
+})
+</script>

@@ -1,0 +1,27 @@
+{% load static  %}
+{% load post_extras %}
+
+<figure id="post-{{ post.pk }}" style="width: 100%;">
+    {% if post.thumbnail %}
+        <a href="{% url 'post:post_detail' post_pk=post.pk %}">
+            <img src="{{ post.thumbnail.url }}" alt="" class="post-image">
+        </a>
+    {% endif %}
+    <div class="tag-list">
+        {% for tag in post.tag|split_tags %}
+            <span class="tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    <a href="{% url 'post:post_detail' post_pk=post.pk %}">
+        <h3>{{ post.title }}</h3>
+    </a>
+    <div class="background">
+        <p>{{ post.background|safe|truncatechars:160 }}</p>
+    </div>
+    <div class="btn-area">
+        <img src="{% static '/img/view.png' %}" style="margin-top: 4px;" /><h6>{{ post.view_count }}</h6>
+        <img src="{% static '/img/heart.png' %}" /><h6>{{ post.likes_count }}</h6>
+        <img src="{% static '/img/comment.png' %}" /><h6>{{ post.comment_count }}</h6>
+        <span class="ml-auto">{{ post.natural_time }}</span>
+    </div>
+</figure>

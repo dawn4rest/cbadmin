@@ -1,0 +1,145 @@
+{% load static %}
+<div class="comment-header">
+    <div class="header-left">
+        <img src="{{ comment.author.profile_image.url }}" alt="">
+        <h6>{{ comment.author }}<br><span>{{ comment.created_at }}</span></h6>
+    </div>
+    <div class="header-right">
+        {% if comment.author == request.user %}
+        <a onclick="$('.clear-btn').click();$('#pro-{{ comment.pk }} .comment-content').load('{% url 'comment:pro_comment_update' comment_pk=comment.pk %}');"><img src="{% static 'img/edit.png' %}">수정하기</a>
+        <a id="delete-pro-{{ comment.pk }}"><img src="{% static 'img/delete.png' %}" alt="">삭제하기</a>
+        <script type="text/javascript">
+            $('#delete-pro-{{ comment.pk }}').click(function(){
+                if(!confirm("정말 삭제하시겠습니까?")) { return };
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'comment:pro_comment_delete' comment_pk=comment.pk %}",
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    },
+                    dataType: "json",
+                    success: function(response){
+                        $('#pro-{{ comment.pk }}').remove();
+                        alert(response.message);
+                    }
+                });
+            });
+        </script>
+        {% endif %}
+    </div>
+</div>
+
+<h6 class="comment-content">{{ comment.content|linebreaks }}</h6>
+
+<div class="comment-footer">
+    <div class="btn-wrap">
+        <div class="like-hate">
+            <form action="{% url 'comment:pro_comment_like_toggle' comment_pk=comment.pk %}" method="POST">
+                {% csrf_token %}
+                <button>
+                    {% if comment in user.like_pro_comments.all %}
+                    <img src="{% static '/img/like_hate_fill.png' %}" />
+                    {% with pro_like_count=comment.like_pro.count %}
+                    <p class="count active"> {{ pro_like_count }}</p>
+                    {% endwith %}
+                    {% else %}
+                    <img src="{% static '/img/like_hate_empty.png' %}" />
+                    {% with pro_like_count=comment.like_pro.count %}
+                    <p class="count"> {{ pro_like_count }}</p>
+                    {% endwith %}
+                    {% endif %}
+                </button>
+            </form>
+        </div>
+
+        <div class="like-hate">
+            <form action="{% url 'comment:pro_comment_hate_toggle' comment_pk=comment.pk %}" method="POST">
+                {% csrf_token %}
+                <button>
+                    {% if comment in user.hate_pro_comments.all %}
+                    <img class="hate" src="{% static '/img/like_hate_fill.png' %}" />
+                    {% with pro_hate_count=comment.hate_pro.count %}
+                    <p class="count active">{{ pro_hate_count }}</p>
+                    {% endwith %}
+                    {% else %}
+                    <img class="hate" src="{% static '/img/like_hate_empty.png' %}" />
+                    {% with pro_hate_count=comment.hate_pro.count %}
+                    <p class="count">{{ pro_hate_count }}</p>
+                    {% endwith %}
+                    {% endif %}
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT TOGGLE START @@@@@@@@@@@@@@@@ -->
+    <div class="btn-wrap">
+        <button>
+            <a data-toggle="collapse" href="#pro-action-{{ comment.pk }}">
+                <img src="{% static '/img/comment.png' %}" alt="" style="margin-right: 4px;" />
+                <span class="count">{{ comment.comments_on_pro.count }}</span>
+            </a>
+        </button>
+        <button>
+            <a data-toggle="collapse" href="#pro-action-{{ comment.pk }}">
+                <img src="{% static '/img/report.png' %}" />
+                <span class="count">신고하기</span>
+            </a>
+        </button>
+    </div>
+    <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT TOGGLE END @@@@@@@@@@@@@@@@ -->
+</div>
+
+<!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT CONTENT START @@@@@@@@@@@@@@@@ -->
+{% if comment.comments_on_pro %}
+<div class="comment-action collapse" id="pro-action-{{ comment.pk }}">
+    <ul class="nav nav-pills nav-fill">
+        <li class="nav-item">
+            <a class="tab-link active" href="#pro-coc-{{ comment.pk }}" data-toggle="pill">
+                <h5>답글</h5>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="tab-link" href="#pro-report-{{ comment.pk }}" data-toggle="pill">
+                <h5>신고하기</h5>
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="pro-coc-{{ comment.pk }}">
+            <form action="{% url 'comment:comment_pro_comment' comment_pk=comment.pk %}" method="POST">
+                {% csrf_token %}
+                {{ comment_pro_comment_form.content }}
+                <button class="btn btn-fill" type="submit">등록하기</button>
+            </form>
+
+            <div class="coc-list">
+                {% for coc in comment.comments_on_pro.all reversed %}
+                <div class="coc-item">
+                    <div class="item-header">
+                        <img src="/media/{{ coc.author.profile_image }}" alt="" />
+                        <h6>{{ coc.author }}<br><span>{{ coc.created_at }}</span></h6>
+                    </div>
+                    <h6>{{ coc.content }}</h6>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="pro-report-{{ comment.pk }}">
+            <form class="report-form" action="{% url 'comment:pro_comment_report' comment_pk=comment.pk %}"
+                method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ report_pro_comment_form.etc_text }}
+                    <button class="btn btn-fill" type="submit">신고하기</button>
+                </div>
+                <div class="form-group">
+                    {{ report_pro_comment_form.report_reason }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT CONTENT END @@@@@@@@@@@@@@@@ -->

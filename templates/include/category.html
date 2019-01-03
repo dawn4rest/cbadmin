@@ -1,0 +1,14 @@
+{% load static  %}
+<div class="category m60">
+    <a class="category-link" href="{% url 'post:post_list' %}">
+        <img class="category-icon" src="{% static '/img/categories/all.png' %}" />
+        <h6>ALL</h6>
+    </a>
+
+    {% for category in categories %}
+    <a class="category-link" href="/post/category/{{ category.slug }}">
+        <img class="category-icon" src="/static/img/categories/{{ category.slug }}.png" />
+        <h6>{{ category.name }}</h6>
+    </a>
+    {% endfor %}
+</div>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.967 31.967">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #41cc90;
+        stroke: #41cc90;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        stroke: #fff;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="그룹_1681" data-name="그룹 1681" transform="translate(-712 -1019)">
+    <g id="사각형_1122" data-name="사각형 1122" class="cls-1" transform="translate(712 1019)">
+      <rect class="cls-3" width="31.967" height="31.967" rx="4"/>
+      <rect class="cls-4" x="0.5" y="0.5" width="30.967" height="30.967" rx="3.5"/>
+    </g>
+    <g id="그룹_836" data-name="그룹 836" transform="translate(719.377 1026.377)">
+      <g id="사각형_1095" data-name="사각형 1095" class="cls-2" transform="translate(10.451) rotate(90)">
+        <rect class="cls-3" width="17.213" height="3.688"/>
+        <rect class="cls-4" x="0.5" y="0.5" width="16.213" height="2.688"/>
+      </g>
+      <g id="사각형_1096" data-name="사각형 1096" class="cls-2" transform="translate(0 6.762)">
+        <rect class="cls-3" width="17.213" height="3.688"/>
+        <rect class="cls-4" x="0.5" y="0.5" width="16.213" height="2.688"/>
+      </g>
+    </g>
+  </g>
+</svg>

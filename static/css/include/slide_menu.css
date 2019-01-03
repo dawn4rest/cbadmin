@@ -1,0 +1,18 @@
+#slide-menu { display: block; float: right; position: fixed; top: 0; right: -320px; bottom: 81px; width: 100%; height: 100%; max-width: 320px; border-left: 1px solid #C3C5C7; background-color: #fff; -moz-transition: all 300ms; -webkit-transition: all 300ms; transition: all 300ms; overflow: auto; z-index: 1; }
+#slide-menu.active { right: 0px !important; }
+#slide-menu .slide-header { display: flex; align-items: center; background-color: #3d3d3d; }
+#slide-menu .slide-header h4 { width: 100%; text-align: center; color: #fff; }
+#slide-menu .slide-header img { width: 24px; margin: 18px; margin-right: -18px; cursor: pointer; }
+#slide-menu .like-card { margin: 0; padding: 20px 25px; border-bottom: 1px solid #C3C5C7; }
+#slide-menu .like-card .btn-area { text-align: right; }
+#slide-menu .like-card .btn-area img { width: 24px; height: 24px; margin-left: 16px; }
+#slide-menu .like-card label { font-size: 14px; padding-bottom: 8px; }
+#slide-menu .like-card h6 { font-weight: 500; padding-bottom: 20px; }
+#slide-menu .like-card .subtitle-wrap { padding-bottom: 8px; }
+#slide-menu .like-card .subtitle-wrap p { width: calc(100% - 24px); }
+#slide-menu .like-card .subtitle-wrap .pro-title { width: 8px; height: 8px; border-radius: 50%; margin-top: 7px; margin-right: 16px; background-color: #41CC90; }
+#slide-menu .like-card .subtitle-wrap .con-title { width: 8px; height: 8px; border-radius: 50%; margin-top: 7px; margin-right: 16px; background-color: #FF725C; }
+
+#slide-menu .likes-empty { text-align: center; }
+#slide-menu .likes-empty h4 { margin: 80px 0; }
+#slide-menu .likes-empty img { width: 64%; }

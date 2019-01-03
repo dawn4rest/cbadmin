@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <defs>
+    <style>
+      .cls-1, .cls-4 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="그룹_1980" data-name="그룹 1980" transform="translate(-158 -341)">
+    <g id="사각형_2138" data-name="사각형 2138" class="cls-1" transform="translate(158 341)">
+      <rect class="cls-3" width="60" height="60"/>
+      <rect class="cls-4" x="1" y="1" width="58" height="58"/>
+    </g>
+    <g id="g694" transform="translate(-29.002 211.421)">
+      <path id="path696" class="cls-2" d="M217.328,143.579c-9.568,0-17.326,6.125-17.326,13.686,0,4.856,3.213,9.12,8.039,11.554l-1.633,6.094a.5.5,0,0,0,.125.52.479.479,0,0,0,.655.032l7.02-4.742a22.049,22.049,0,0,0,3.12.229c9.568,0,17.326-6.125,17.326-13.686s-7.759-13.686-17.326-13.686" transform="translate(0)"/>
+    </g>
+  </g>
+</svg>

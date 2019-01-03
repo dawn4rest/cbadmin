@@ -1,0 +1,12 @@
+.log-header { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 28px; padding-bottom: 12px; border-bottom: 4px solid #3D3D3D; }
+
+.log-body { width: 100%; }
+.log-body label { margin: 20px 0 10px; font-size: 12px; line-height: 18px; font-weight: 700; color: #7F7F7F; }
+.log-body h5 { font-weight: 400; margin-bottom: 20px; }
+.log-body .post-title { margin-bottom: 8px; padding: 36px 32px; border: 1px solid #C3C5C7; font-size: 18px; font-weight: 500; line-height: 28px; }
+.log-body .post-title.pro { color: #41CC90; }
+.log-body .post-title.con { color: #FF725C; }
+.log-body .background { width: 100%; padding: 20px 24px; border: 1px solid #C3C5C7; }
+.log-body .background .comment-header { display: flex; justify-content: flex-start; align-items: flex-end; margin-bottom: 12px; }
+.log-body .background .comment-header img { width: 36px; height: 36px; border-radius: 50%; margin-right: 12px; }
+.log-body .background .comment-header h6 { font-weight: 500; }
