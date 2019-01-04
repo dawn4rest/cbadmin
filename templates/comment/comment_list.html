@@ -1,0 +1,111 @@
+{% load static %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{% static 'css/post/comments.css' %}">
+{% endblock %}
+
+<!-- @@@@@@@@@@@@@@@@ COMMENT TITLE START @@@@@@@@@@@@@@@@ -->
+<div class="row comment_title">
+    <div class="col-6 pro-title">
+        <h5>{{ post.pro_title }}</h5>
+        <a data-toggle="collapse" href="#pro-form">
+            <img class="add-pro" src="{% static 'img/add-pro.svg' %}" />
+        </a>
+    </div>
+    <div class="col-6 con-title">
+        <h5>{{ post.con_title }}</h5>
+        <a data-toggle="collapse" href="#con-form">
+            <img class="add-con" src="{% static 'img/add-con.svg' %}" />
+        </a>
+    </div>
+</div>
+<!-- @@@@@@@@@@@@@@@@ COMMENT TITLE END @@@@@@@@@@@@@@@@ -->
+
+<div class="row">
+    <div class="pro-comments col-6">
+        <!-- @@@@@@@@@@@@@@@@ PRO COMMENT CREATE START @@@@@@@@@@@@@@@@ -->
+        <div id="pro-form" class="form-wrap pro-form collapse">
+            {{ comment_form.content }}
+            <button class="btn btn-line" type="button"><a data-toggle="collapse" href="#pro-form">취소하기</a></button>
+            <button class="btn btn-fill comment-create" name="pro">등록하기</button>
+        </div>
+        <!-- @@@@@@@@@@@@@@@@ PRO COMMENT CREATE END @@@@@@@@@@@@@@@@ -->
+    </div>
+
+    <!-- @@@@@@@@@@@@@@@@ CON COMMENT START @@@@@@@@@@@@@@@@ -->
+    <div class="con_comments col-6">
+        <!-- @@@@@@@@@@@@@@@@ CON COMMENT CREATE START @@@@@@@@@@@@@@@@ -->
+        <div id="con-form" class="form-wrap con-form collapse">
+            {{ comment_form.content }}
+            <button class="btn btn-line" type="button"><a data-toggle="collapse" href="#con-form">취소하기</a></button>
+            <button class="btn btn-fill comment-create" name="con">등록하기</button>
+        </div>
+        <!-- @@@@@@@@@@@@@@@@ CON COMMENT CREATE END @@@@@@@@@@@@@@@@ -->
+    </div>
+</div>
+
+<div class="row comment-wrap">
+    <ul class="comment-list pro-list col-6">
+        {% for comment in procomments.all %}
+        <li id="{{ comment.pk }}" class="comment">
+            {% include 'include/comment.html' %}
+        </li>
+        {% endfor %}
+    </ul>
+    <ul class="comment-list con-list col-6">
+        {% for comment in concomments.all %}
+        <li id="{{ comment.pk }}" class="comment">
+            {% include 'include/comment.html' %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% block customJS %}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(document).on('click', '.comment-create', function() {
+        var content =  $(this).parent().find('textarea').val();
+        var type = $(this).attr('name');
+        if(content.length > 140) {
+            alert('댓글은 최대 140자 입력 가능합니다. 현재 글자수 :' + content.length)
+            return;
+        }
+        $.ajax({
+            type: 'POST',
+            url: '{% url "comment:comment_create" post_pk=post.pk %}',
+            data: {
+                'content': content,
+                'type': type,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            dataType: 'html',
+            success: function (data, textStatus, jqXHR) {
+                $('.form-wrap textarea').val('');
+                if(type == 'pro') {
+                } else {
+
+                }
+            }
+        })
+    })
+
+    $(document).on('click', '.delete-pro-btn', function() {
+        if(!confirm("정말 삭제하시겠습니까?")) { return };
+        var pk = $(this).attr('name');
+        $.ajax({
+            type: "POST",
+            url: "{% url 'comment:comment_delete' %}",
+            data: {
+                'comment_pk': pk,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            dataType: "json",
+            success: function(response){
+                $('#'+pk).remove();
+                alert(response.message);
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,7 +1,7 @@
 .comment-wrap { margin: 0; margin-bottom: 60px; }
 .comment-wrap .col-6 { max-width: calc(50% - 4px); padding: 0; }
-.comment-wrap .pro-comments { margin-right: 4px; }
-.comment-wrap .con_comments { margin-left: 4px; }
+.comment-wrap .pro-list { margin-right: 4px; }
+.comment-wrap .con-list { margin-left: 4px; }
 
 
 .comment-wrap .col-6 .form-wrap { width: 100%; padding: 12px; border: 1px solid; text-align: right; }
@@ -20,8 +20,8 @@
 .comment-list .comment-divider span { width: 100px; }
 .comment-list .comment-divider hr { width: calc(50% - 50px); border-top: 1px solid #C3C5C7; }
 .comment-list .comment { order: 3; margin: 8px 0; padding: 20px 24px; border: 1px solid #C3C5C7; }
-.pro-comments .comment-list .comment { border-bottom: 1px solid #41CC90; }
-.con_comments .comment-list .comment { border-bottom: 1px solid #FF725C; }
+.comment-list.pro-list .comment { border-bottom: 1px solid #41CC90; }
+.comment-list.con-list .comment { border-bottom: 1px solid #FF725C; }
 
 .comment-header { display: flex; justify-content: space-between; align-items: center; }
 .comment-header .header-left { display: flex; align-items: center; }

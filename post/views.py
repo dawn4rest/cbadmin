@@ -23,7 +23,7 @@ def search(request):
     elif sort == 'views':
         posts = posts.all().order_by('-view_count')
     elif sort == 'comments':
-        posts = posts.annotate(count = Count('procomment') + Count('concomment')).order_by('-count')
+        posts = Post.objects.annotate(count = Count('comment')).order_by('-count')
     else:
         posts = posts.all().order_by('-updated_at')
 
@@ -44,7 +44,7 @@ def post_list(request):
     elif sort == 'views':
         posts = Post.objects.all().order_by('-view_count')
     elif sort == 'comments':
-        posts = Post.objects.annotate(count = Count('procomment') + Count('concomment')).order_by('-count')
+        posts = Post.objects.annotate(count = Count('comment')).order_by('-count')
     else:
         posts = Post.objects.all().order_by('-created_at')
 
@@ -54,30 +54,22 @@ def post_list(request):
 
 def post_detail(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
-    pro_comments = comment_models.ProComment.objects.filter(post=post).order_by('-created_at')
-    con_comments = comment_models.ConComment.objects.filter(post=post).order_by('-created_at')
-    pro_comment_form = comment_forms.ProCommentForm()
-    con_comment_form = comment_forms.ConCommentForm()
-    comment_pro_comment_form = comment_forms.CommentOnProCommentForm()
-    comment_con_comment_form = comment_forms.CommentOnConCommentForm()
-    report_pro_comment_form = comment_forms.ReportProCommentForm()
-    report_con_comment_form = comment_forms.ReportConCommentForm()
+    procomments = comment_models.Comment.objects.filter(post=post, type=True).order_by('-created_at')
+    concomments = comment_models.Comment.objects.filter(post=post, type=False).order_by('-created_at')
+    comment_form = comment_forms.CommentForm()
+    comment_comment_form = comment_forms.CommentOnCommentForm()
+    report_comment_form = comment_forms.ReportCommentForm()
 
     post.view_count = post.view_count + 1
     post.save()
 
     context = {
         'post': post,
-        'pro_comments': pro_comments,
-        'con_comments': con_comments,
-        'pro_comments': pro_comments,
-        'con_comments': con_comments,
-        'pro_comment_form': pro_comment_form,
-        'con_comment_form': con_comment_form,
-        'comment_pro_comment_form': comment_pro_comment_form,
-        'comment_con_comment_form': comment_con_comment_form,
-        'report_pro_comment_form': report_pro_comment_form,
-        'report_con_comment_form': report_con_comment_form,
+        'procomments': procomments,
+        'concomments': concomments,
+        'comment_form': comment_form,
+        'comment_comment_form': comment_comment_form,
+        'report_comment_form': report_comment_form,
     }
     return render(request, 'post/post_detail.html', context)
 

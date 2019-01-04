@@ -60,7 +60,7 @@ class Post(TimeStampedModel):
 
     @property
     def comment_count(self):
-        all_count = self.procomment_set.count() + self.concomment_set.count()
+        all_count = self.comment_set.count()
         return all_count
 
     def get_cat_list(self):
