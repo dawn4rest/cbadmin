@@ -76,33 +76,35 @@ def comment_delete(request):
 
 
 @login_required
-def comment_like_toggle(request, comment_pk):
+def comment_like_toggle(request):
+    comment_pk = request.POST.get('comment_pk', None)
     comment = get_object_or_404(Comment, pk=comment_pk)
-    post_pk = comment.post.pk
-    user = request.user
-    filtered_like_comments = user.like_comments.filter(pk=comment.pk)
+    filtered_like_comments = request.user.like_comments.filter(pk=comment.pk)
 
     if filtered_like_comments.exists():
-        user.like_comments.remove(comment)
+        request.user.like_comments.remove(comment)
+        message = '좋아요 취소'
     else:
-        user.like_comments.add(comment)
+        request.user.like_comments.add(comment)
+        message = '좋아요'
 
-    return redirect('post:post_detail', post_pk=post_pk)
+    return HttpResponse(json.dumps({'message': message}), content_type="application/json")
 
 
 @login_required
-def comment_hate_toggle(request, comment_pk):
+def comment_hate_toggle(request):
+    comment_pk = request.POST.get('comment_pk', None)
     comment = get_object_or_404(Comment, pk=comment_pk)
-    post_pk = comment.post.pk
-    user = request.user
-    filtered_hate_comments = user.hate_comments.filter(pk=comment.pk)
+    filtered_hate_comments = request.user.hate_comments.filter(pk=comment.pk)
 
     if filtered_hate_comments.exists():
-        user.hate_comments.remove(comment)
+        request.user.hate_comments.remove(comment)
+        message = '싫어요 취소'
     else:
-        user.hate_comments.add(comment)
+        request.user.hate_comments.add(comment)
+        message = '싫어요'
 
-    return redirect('post:post_detail', post_pk=post_pk)
+    return HttpResponse(json.dumps({'message': message}), content_type="application/json")
 
 
 @login_required

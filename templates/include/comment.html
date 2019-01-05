@@ -18,33 +18,27 @@
 <div class="comment-footer">
     <div class="btn-wrap">
         <div class="like-hate">
-            <form action="{% url 'comment:comment_like_toggle' comment_pk=comment.pk %}" method="POST">
-                {% csrf_token %}
-                <button>
-                    {% if comment in user.like_comments.all %}
-                    <img src="{% static '/img/like_hate_fill.png' %}" />
-                    <p class="count active"> {{ comment.like_comments.count }}</p>
-                    {% else %}
-                    <img src="{% static '/img/like_hate_empty.png' %}" />
-                    <p class="count"> {{ comment.like_comments.count }}</p>
-                    {% endif %}
-                </button>
-            </form>
+            <button class="comment-like" name="{{ comment.pk }}">
+                {% if comment in user.like_comments.all %}
+                <img src="{% static '/img/like_hate_fill.png' %}" />
+                <p class="count active"> {{ comment.like_comments.count }}</p>
+                {% else %}
+                <img src="{% static '/img/like_hate_empty.png' %}" />
+                <p class="count"> {{ comment.like_comments.count }}</p>
+                {% endif %}
+            </button>
         </div>
 
         <div class="like-hate">
-            <form action="{% url 'comment:comment_hate_toggle' comment_pk=comment.pk %}" method="POST">
-                {% csrf_token %}
-                <button>
-                    {% if comment in user.hate_comments.all %}
-                    <img class="hate" src="{% static '/img/like_hate_fill.png' %}" />
-                    <p class="count active">{{ comment.hate_comments.count }}</p>
-                    {% else %}
-                    <img class="hate" src="{% static '/img/like_hate_empty.png' %}" />
-                    <p class="count">{{ comment.hate_comments.count }}</p>
-                    {% endif %}
-                </button>
-            </form>
+            <button class="comment-hate" name="{{ comment.pk }}">
+                {% if comment in user.hate_comments.all %}
+                <img class="hate" src="{% static '/img/like_hate_fill.png' %}" />
+                <p class="count active">{{ comment.hate_comments.count }}</p>
+                {% else %}
+                <img class="hate" src="{% static '/img/like_hate_empty.png' %}" />
+                <p class="count">{{ comment.hate_comments.count }}</p>
+                {% endif %}
+            </button>
         </div>
     </div>
 

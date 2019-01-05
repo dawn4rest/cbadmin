@@ -13,10 +13,8 @@ urlpatterns = [
     url(r'^delete/$', views.comment_delete, name='comment_delete'),
 
     # Comment action Url
-    url(r'^(?P<comment_pk>\d+)/like-toggle/$',
-        views.comment_like_toggle, name='comment_like_toggle'),
-    url(r'^(?P<comment_pk>\d+)/hate-toggle/$',
-        views.comment_hate_toggle, name='comment_hate_toggle'),
+    url(r'^like-toggle/$', views.comment_like_toggle, name='comment_like_toggle'),
+    url(r'^hate-toggle/$', views.comment_hate_toggle, name='comment_hate_toggle'),
     url(r'^(?P<comment_pk>\d+)/report/$',
         views.comment_report, name='comment_report'),
 

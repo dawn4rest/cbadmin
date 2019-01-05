@@ -188,5 +188,59 @@
             }
         });
     });
+
+    $(document).on('click', '.comment-like', function () {
+        var pk = $(this).attr('name');
+        var $target = $(this).find('p');
+        $.ajax({
+            type: "POST",
+            url: "{% url 'comment:comment_like_toggle' %}",
+            data: {
+                'comment_pk': pk,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            dataType: "json",
+            success: function (response) {
+                if ($target.hasClass('active')) {
+                    var changeNum = Number($target.text()) - 1;
+                    $target.text(changeNum);
+                    $target.removeClass('active');
+                    $target.parent().children('img').attr('src', '{% static "/img/like_hate_empty.png" %}');
+                } else {
+                    var changeNum = Number($target.text()) + 1;
+                    $target.text(changeNum);
+                    $target.addClass('active');
+                    $target.parent().children('img').attr('src', '{% static "/img/like_hate_fill.png" %}');
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.comment-hate', function () {
+        var pk = $(this).attr('name');
+        var $target = $(this).find('p');
+        $.ajax({
+            type: "POST",
+            url: "{% url 'comment:comment_hate_toggle' %}",
+            data: {
+                'comment_pk': pk,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            dataType: "json",
+            success: function (response) {
+                if ($target.hasClass('active')) {
+                    var changeNum = Number($target.text()) - 1;
+                    $target.text(changeNum);
+                    $target.removeClass('active');
+                    $target.parent().children('img').attr('src', '{% static "/img/like_hate_empty.png" %}');
+                } else {
+                    var changeNum = Number($target.text()) + 1;
+                    $target.text(changeNum);
+                    $target.addClass('active');
+                    $target.parent().children('img').attr('src', '{% static "/img/like_hate_fill.png" %}');
+                }
+            }
+        });
+    });
 </script>
 {% endblock %}
