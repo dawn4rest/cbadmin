@@ -61,7 +61,7 @@ def post_detail(request, post_pk):
     concomments_mine = concomments.filter(author=request.user).order_by('-created_at')
     concomments_exclude = concomments.exclude(author=request.user).order_by('-created_at')
     comment_form = comment_forms.CommentForm()
-    comment_comment_form = comment_forms.CommentOnCommentForm()
+    comment_on_comment_form = comment_forms.CommentOnCommentForm()
     report_comment_form = comment_forms.ReportCommentForm()
 
     post.view_count = post.view_count + 1
@@ -74,7 +74,7 @@ def post_detail(request, post_pk):
         'concomments_mine': concomments_mine,
         'concomments_exclude': concomments_exclude,
         'comment_form': comment_form,
-        'comment_comment_form': comment_comment_form,
+        'comment_on_comment_form': comment_on_comment_form,
         'report_comment_form': report_comment_form,
     }
     return render(request, 'post/post_detail.html', context)

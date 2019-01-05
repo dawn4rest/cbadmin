@@ -23,10 +23,8 @@ class User(AbstractUser):
     gender = models.CharField(max_length=1, choices=CHOICES_GENDER)
 
     like_posts = models.ManyToManyField('post.Post', blank=True, related_name='like_users')
-    # like_pro_comments = models.ManyToManyField('comment.ProComment', blank=True, related_name='like_pro')
-    # like_con_comments = models.ManyToManyField('comment.ConComment', blank=True, related_name='like_con')
-    # hate_pro_comments = models.ManyToManyField('comment.ProComment', blank=True, related_name='hate_pro')
-    # hate_con_comments = models.ManyToManyField('comment.ConComment', blank=True, related_name='hate_con')
+    like_comments = models.ManyToManyField('comment.Comment', blank=True, related_name='like_comments')
+    hate_comments = models.ManyToManyField('comment.Comment', blank=True, related_name='hate_comments')
 
     objects = UserManager()
 
