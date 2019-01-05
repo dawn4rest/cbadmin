@@ -146,5 +146,24 @@
             }
         });
     });
+
+    $(document).on('click', '.coc-delete', function () {
+        if (!confirm("정말 삭제하시겠습니까?")) { return };
+        var pk = $(this).attr('name');
+        var $target = $(this).parent().parent().parent();
+        $.ajax({
+            type: "POST",
+            url: "{% url 'comment:coc_delete' %}",
+            data: {
+                'coc_pk': pk,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            dataType: "json",
+            success: function (response) {
+                $target.remove();
+                alert(response.message);
+            }
+        });
+    });
 </script>
 {% endblock %}

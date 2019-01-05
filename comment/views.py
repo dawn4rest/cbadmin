@@ -5,7 +5,7 @@ from django.contrib import messages
 from utils.decorators import login_required
 from django.db.models import Count, Q
 
-from .models import Comment
+from .models import Comment, CommentOnComment
 from .forms import CommentForm, CommentOnCommentForm, ReportCommentForm
 from post import models as post_models
 
@@ -147,3 +147,16 @@ def coc_create(request, comment_pk):
             'comment_on_comment_form': comment_on_comment_form,
         }
         return render(request, 'comment/coc_create.html', context)
+
+
+@login_required
+def coc_delete(request):
+    coc_pk = request.POST.get('coc_pk', None)
+    coc = get_object_or_404(CommentOnComment, pk=coc_pk)
+
+    if request.method == 'POST' and request.user == coc.author:
+        coc.delete()
+        message = '댓글이 삭제되었습니다.'
+    else:
+        message = '잘못된 접근입니다.'
+    return HttpResponse(json.dumps({'message': message}), content_type="application/json")

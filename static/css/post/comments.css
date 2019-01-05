@@ -26,7 +26,7 @@
 .comment-header .header-left h6 { font-weight: 700; line-height: 18px; }
 .comment-header .header-left img { width: 48px; height: 48px; border-radius: 50%; margin-right: 16px; }
 .comment-header .header-right { display: flex; justify-content: flex-end; align-items: center; }
-.comment-header .header-right img { width: 14px; height: 14px; margin-left: 12px; margin-right: 4px; }
+.comment-header .header-right img { width: 14px; height: 14px; margin: 0 4px -2px 12px; border-radius: 0; }
 .comment-header .header-right a { font-size: 12px; color: #2699FB; }
 .comment-content { padding: 20px 0; }
 .comment-content p { font-size: 14px; line-height: 24px; }
@@ -52,7 +52,7 @@
 .comment-action .tab-pane .coc-list { padding-bottom: 20px; }
 .comment-action .tab-pane .coc-list .coc-item { padding: 12px 0; border-bottom: 1px solid #C3C5C7; }
 .comment-action .tab-pane .coc-list .coc-item .item-header { display: flex; align-items: center; }
-.comment-action .tab-pane .coc-list .coc-item .item-header img { width: 32px; height: 32px; margin-right: 16px; border-radius: 50%; }
+.item-header img { width: 32px; height: 32px; margin-right: 16px; border-radius: 50%; }
 .comment-action .tab-pane .coc-list .coc-item .item-header h6 { font-weight: 700; line-height: 1; }
 .comment-action .tab-pane .coc-list .coc-item .item-header span { color: #C3C5C7; }
 .comment-action .tab-pane .coc-list .coc-item h6 { margin: 8px 0; }
