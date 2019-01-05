@@ -31,7 +31,6 @@ def comment_create(request, post_pk):
                 comment.type = False
             comment.save()
 
-            comment = comment
             return render(request, 'include/comment.html', {'comment': comment})
 
     return redirect('post:post_detail', post_pk=post_pk)
@@ -129,19 +128,19 @@ def comment_report(request, comment_pk):
 
 
 @login_required
-def coc_create(request, comment_pk):
+def coc_create(request):
     if request.method == 'POST':
+        comment_pk = request.POST.get('comment_pk', None)
         comment = get_object_or_404(Comment, pk=comment_pk)
-        post_pk = comment.post.pk
         comment_on_comment_form = CommentOnCommentForm(request.POST)
 
         if comment_on_comment_form.is_valid():
-            comment_on_comment = comment_on_comment_form.save(commit=False)
-            comment_on_comment.comment = comment
-            comment_on_comment.author = request.user
-            comment_on_comment.save()
+            coc = comment_on_comment_form.save(commit=False)
+            coc.comment = comment
+            coc.author = request.user
+            coc.save()
             messages.success(request, '댓글을 등록했습니다')
-            return redirect('post:post_detail', post_pk=post_pk)
+            return render(request, 'include/coc.html', {'coc': coc})
     else:
         context = {
             'comment_on_comment_form': comment_on_comment_form,

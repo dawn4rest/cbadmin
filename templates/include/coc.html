@@ -1,0 +1,13 @@
+{% load static %}
+<div class="item-header comment-header">
+    <div class="header-left">
+        <img src="/media/{{ coc.author.profile_image }}" />
+        <h6>{{ coc.author }}<br><span>{{ coc.created_at }}</span></h6>
+    </div>
+    <div class="header-right">
+        {% if coc.author == request.user %}
+        <a class="coc-delete" name="{{ coc.pk }}"><img src="{% static 'img/delete.png' %}" />삭제하기</a>
+        {% endif %}
+    </div>
+</div>
+<h6>{{ coc.content }}</h6>
