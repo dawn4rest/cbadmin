@@ -1,0 +1,30 @@
+{% load static %}
+<div class="coc-update form-wrap">
+    {{ comment_on_comment_form.content }}
+    <button id="btn-coc-clear-{{ coc.pk }}" class="btn btn-line coc-clear-btn">취소하기</button>
+    <button id="btn-coc-update-{{ coc.pk }}" class="btn btn-fill">수정하기</button>
+
+    <script type="text/javascript">
+        $('#btn-coc-update-{{ coc.pk }}').click(function () {
+            var content = $('.coc-update input').val();
+            var $target = $(this).parent().parent().parent();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "comment:coc_update" coc_pk=coc.pk %}',
+                data: {
+                    'content': content,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                dataType: 'html',
+                success: function (data, textStatus, jqXHR) {
+                    $target.load('{% url "comment:coc_detail" coc_pk=coc.pk %}');
+                }
+            })
+        });
+
+        $('#btn-coc-clear-{{ coc.pk }}').click(function () {
+            var $target = $(this).parent().parent().parent();
+            $target.load('{% url "comment:coc_detail" coc_pk=coc.pk %}');
+        });
+    </script>
+</div>

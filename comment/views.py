@@ -127,6 +127,12 @@ def comment_report(request, comment_pk):
     return render(request, 'comment/comment_report.html', context)
 
 
+def coc_detail(request, coc_pk):
+    coc = get_object_or_404(CommentOnComment, pk=coc_pk)
+
+    return render(request, 'include/coc.html', {'coc': coc})
+
+
 @login_required
 def coc_create(request):
     if request.method == 'POST':
@@ -146,6 +152,30 @@ def coc_create(request):
             'comment_on_comment_form': comment_on_comment_form,
         }
         return render(request, 'comment/coc_create.html', context)
+
+
+@login_required
+def coc_update(request, coc_pk):
+    coc = get_object_or_404(CommentOnComment, pk=coc_pk)
+
+    if coc.author != request.user:
+        messages.warning(request, '잘못된 접근입니다.')
+    else:
+        if request.method == 'POST':
+            comment_on_comment_form = CommentOnCommentForm(
+                request.POST, request.FILES, instance=coc)
+
+            if comment_on_comment_form.is_valid():
+                comment = comment_on_comment_form.save()
+                messages.success(request, '게시물이 수정되었습니다')
+        else:
+            comment_on_comment_form = CommentOnCommentForm(instance=coc)
+
+    context = {
+        'coc': coc,
+        'comment_on_comment_form': comment_on_comment_form,
+    }
+    return render(request, 'comment/coc_update.html', context)
 
 
 @login_required

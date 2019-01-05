@@ -6,8 +6,10 @@
     </div>
     <div class="header-right">
         {% if coc.author == request.user %}
+        <a onclick="$('.coc-clear-btn').click();$('#coc-content-{{ coc.pk }}').load('{% url 'comment:coc_update' coc_pk=coc.pk %}');"><img
+                src="{% static 'img/edit.png' %}">수정하기</a>
         <a class="coc-delete" name="{{ coc.pk }}"><img src="{% static 'img/delete.png' %}" />삭제하기</a>
         {% endif %}
     </div>
 </div>
-<h6>{{ coc.content }}</h6>
+<h6 id="coc-content-{{ coc.pk }}">{{ coc.content }}</h6>

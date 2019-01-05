@@ -21,6 +21,9 @@ urlpatterns = [
         views.comment_report, name='comment_report'),
 
     # Comment on Comment Url
+    url(r'^coc/(?P<coc_pk>\d+)/$', views.coc_detail, name='coc_detail'),
     url(r'^coc/$', views.coc_create, name='coc_create'),
+    url(r'^coc/(?P<coc_pk>\d+)/update/$',
+        views.coc_update, name='coc_update'),
     url(r'^coc/delete/$', views.coc_delete, name='coc_delete'),
 ]
