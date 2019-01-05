@@ -1,13 +1,4 @@
 {% load static %}
-
-{% block title %}Comment Report{% endblock %}
-
-{% block content %}
-	<div class="comment-on-comment">
-		{% if type == 'PRO' %}
-			{% include 'include/form.html' with form=comment_pro_comment_form submit_title='등록하기' enctype='file' %}
-		{% else %}
-			{% include 'include/form.html' with form=comment_con_comment_form submit_title='등록하기' enctype='file' %}
-		{% endif %}
-	</div>
-{% endblock %}
+<div class="comment-on-comment">
+    {% include 'include/form.html' with form=comment_on_comment_form %}
+</div>

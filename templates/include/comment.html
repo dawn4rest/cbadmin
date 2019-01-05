@@ -82,7 +82,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane fade show active" id="coc-{{ comment.pk }}">
-            <form action="{% url 'comment:comment_on_comment' comment_pk=comment.pk %}" method="POST">
+            <form action="{% url 'comment:coc_create' comment_pk=comment.pk %}" method="POST">
                 {% csrf_token %}
                 {{ comment_on_comment_form.content }}
                 <button class="btn btn-fill" type="submit">등록하기</button>

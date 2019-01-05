@@ -47,7 +47,8 @@ def comment_update(request, comment_pk):
         return redirect('post:post_detail', post_pk=post_pk)
     else:
         if request.method == 'POST':
-            comment_form = CommentForm(request.POST, request.FILES, instance=comment)
+            comment_form = CommentForm(
+                request.POST, request.FILES, instance=comment)
 
             if comment_form.is_valid():
                 comment = comment_form.save()
@@ -66,60 +67,13 @@ def comment_update(request, comment_pk):
 def comment_delete(request):
     comment_pk = request.POST.get('comment_pk', None)
     comment = get_object_or_404(Comment, pk=comment_pk)
-    post_pk = comment.post.pk
 
-    if request.method == 'POST' and request.user == comment.author :
+    if request.method == 'POST' and request.user == comment.author:
         comment.delete()
         message = '댓글이 삭제되었습니다.'
     else:
         message = '잘못된 접근입니다.'
     return HttpResponse(json.dumps({'message': message}), content_type="application/json")
-
-
-
-
-@login_required
-def comment_on_comment(request, comment_pk):
-    comment = get_object_or_404(Comment, pk=comment_pk)
-    post_pk = comment.post.pk
-    user = request.user
-    comment_on_comment_form = CommentOnCommentForm(request.POST)
-
-    if comment_on_comment_form.is_valid():
-        comment_on_comment = comment_on_comment_form.save(commit=False)
-        comment_on_comment.comment = comment
-        comment_on_comment.author = request.user
-        comment_on_comment.save()
-        messages.success(request, '댓글을 등록했습니다')
-        return redirect('post:post_detail', post_pk=post_pk)
-
-    context = {
-        'type': "PRO",
-        'comment_on_comment_form': comment_on_comment_form,
-    }
-    return render(request, 'comment/comment_on_comment.html', context)
-
-
-@login_required
-def comment_report(request, comment_pk):
-    comment = get_object_or_404(Comment, pk=comment_pk)
-    post_pk = comment.post.pk
-    user = request.user
-    report_comment_form = ReportCommentForm(request.POST)
-
-    if report_comment_form.is_valid():
-        report_comment = report_comment_form.save(commit=False)
-        report_comment.comment = comment
-        report_comment.author = request.user
-        report_comment.save()
-        messages.success(request, '댓글이 신고되었습니다')
-        return redirect('post:post_detail', post_pk=post_pk)
-
-    context = {
-        'type': "PRO",
-        'report_comment_form': report_comment_form,
-    }
-    return render(request, 'comment/comment_report.html', context)
 
 
 @login_required
@@ -150,3 +104,46 @@ def comment_hate_toggle(request, comment_pk):
         user.hate_comments.add(comment)
 
     return redirect('post:post_detail', post_pk=post_pk)
+
+
+@login_required
+def comment_report(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    post_pk = comment.post.pk
+    user = request.user
+    report_comment_form = ReportCommentForm(request.POST)
+
+    if report_comment_form.is_valid():
+        report_comment = report_comment_form.save(commit=False)
+        report_comment.comment = comment
+        report_comment.author = request.user
+        report_comment.save()
+        messages.success(request, '댓글이 신고되었습니다')
+        return redirect('post:post_detail', post_pk=post_pk)
+
+    context = {
+        'type': "PRO",
+        'report_comment_form': report_comment_form,
+    }
+    return render(request, 'comment/comment_report.html', context)
+
+
+@login_required
+def coc_create(request, comment_pk):
+    if request.method == 'POST':
+        comment = get_object_or_404(Comment, pk=comment_pk)
+        post_pk = comment.post.pk
+        comment_on_comment_form = CommentOnCommentForm(request.POST)
+
+        if comment_on_comment_form.is_valid():
+            comment_on_comment = comment_on_comment_form.save(commit=False)
+            comment_on_comment.comment = comment
+            comment_on_comment.author = request.user
+            comment_on_comment.save()
+            messages.success(request, '댓글을 등록했습니다')
+            return redirect('post:post_detail', post_pk=post_pk)
+    else:
+        context = {
+            'comment_on_comment_form': comment_on_comment_form,
+        }
+        return render(request, 'comment/coc_create.html', context)
