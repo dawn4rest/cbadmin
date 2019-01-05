@@ -5,10 +5,10 @@ from . import views
 
 urlpatterns = [
     # Comment Url
-    url(r'^comment/(?P<comment_pk>\d+)/$', views.comment_detail, name='comment_detail'),
-    url(r'^(?P<post_pk>\d+)/comment/create/$', views.comment_create, name='comment_create'),
-    url(r'^comment/(?P<comment_pk>\d+)/update/$', views.comment_update, name='comment_update'),
-    url(r'^comment/delete/$', views.comment_delete, name='comment_delete'),
+    url(r'^(?P<comment_pk>\d+)/$', views.comment_detail, name='comment_detail'),
+    url(r'^(?P<post_pk>\d+)/create/$', views.comment_create, name='comment_create'),
+    url(r'^(?P<comment_pk>\d+)/update/$', views.comment_update, name='comment_update'),
+    url(r'^delete/$', views.comment_delete, name='comment_delete'),
 
     # Comment action Url
     url(r'^(?P<comment_pk>\d+)/comment-on-comment/$', views.comment_on_comment, name='comment_on_comment'),

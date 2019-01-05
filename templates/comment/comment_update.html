@@ -1,28 +1,30 @@
 {% load static %}
 <div class="comment-update form-wrap">
-	{{ comment_form.content }}
-	<button id="btn-clear-{{ comment.pk }}" class="btn btn-line clear-btn">취소하기</button>
-	<button id="btn-update-{{ comment.pk }}" class="btn btn-fill">수정하기</button>
+    {{ comment_form.content }}
+    <button id="btn-clear-{{ comment.pk }}" class="btn btn-line clear-btn">취소하기</button>
+    <button id="btn-update-{{ comment.pk }}" class="btn btn-fill">수정하기</button>
 
-	<script type="text/javascript">
-		$('#btn-update-{{ comment.pk }}').click(function () {
-			var content = $('.comment-update textarea').val();
-			$.ajax({
-				type: 'POST',
-				url: '{% url "comment:comment_update" comment_pk=comment.pk %}',
-				data: {
-					'content': content,
-					'csrfmiddlewaretoken': '{{ csrf_token }}',
-				},
-				dataType: 'html',
-				success: function (data, textStatus, jqXHR) {
-					$('#pro-{{ comment.pk }}').load('{% url "comment:comment_detail" comment_pk=comment.pk %}');
-				}
-			})
-		});
+    <script type="text/javascript">
+        $('#btn-update-{{ comment.pk }}').click(function () {
+            var content = $('.comment-update textarea').val();
+            var $target = $(this).parent().parent().parent();
+            $.ajax({
+                type: 'POST',
+                url: '{% url "comment:comment_update" comment_pk=comment.pk %}',
+                data: {
+                    'content': content,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                dataType: 'html',
+                success: function (data, textStatus, jqXHR) {
+                    $target.load('{% url "comment:comment_detail" comment_pk=comment.pk %}');
+                }
+            })
+        });
 
-		$('#btn-clear-{{ comment.pk }}').click(function () {
-			$('#pro-{{ comment.pk }}').load('{% url "comment:comment_detail" comment_pk=comment.pk %}');
-		});
-	</script>
+        $('#btn-clear-{{ comment.pk }}').click(function () {
+            var $target = $(this).parent().parent().parent();
+            $target.load('{% url "comment:comment_detail" comment_pk=comment.pk %}');
+        });
+    </script>
 </div>

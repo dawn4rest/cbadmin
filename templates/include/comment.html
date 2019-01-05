@@ -6,13 +6,14 @@
     </div>
     <div class="header-right">
         {% if comment.author == request.user %}
-        <a onclick="$('.clear-btn').click();$('#pro-{{ comment.pk }} .comment-content').load('{% url 'comment:comment_update' comment_pk=comment.pk %}');"><img src="{% static 'img/edit.png' %}">수정하기</a>
-        <a class="delete-pro-btn" name="{{ comment.pk }}"><img src="{% static 'img/delete.png' %}" alt="">삭제하기</a>
+        <a onclick="$('.clear-btn').click();$('#content-{{ comment.pk }}').load('{% url 'comment:comment_update' comment_pk=comment.pk %}');"><img
+                src="{% static 'img/edit.png' %}">수정하기</a>
+        <a class="comment-delete" name="{{ comment.pk }}"><img src="{% static 'img/delete.png' %}" alt="">삭제하기</a>
         {% endif %}
     </div>
 </div>
 
-<h6 class="comment-content">{{ comment.content|linebreaks }}</h6>
+<h6 id="content-{{ comment.pk }}" class="comment-content">{{ comment.content|linebreaks }}</h6>
 
 <div class="comment-footer">
     <div class="btn-wrap">
@@ -110,8 +111,7 @@
         </div>
 
         <div class="tab-pane fade" id="pro-report-{{ comment.pk }}">
-            <form class="report-form" action="{% url 'comment:comment_report' comment_pk=comment.pk %}"
-                method="POST">
+            <form class="report-form" action="{% url 'comment:comment_report' comment_pk=comment.pk %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                     {{ report_comment_form.etc_text }}

@@ -21,7 +21,7 @@
 </div>
 <!-- @@@@@@@@@@@@@@@@ COMMENT TITLE END @@@@@@@@@@@@@@@@ -->
 
-<div class="row">
+<div class="row comment-wrap m-0">
     <div class="pro-comments col-6">
         <!-- @@@@@@@@@@@@@@@@ PRO COMMENT CREATE START @@@@@@@@@@@@@@@@ -->
         <div id="pro-form" class="form-wrap pro-form collapse">
@@ -47,14 +47,14 @@
 <div class="row comment-wrap">
     <ul class="comment-list pro-list col-6">
         {% for comment in procomments.all %}
-        <li id="{{ comment.pk }}" class="comment">
+        <li class="comment">
             {% include 'include/comment.html' %}
         </li>
         {% endfor %}
     </ul>
     <ul class="comment-list con-list col-6">
         {% for comment in concomments.all %}
-        <li id="{{ comment.pk }}" class="comment">
+        <li class="comment">
             {% include 'include/comment.html' %}
         </li>
         {% endfor %}
@@ -64,10 +64,10 @@
 {% block customJS %}
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
-    $(document).on('click', '.comment-create', function() {
-        var content =  $(this).parent().find('textarea').val();
+    $(document).on('click', '.comment-create', function () {
+        var content = $(this).parent().find('textarea').val();
         var type = $(this).attr('name');
-        if(content.length > 140) {
+        if (content.length > 140) {
             alert('댓글은 최대 140자 입력 가능합니다. 현재 글자수 :' + content.length)
             return;
         }
@@ -82,17 +82,19 @@
             dataType: 'html',
             success: function (data, textStatus, jqXHR) {
                 $('.form-wrap textarea').val('');
-                if(type == 'pro') {
+                if (type == 'pro') {
+                    $('.pro-list').append('<li class="comment">' + data + '</li>');
                 } else {
-
+                    $('.con-list').append('<li class="comment">' + data + '</li>');
                 }
             }
-        })
-    })
+        });
+    });
 
-    $(document).on('click', '.delete-pro-btn', function() {
-        if(!confirm("정말 삭제하시겠습니까?")) { return };
+    $(document).on('click', '.comment-delete', function () {
+        if (!confirm("정말 삭제하시겠습니까?")) { return };
         var pk = $(this).attr('name');
+        var $target = $(this).parent().parent().parent();
         $.ajax({
             type: "POST",
             url: "{% url 'comment:comment_delete' %}",
@@ -101,8 +103,8 @@
                 'csrfmiddlewaretoken': '{{ csrf_token }}',
             },
             dataType: "json",
-            success: function(response){
-                $('#'+pk).remove();
+            success: function (response) {
+                $target.remove();
                 alert(response.message);
             }
         });
