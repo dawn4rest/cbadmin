@@ -21,7 +21,7 @@
 </div>
 <!-- @@@@@@@@@@@@@@@@ COMMENT TITLE END @@@@@@@@@@@@@@@@ -->
 
-<div class="row comment-wrap m-0">
+<div class="row comment-wrap">
     <div class="pro-comments col-6">
         <!-- @@@@@@@@@@@@@@@@ PRO COMMENT CREATE START @@@@@@@@@@@@@@@@ -->
         <div id="pro-form" class="form-wrap pro-form collapse">
@@ -30,10 +30,31 @@
             <button class="btn btn-fill comment-create" name="pro">등록하기</button>
         </div>
         <!-- @@@@@@@@@@@@@@@@ PRO COMMENT CREATE END @@@@@@@@@@@@@@@@ -->
+        <!-- @@@@@@@@@@@@@@@@ PRO COMMENT LIST START @@@@@@@@@@@@@@@@ -->
+        <div class="comment-list pro-list">
+            <ul class="mine">
+                {% for comment in procomments_mine.all %}
+                <li class="comment">{% include 'include/comment.html' %}</li>
+                {% if forloop.last %}
+                <div class="comment-divider pro-divider">
+                    <hr>
+                    <span>나의 등록 의견</span>
+                    <hr>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul class="etc">
+                {% for comment in procomments_exclude.all %}
+                <li class="comment">{% include 'include/comment.html' %}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- @@@@@@@@@@@@@@@@ PRO COMMENT LIST END @@@@@@@@@@@@@@@@ -->
     </div>
 
     <!-- @@@@@@@@@@@@@@@@ CON COMMENT START @@@@@@@@@@@@@@@@ -->
-    <div class="con_comments col-6">
+    <div class="con-comments col-6">
         <!-- @@@@@@@@@@@@@@@@ CON COMMENT CREATE START @@@@@@@@@@@@@@@@ -->
         <div id="con-form" class="form-wrap con-form collapse">
             {{ comment_form.content }}
@@ -41,24 +62,28 @@
             <button class="btn btn-fill comment-create" name="con">등록하기</button>
         </div>
         <!-- @@@@@@@@@@@@@@@@ CON COMMENT CREATE END @@@@@@@@@@@@@@@@ -->
+        <!-- @@@@@@@@@@@@@@@@ CON COMMENT LIST START @@@@@@@@@@@@@@@@ -->
+        <div class="comment-list con-list">
+            <ul class="mine">
+                {% for comment in concomments_mine.all %}
+                <li class="comment">{% include 'include/comment.html' %}</li>
+                {% if forloop.last %}
+                <div class="comment-divider con-divider">
+                    <hr>
+                    <span>나의 등록 의견</span>
+                    <hr>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul class="etc">
+                {% for comment in concomments_exclude.all %}
+                <li class="comment">{% include 'include/comment.html' %}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- @@@@@@@@@@@@@@@@ CON COMMENT LIST END @@@@@@@@@@@@@@@@ -->
     </div>
-</div>
-
-<div class="row comment-wrap">
-    <ul class="comment-list pro-list col-6">
-        {% for comment in procomments.all %}
-        <li class="comment">
-            {% include 'include/comment.html' %}
-        </li>
-        {% endfor %}
-    </ul>
-    <ul class="comment-list con-list col-6">
-        {% for comment in concomments.all %}
-        <li class="comment">
-            {% include 'include/comment.html' %}
-        </li>
-        {% endfor %}
-    </ul>
 </div>
 
 {% block customJS %}
@@ -83,9 +108,19 @@
             success: function (data, textStatus, jqXHR) {
                 $('.form-wrap textarea').val('');
                 if (type == 'pro') {
-                    $('.pro-list').append('<li class="comment">' + data + '</li>');
+                    if ($('.pro-list .mine .comment')[0]) {
+                        $('.pro-list .mine').prepend('<li class="comment">' + data + '</li>');
+                    } else {
+                        $('.pro-list .mine').prepend('<li class="comment">' + data + '</li>');
+                        $('.pro-list .mine').append('<div class="comment-divider pro-divider"><hr><span>나의 등록 의견</span><hr></div>');
+                    };
                 } else {
-                    $('.con-list').append('<li class="comment">' + data + '</li>');
+                    if ($('.con-list .mine .comment')[0]) {
+                        $('.con-list .mine').prepend('<li class="comment">' + data + '</li>');
+                    } else {
+                        $('.con-list .mine').prepend('<li class="comment">' + data + '</li>');
+                        $('.con-list .mine').append('<div class="comment-divider con-divider"><hr><span>나의 등록 의견</span><hr></div>');
+                    };
                 }
             }
         });
@@ -105,6 +140,8 @@
             dataType: "json",
             success: function (response) {
                 $target.remove();
+                if ($('.pro-list .mine .comment')[0]) { } else { $('.pro-divider').fadeOut(); };
+                if ($('.con-list .mine .comment')[0]) { } else { $('.con-divider').fadeOut(); };
                 alert(response.message);
             }
         });

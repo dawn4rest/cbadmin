@@ -55,7 +55,11 @@ def post_list(request):
 def post_detail(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
     procomments = comment_models.Comment.objects.filter(post=post, type=True).order_by('-created_at')
+    procomments_mine = procomments.filter(author=request.user).order_by('-created_at')
+    procomments_exclude = procomments.exclude(author=request.user).order_by('-created_at')
     concomments = comment_models.Comment.objects.filter(post=post, type=False).order_by('-created_at')
+    concomments_mine = concomments.filter(author=request.user).order_by('-created_at')
+    concomments_exclude = concomments.exclude(author=request.user).order_by('-created_at')
     comment_form = comment_forms.CommentForm()
     comment_comment_form = comment_forms.CommentOnCommentForm()
     report_comment_form = comment_forms.ReportCommentForm()
@@ -65,8 +69,10 @@ def post_detail(request, post_pk):
 
     context = {
         'post': post,
-        'procomments': procomments,
-        'concomments': concomments,
+        'procomments_mine': procomments_mine,
+        'procomments_exclude': procomments_exclude,
+        'concomments_mine': concomments_mine,
+        'concomments_exclude': concomments_exclude,
         'comment_form': comment_form,
         'comment_comment_form': comment_comment_form,
         'report_comment_form': report_comment_form,

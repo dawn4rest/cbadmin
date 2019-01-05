@@ -1,7 +1,7 @@
 .comment-wrap { margin: 0; margin-bottom: 60px; }
 .comment-wrap .col-6 { max-width: calc(50% - 4px); padding: 0; }
-.comment-wrap .pro-list { margin-right: 4px; }
-.comment-wrap .con-list { margin-left: 4px; }
+.comment-wrap .pro-comments { margin-right: 4px; }
+.comment-wrap .con-comments { margin-left: 4px; }
 
 .comment-wrap .col-6 .form-wrap { width: 100%; padding: 12px; border: 1px solid; text-align: right; }
 .comment-wrap .col-6 .form-wrap textarea { height: 128px; border: 1px solid #C3C5C7; border-radius: 0; }
@@ -14,11 +14,10 @@
 .comment-wrap .col-6 .comment-content .comment-update { padding: 0; border: 0; }
 
 .comment-list { display: flex; flex-direction: column; }
-.comment-list .comment.mine { order: 1; }
-.comment-list .comment-divider { display: flex; justify-content: space-between; align-items: center; order: 2; text-align: center; }
+.comment-list .comment-divider { display: flex; justify-content: space-between; align-items: center; text-align: center; }
 .comment-list .comment-divider span { width: 100px; }
 .comment-list .comment-divider hr { width: calc(50% - 50px); border-top: 1px solid #C3C5C7; }
-.comment-list .comment { order: 3; margin: 8px 0; padding: 20px 24px; border: 1px solid #C3C5C7; }
+.comment-list .comment { margin: 8px 0; padding: 20px 24px; border: 1px solid #C3C5C7; }
 .comment-list.pro-list .comment { border-bottom: 1px solid #41CC90; }
 .comment-list.con-list .comment { border-bottom: 1px solid #FF725C; }
 
