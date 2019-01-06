@@ -111,19 +111,22 @@ def comment_hate_toggle(request):
 def comment_report(request, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
     post_pk = comment.post.pk
-    user = request.user
-    report_comment_form = ReportCommentForm(request.POST)
 
-    if report_comment_form.is_valid():
-        report_comment = report_comment_form.save(commit=False)
-        report_comment.comment = comment
-        report_comment.author = request.user
-        report_comment.save()
-        messages.success(request, '댓글이 신고되었습니다')
-        return redirect('post:post_detail', post_pk=post_pk)
+    if request.method == 'POST':
+        report_comment_form = ReportCommentForm(request.POST)
+
+        if report_comment_form.is_valid():
+            report_comment = report_comment_form.save(commit=False)
+            report_comment.comment = comment
+            report_comment.author = request.user
+            report_comment.save()
+            messages.success(request, '댓글이 신고되었습니다!')
+            return redirect('post:post_detail', post_pk=post_pk)
+    else:
+        report_comment_form = ReportCommentForm()
 
     context = {
-        'type': "PRO",
+        'comment': comment,
         'report_comment_form': report_comment_form,
     }
     return render(request, 'comment/comment_report.html', context)

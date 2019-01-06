@@ -1,13 +1,20 @@
 {% load static %}
-
-{% block title %}Comment Report{% endblock %}
-
-{% block content %}
-	<div class="comment-report">
-		{% if type == 'PRO' %}
-			{% include 'include/form.html' with form=report_pro_comment_form submit_title='등록하기' enctype='file' %}
-		{% else %}
-			{% include 'include/form.html' with form=report_con_comment_form submit_title='등록하기' enctype='file' %}
-		{% endif %}
-	</div>
-{% endblock %}
+<form class="report-form" action="{% url 'comment:comment_report' comment_pk=comment.pk %}" method="POST">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title">신고하기</h5>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group etc_text">
+            {{ report_comment_form.etc_text }}
+        </div>
+        <div class="form-group report_reason">
+            {{ report_comment_form.report_reason }}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-line" data-dismiss="modal">취소하기</button>
+        <button type="submit" class="btn btn-fill">신고하기</button>
+    </div>
+</form>

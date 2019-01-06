@@ -1,7 +1,9 @@
 {% load static %}
 
 {% block customCSS %}
-<link rel="stylesheet" href="{% static 'css/post/comments.css' %}">
+<link rel="stylesheet" href="{% static 'css/comment/comment.css' %}">
+<link rel="stylesheet" href="{% static 'css/comment/comment_action.css' %}">
+<link rel="stylesheet" href="{% static 'css/include/modal.css' %}">
 {% endblock %}
 
 <!-- @@@@@@@@@@@@@@@@ COMMENT TITLE START @@@@@@@@@@@@@@@@ -->
@@ -53,7 +55,6 @@
         <!-- @@@@@@@@@@@@@@@@ PRO COMMENT LIST END @@@@@@@@@@@@@@@@ -->
     </div>
 
-    <!-- @@@@@@@@@@@@@@@@ CON COMMENT START @@@@@@@@@@@@@@@@ -->
     <div class="con-comments col-6">
         <!-- @@@@@@@@@@@@@@@@ CON COMMENT CREATE START @@@@@@@@@@@@@@@@ -->
         <div id="con-form" class="form-wrap con-form collapse">
@@ -85,6 +86,8 @@
         <!-- @@@@@@@@@@@@@@@@ CON COMMENT LIST END @@@@@@@@@@@@@@@@ -->
     </div>
 </div>
+
+{% include 'include/modal.html' with modal_id='reportModal' modal_title='신고하기' modal_btn='신고하기' %}
 
 {% block customJS %}
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>

@@ -44,17 +44,13 @@
 
     <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT TOGGLE START @@@@@@@@@@@@@@@@ -->
     <div class="btn-wrap">
-        <button>
-            <a data-toggle="collapse" href="#action-{{ comment.pk }}">
-                <img src="{% static '/img/comment.png' %}" style="margin-right: 4px;" />
-                <span class="count">{{ comment.comment_on_comment.count }}</span>
-            </a>
+        <button data-toggle="collapse" data-target="#action-{{ comment.pk }}">
+            <img src="{% static '/img/comment.png' %}" style="margin-right: 4px;" />
+            <span class="count">{{ comment.comment_on_comment.count }}</span>
         </button>
-        <button>
-            <a data-toggle="collapse" href="#action-{{ comment.pk }}">
-                <img src="{% static '/img/report.png' %}" />
-                <span class="count">신고하기</span>
-            </a>
+        <button data-toggle="modal" data-target="#reportModal" onclick="$('.modal-content').load('{% url 'comment:comment_report' comment_pk=comment.pk %}');">
+            <img src="{% static '/img/report.png' %}" />
+            <span class="count">신고하기</span>
         </button>
     </div>
     <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT TOGGLE END @@@@@@@@@@@@@@@@ -->
@@ -62,44 +58,15 @@
 
 <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT CONTENT START @@@@@@@@@@@@@@@@ -->
 <div class="comment-action collapse" id="action-{{ comment.pk }}">
-    <ul class="nav nav-pills nav-fill">
-        <li class="nav-item">
-            <a class="tab-link active" href="#coc-{{ comment.pk }}" data-toggle="pill">
-                <h5>답글</h5>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="tab-link" href="#report-{{ comment.pk }}" data-toggle="pill">
-                <h5>신고하기</h5>
-            </a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane fade show active" id="coc-{{ comment.pk }}">
-            <div class="coc-form">
-                {{ comment_on_comment_form.content }}
-                <button class="btn btn-fill coc-create" name="{{ comment.pk }}">등록하기</button>
-            </div>
+    <div class="coc-form">
+        {{ comment_on_comment_form.content }}
+        <button class="btn btn-fill coc-create" name="{{ comment.pk }}">등록하기</button>
+    </div>
 
-            <div class="coc-list">
-                {% for coc in comment.comment_on_comment.all reversed %}
-                <div class="coc-item">{% include 'include/coc.html' %}</div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="tab-pane fade" id="report-{{ comment.pk }}">
-            <form class="report-form" action="{% url 'comment:comment_report' comment_pk=comment.pk %}" method="POST">
-                {% csrf_token %}
-                <div class="form-group">
-                    {{ report_comment_form.etc_text }}
-                    <button class="btn btn-fill" type="submit">신고하기</button>
-                </div>
-                <div class="form-group">
-                    {{ report_comment_form.report_reason }}
-                </div>
-            </form>
-        </div>
+    <div class="coc-list">
+        {% for coc in comment.comment_on_comment.all reversed %}
+        <div class="coc-item">{% include 'include/coc.html' %}</div>
+        {% endfor %}
     </div>
 </div>
 <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT CONTENT END @@@@@@@@@@@@@@@@ -->
