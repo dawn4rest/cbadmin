@@ -6,7 +6,7 @@ from utils.decorators import login_required
 from django.db.models import Count, Q
 
 from .models import Comment, CommentOnComment
-from .forms import CommentForm, CommentOnCommentForm, ReportCommentForm
+from .forms import CommentForm, CommentOnCommentForm, ReportCommentForm, ReportCommentOnCommentForm
 from post import models as post_models
 
 
@@ -75,63 +75,6 @@ def comment_delete(request):
     return HttpResponse(json.dumps({'message': message}), content_type="application/json")
 
 
-@login_required
-def comment_like_toggle(request):
-    comment_pk = request.POST.get('comment_pk', None)
-    comment = get_object_or_404(Comment, pk=comment_pk)
-    filtered_like_comments = request.user.like_comments.filter(pk=comment.pk)
-
-    if filtered_like_comments.exists():
-        request.user.like_comments.remove(comment)
-        message = '좋아요 취소'
-    else:
-        request.user.like_comments.add(comment)
-        message = '좋아요'
-
-    return HttpResponse(json.dumps({'message': message}), content_type="application/json")
-
-
-@login_required
-def comment_hate_toggle(request):
-    comment_pk = request.POST.get('comment_pk', None)
-    comment = get_object_or_404(Comment, pk=comment_pk)
-    filtered_hate_comments = request.user.hate_comments.filter(pk=comment.pk)
-
-    if filtered_hate_comments.exists():
-        request.user.hate_comments.remove(comment)
-        message = '싫어요 취소'
-    else:
-        request.user.hate_comments.add(comment)
-        message = '싫어요'
-
-    return HttpResponse(json.dumps({'message': message}), content_type="application/json")
-
-
-@login_required
-def comment_report(request, comment_pk):
-    comment = get_object_or_404(Comment, pk=comment_pk)
-    post_pk = comment.post.pk
-
-    if request.method == 'POST':
-        report_comment_form = ReportCommentForm(request.POST)
-
-        if report_comment_form.is_valid():
-            report_comment = report_comment_form.save(commit=False)
-            report_comment.comment = comment
-            report_comment.author = request.user
-            report_comment.save()
-            messages.success(request, '댓글이 신고되었습니다!')
-            return redirect('post:post_detail', post_pk=post_pk)
-    else:
-        report_comment_form = ReportCommentForm()
-
-    context = {
-        'comment': comment,
-        'report_comment_form': report_comment_form,
-    }
-    return render(request, 'comment/comment_report.html', context)
-
-
 def coc_detail(request, coc_pk):
     coc = get_object_or_404(CommentOnComment, pk=coc_pk)
 
@@ -194,3 +137,85 @@ def coc_delete(request):
     else:
         message = '잘못된 접근입니다.'
     return HttpResponse(json.dumps({'message': message}), content_type="application/json")
+
+
+@login_required
+def comment_like_toggle(request):
+    comment_pk = request.POST.get('comment_pk', None)
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    filtered_like_comments = request.user.like_comments.filter(pk=comment.pk)
+
+    if filtered_like_comments.exists():
+        request.user.like_comments.remove(comment)
+        message = '좋아요 취소'
+    else:
+        request.user.like_comments.add(comment)
+        message = '좋아요'
+
+    return HttpResponse(json.dumps({'message': message}), content_type="application/json")
+
+
+@login_required
+def comment_hate_toggle(request):
+    comment_pk = request.POST.get('comment_pk', None)
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    filtered_hate_comments = request.user.hate_comments.filter(pk=comment.pk)
+
+    if filtered_hate_comments.exists():
+        request.user.hate_comments.remove(comment)
+        message = '싫어요 취소'
+    else:
+        request.user.hate_comments.add(comment)
+        message = '싫어요'
+
+    return HttpResponse(json.dumps({'message': message}), content_type="application/json")
+
+
+@login_required
+def comment_report(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    post_pk = comment.post.pk
+
+    if request.method == 'POST':
+        report_comment_form = ReportCommentForm(request.POST)
+
+        if report_comment_form.is_valid():
+            report_comment = report_comment_form.save(commit=False)
+            report_comment.comment = comment
+            report_comment.author = request.user
+            report_comment.save()
+            messages.success(request, '댓글이 신고되었습니다!')
+            return redirect('post:post_detail', post_pk=post_pk)
+    else:
+        report_comment_form = ReportCommentForm()
+
+    context = {
+        'comment': comment,
+        'report_comment_form': report_comment_form,
+    }
+    return render(request, 'comment/comment_report.html', context)
+
+
+@login_required
+def coc_report(request, coc_pk):
+    coc = get_object_or_404(CommentOnComment, pk=coc_pk)
+    post_pk = coc.comment.post.pk
+
+    if request.method == 'POST':
+        report_coc_form = ReportCommentOnCommentForm(request.POST)
+
+        if report_coc_form.is_valid():
+            report_coc = report_coc_form.save(commit=False)
+            report_coc.comment_on_comment = coc
+            report_coc.author = request.user
+            report_coc.save()
+            messages.success(request, '대댓글이 신고되었습니다!')
+            return redirect('post:post_detail', post_pk=post_pk)
+    else:
+        report_coc_form = ReportCommentOnCommentForm()
+
+    context = {
+        'coc': coc,
+        'report_coc_form': report_coc_form,
+    }
+    return render(request, 'comment/coc_report.html', context)

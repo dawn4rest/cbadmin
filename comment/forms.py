@@ -4,6 +4,7 @@ from .models import (
     Comment,
     CommentOnComment,
     ReportComment,
+    ReportCommentOnComment,
 )
 
 
@@ -38,6 +39,23 @@ class CommentOnCommentForm(forms.ModelForm):
 class ReportCommentForm(forms.ModelForm):
     class Meta:
         model = ReportComment
+        fields = (
+            'report_reason',
+            'etc_text',
+        )
+        widgets = {
+            'etc_text': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': '신고 사유 직접 입력',
+                }
+            )
+        }
+
+
+class ReportCommentOnCommentForm(forms.ModelForm):
+    class Meta:
+        model = ReportCommentOnComment
         fields = (
             'report_reason',
             'etc_text',

@@ -25,7 +25,8 @@ class Comment(TimeStampedModel):
 
 
 class CommentOnComment(TimeStampedModel):
-    comment = models.ForeignKey(Comment, blank=True, null=True, related_name='comment_on_comment')
+    comment = models.ForeignKey(
+        Comment, blank=True, null=True, related_name='comment_on_comment')
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     content = models.TextField()
 
@@ -40,8 +41,20 @@ REPORT_CHOICES = (
     ('Prosperity', '느닷없는 홍보 게시물 발견!'),
     ('irrelevant', '의견과 무관한 아무말 대잔치 댓글!'),
 )
+
+
 class ReportComment(TimeStampedModel):
     comment = models.ForeignKey(Comment, blank=True, null=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
-    report_reason = MultiSelectField(choices=REPORT_CHOICES, blank=True, null=True)
+    report_reason = MultiSelectField(
+        choices=REPORT_CHOICES, blank=True, null=True)
+    etc_text = models.TextField(blank=True)
+
+
+class ReportCommentOnComment(TimeStampedModel):
+    comment_on_comment = models.ForeignKey(
+        CommentOnComment, blank=True, null=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    report_reason = MultiSelectField(
+        choices=REPORT_CHOICES, blank=True, null=True)
     etc_text = models.TextField(blank=True)
