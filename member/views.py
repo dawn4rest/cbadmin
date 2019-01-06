@@ -77,7 +77,8 @@ def my_page(request):
     chat_form = ContactChatForm()
 
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, files=request.FILES, instance=user)
+        profile_form = ProfileForm(
+            request.POST, files=request.FILES, instance=user)
 
         if profile_form.is_valid():
             user = profile_form.save()
@@ -133,28 +134,35 @@ def user_delete(request):
 @login_required
 def user_log(request):
     user = request.user
-    sort = request.GET.get('sort','')
+    sort = request.GET.get('sort', '')
 
-    # if sort == 'my_comments':
-    #     comments_pro = comment_models.ProComment.objects.filter(author=user)   # 내가 만든 찬성의견
-    #     comments_con = comment_models.ConComment.objects.filter(author=user)   # 내가 만든 반대의견
-    #     comments_sorted = sorted(chain(comments_pro, comments_con), key=lambda instance: instance.created_at)
-    #     log_sorted = comments_sorted
-    #     context = { 'comments_pro': comments_pro, 'comments_con': comments_con, 'comments_sorted': comments_sorted, 'log_sorted': log_sorted, 'sort': sort,}
-    #     return render(request, 'member/log.html', context)
-    # elif sort == 'like_hate':
-    #     likes_pro = user.like_pro_comments.all()                # 추천한 찬성 의견
-    #     hates_pro = user.hate_pro_comments.all()                # 반대한 찬성 의견
-    #     likes_con = user.like_con_comments.all()                # 추천한 반대 의견
-    #     hates_con = user.hate_con_comments.all()                # 반대한 반대 의견
-    #     lh_sorted = sorted(chain(likes_pro, hates_pro, likes_con, hates_con), key=lambda instance: instance.created_at)
-    #     log_sorted = lh_sorted
-    #     context = { 'likes_pro': likes_pro, 'hates_pro': hates_pro, 'likes_con': likes_con, 'hates_con': hates_con, 'lh_sorted': lh_sorted, 'log_sorted': log_sorted, 'sort': sort,}
-    #     return render(request, 'member/log.html', context)
-    # else:
-    #     posts_log = post_models.Post.objects.filter(author=user)           # 내가 만든 채터박스
-    #     log_sorted = posts_log
-    #     context = { 'posts_log': posts_log, 'log_sorted': log_sorted, 'sort': sort,}
+    if sort == 'my_comments':
+        comments_pro = comment_models.Comment.objects.filter(
+            author=user, type=True)  # 내가 만든 찬성의견
+        comments_con = comment_models.Comment.objects.filter(
+            author=user, type=False)  # 내가 만든 반대의견
+        comments_sorted = sorted(
+            chain(comments_pro, comments_con), key=lambda instance: instance.created_at)
+        log_sorted = comments_sorted
+        context = {'comments_pro': comments_pro, 'comments_con': comments_con,
+                   'comments_sorted': comments_sorted, 'log_sorted': log_sorted, 'sort': sort, }
+        return render(request, 'member/log.html', context)
+    elif sort == 'like_hate':
+        likes_pro = user.like_comments.filter(type=True)  # 추천한 찬성 의견
+        hates_pro = user.hate_comments.filter(type=True)  # 반대한 찬성 의견
+        likes_con = user.like_comments.filter(type=False)  # 추천한 반대 의견
+        hates_con = user.hate_comments.filter(type=False)  # 반대한 반대 의견
+        lh_sorted = sorted(chain(likes_pro, hates_pro, likes_con,
+                                 hates_con), key=lambda instance: instance.created_at)
+        log_sorted = lh_sorted
+        context = {'likes_pro': likes_pro, 'hates_pro': hates_pro, 'likes_con': likes_con,
+                   'hates_con': hates_con, 'lh_sorted': lh_sorted, 'log_sorted': log_sorted, 'sort': sort, }
+        return render(request, 'member/log.html', context)
+    else:
+        posts_log = post_models.Post.objects.filter(author=user)  # 내가 만든 채터박스
+        log_sorted = posts_log
+        context = {'posts_log': posts_log,
+                   'log_sorted': log_sorted, 'sort': sort, }
     return render(request, 'member/log.html', context)
 
 

@@ -1,32 +1,33 @@
 {% load static %}
 <!doctype html>
 <html lang="ko">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport"
-		      content="width=device-width, user-scalable=no, shrink-to-fit=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<meta property="og:url"           content="https://chatterboxes.com" />
-		<meta property="og:type"          content="CHATTERBOX" />
-		<meta property="og:title"         content="Your Website Title" />
-		<meta property="og:description"   content="Your description" />
-		<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
 
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-		<link rel="stylesheet" href="{% static 'css/style.css' %}">
-		{% block customCSS %}{% endblock %}
-		<title>{% block title %}{% endblock %}</title>
-	</head>
-	<body>
-	    {% include 'include/navbar.html' %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, shrink-to-fit=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:url" content="https://chatterboxes.com" />
+    <meta property="og:type" content="CHATTERBOX" />
+    <meta property="og:title" content="Your Website Title" />
+    <meta property="og:description" content="Your description" />
+    <meta property="og:image" content="https://www.your-domain.com/path/image.jpg" />
 
-		{% include 'include/slide_menu.html' with slide_title='좋아요' %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block customCSS %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
 
-		<div id="content">
-			{% if messages %}
-				{% for message in messages %}
-					<div class="alert-message alert
+<body>
+    {% include 'include/navbar.html' %}
+
+    {% include 'include/slide_menu.html' with slide_title='좋아요' %}
+
+    <div id="content">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert-message alert
 						{% if message.tags == 'info' %}
 							alert-info
 						{% elif message.tags == 'success' %}
@@ -36,22 +37,26 @@
 						{% elif message.tags == 'error' %}
 							alert-danger
 						{% endif %}
-						">{{ message }}</div>
-				{% endfor %}
-			{% endif %}
-			<div class="container">
-				{% block content %}
+						">{{
+            message }}</div>
+        {% endfor %}
+        {% endif %}
+        <div class="container">
+            {% block content %}
 
-				{% endblock %}
-			</div>
-		</div>
+            {% endblock %}
+        </div>
+    </div>
 
-		{% include 'include/footer.html' %}
-		
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-	    <script src="{% static 'js/index.js' %}"></script>
-		{% block customJS %}{% endblock %}
-	</body>
+    {% include 'include/footer.html' %}
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    {% block customJS %}{% endblock %}
+</body>
+
 </html>
