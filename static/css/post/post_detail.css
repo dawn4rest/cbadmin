@@ -46,3 +46,14 @@
 .comment_title .con-title { margin-left: 4px; }
 .comment_title .pro-title h5 { color: #41CC90; }
 .comment_title .con-title h5 { color: #FF725C; }
+
+
+/* PIE CHART CSS */
+.percent-wrap { display: flex; justify-content: center; align-items: center; margin-bottom: 48px; }
+.percent-wrap .pro-title { color: #41cc90; }
+.percent-wrap .con-title { color: #FF725C; }
+.percent-wrap .chart { width: 50%; text-align: center; }
+.percent-wrap .easyPieChart { position: relative; margin: 8px auto 32px; text-align: center; }
+.percent-wrap .easyPieChart span { font-size: 16px; }
+.percent-wrap .easyPieChart sup { top: 0; margin-left: 1px; }
+.percent-wrap canvas { position: absolute; top: 0; left: 0; }

@@ -1,15 +1,15 @@
-{% load static  %}
+{% load static %}
 {% load post_extras %}
 
 <figure id="post-{{ post.pk }}" style="width: 100%;">
     {% if post.thumbnail %}
-        <a href="{% url 'post:post_detail' post_pk=post.pk %}">
-            <img src="{{ post.thumbnail.url }}" alt="" class="post-image">
-        </a>
+    <a href="{% url 'post:post_detail' post_pk=post.pk %}">
+        <img src="{{ post.thumbnail.url }}" alt="" class="post-image">
+    </a>
     {% endif %}
     <div class="tag-list">
         {% for tag in post.tag|split_tags %}
-            <span class="tag">{{ tag }}</span>
+        <span class="tag">{{ tag }}</span>
         {% endfor %}
     </div>
     <a href="{% url 'post:post_detail' post_pk=post.pk %}">
@@ -18,10 +18,28 @@
     <div class="background">
         <p>{{ post.background|safe|truncatechars:160 }}</p>
     </div>
+    <div class="percent-wrap">
+        <div class="chart">
+            <h6 class="label pro-title">{{ post.pro_title }}</h6>
+            <div class="percentage pro-chart" data-percent="{% widthratio post.pro_percent 1 100 %}">
+                <span class="pro-title">{% widthratio post.con_percent 1 100 %}</span><sup class="pro-title">%</sup>
+            </div>
+        </div>
+        <h5>vs</h5>
+        <div class="chart">
+            <h6 class="label con-title">{{ post.con_title }}</h6>
+            <div class="percentage con-chart" data-percent="{% widthratio post.con_percent 1 100 %}">
+                <span class="con-title">{% widthratio post.con_percent 1 100 %}</span><sup class="con-title">%</sup>
+            </div>
+        </div>
+    </div>
     <div class="btn-area">
-        <img src="{% static '/img/view.png' %}" style="margin-top: 4px;" /><h6>{{ post.view_count }}</h6>
-        <img src="{% static '/img/heart.png' %}" /><h6>{{ post.likes_count }}</h6>
-        <img src="{% static '/img/comment.png' %}" /><h6>{{ post.comment_count }}</h6>
+        <img src="{% static '/img/view.png' %}" style="margin-top: 4px;" />
+        <h6>{{ post.view_count }}</h6>
+        <img src="{% static '/img/heart.png' %}" />
+        <h6>{{ post.likes_count }}</h6>
+        <img src="{% static '/img/comment.png' %}" />
+        <h6>{{ post.comment_count }}</h6>
         <span class="ml-auto">{{ post.natural_time }}</span>
     </div>
 </figure>

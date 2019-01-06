@@ -7,9 +7,26 @@ $('input:checkbox').change(function () {
     }
 });
 
-$('.percentage').easyPieChart({
+$('.pro-chart').easyPieChart({
+    barColor: '#41cc90',
+    scaleColor: false,
+    size: 80,
     animate: 1000,
-    lineWidth: 4,
+    lineWidth: 8,
+    onStep: function (value) {
+        this.$el.find('span').text(Math.round(value));
+    },
+    onStop: function (value, to) {
+        this.$el.find('span').text(Math.round(to));
+    }
+});
+
+$('.con-chart').easyPieChart({
+    barColor: '#FF725C',
+    scaleColor: false,
+    size: 80,
+    animate: 1000,
+    lineWidth: 8,
     onStep: function (value) {
         this.$el.find('span').text(Math.round(value));
     },

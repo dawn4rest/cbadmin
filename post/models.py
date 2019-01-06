@@ -69,17 +69,33 @@ class Post(TimeStampedModel):
         all_count = self.comment_set.count()
         return all_count
 
-    # @property
-    # def vs_abs(self):
-    #     pro_likes = self.comment_set.filter(type=True).count()
-    #     pro_comments = self.comment_set.filter(type=True)
-    #     for comment in pro_comments:
-    #         pro_likes = pro_likes + comment.count_comment_likes
-    #     con_likes = self.comment_set.filter(type=False).count()
-    #     con_comments = self.comment_set.filter(type=False)
-    #     for comment in con_comments:
-    #         con_likes = con_likes + comment.count_comment_likes
-    #     return abs(pro_likes - con_likes)
+    @property
+    def pro_count(self):
+        pro_sum = self.comment_set.filter(type=True).count()
+        pro_comments = self.comment_set.filter(type=True)
+        for comment in pro_comments:
+            pro_sum = pro_sum + comment.count_comment_likes
+        return pro_sum
+
+    @property
+    def con_count(self):
+        con_sum = self.comment_set.filter(type=False).count()
+        con_comments = self.comment_set.filter(type=False)
+        for comment in con_comments:
+            con_sum = con_sum + comment.count_comment_likes
+        return con_sum
+
+    @property
+    def all_count(self):
+        return self.pro_count + self.con_count
+
+    @property
+    def pro_percent(self):
+        return self.pro_count / self.all_count
+
+    @property
+    def con_percent(self):
+        return self.con_count / self.all_count
 
     def get_cat_list(self):
         k = self.category

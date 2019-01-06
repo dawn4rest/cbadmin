@@ -10,89 +10,102 @@
 
 {% block content %}
 <div class="post-info">
-	<div class="info-wrap">
-		<div class="info-header">
-			<label>Hwo Asked?</label>
-			<h4>{{ post.author }}</h4>
-			<span>Joined {{ post.created_at|date:"Y. m. d" }}</span>
-		</div>
-		<div class="info-body">
-			<label>Conditions</label>
-			<div class="conditions-wrap">
-				<div class="conditions-item">
-					<h4>{{ post.view_count }}</h4>
-					<p>조회수</p>
-				</div>
-				<div class="conditions-item">
-					{% with like_count=post.like_users.count %}
-					<h4>{{ like_count }}</h4>
-					<p>좋아요</p>
-					{% endwith %}
-				</div>
-				<div class="conditions-item">
-					<h4>{{ post.share_count }}</h4>
-					<p>공유수</p>
-				</div>
-			</div>
+    <div class="info-wrap">
+        <div class="info-header">
+            <label>Hwo Asked?</label>
+            <h4>{{ post.author }}</h4>
+            <span>Joined {{ post.created_at|date:"Y. m. d" }}</span>
+        </div>
+        <div class="info-body">
+            <label>Conditions</label>
+            <div class="conditions-wrap">
+                <div class="conditions-item">
+                    <h4>{{ post.view_count }}</h4>
+                    <p>조회수</p>
+                </div>
+                <div class="conditions-item">
+                    {% with like_count=post.like_users.count %}
+                    <h4>{{ like_count }}</h4>
+                    <p>좋아요</p>
+                    {% endwith %}
+                </div>
+                <div class="conditions-item">
+                    <h4>{{ post.share_count }}</h4>
+                    <p>공유수</p>
+                </div>
+            </div>
 
-			<label>Tags</label>
-			<div class="tag-list">
-				{% for tag in post.tag|split_tags %}
-				<p class="tag">{{ tag }}</p>
-				{% endfor %}
-			</div>
-		</div>
-	</div>
+            <label>Tags</label>
+            <div class="tag-list">
+                {% for tag in post.tag|split_tags %}
+                <p class="tag">{{ tag }}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
-	{% if request.user == post.author %}
-	<form class="btn-wrap" action="{% url 'post:post_delete' post.pk %}" method="post">
-		{% csrf_token %}
-		<a class="btn btn-fill btn-full" href="{% url 'post:post_update' post.pk %}" style="border: 0;">수정</a>
-		<input class="btn btn-gray btn-full" type="submit" value="삭제" onclick="return confirm('정말 삭제하시겠습니까?')">
-	</form>
-	{% endif %}
+    {% if request.user == post.author %}
+    <form class="btn-wrap" action="{% url 'post:post_delete' post.pk %}" method="post">
+        {% csrf_token %}
+        <a class="btn btn-fill btn-full" href="{% url 'post:post_update' post.pk %}" style="border: 0;">수정</a>
+        <input class="btn btn-gray btn-full" type="submit" value="삭제" onclick="return confirm('정말 삭제하시겠습니까?')">
+    </form>
+    {% endif %}
 </div>
 
 <div class="post-body m60">
-	<h2>{{ post.title }}</h2>
-	<div class="detail-header">
-		<span>{{ post.updated_at }}</span>
-		<div class="btn-wrap">
-			<form action="{% url 'post:post_like_toggle' post_pk=post.pk %}?next={% url 'post:post_detail' post_pk=post.pk %}"
-			 method="POST">
-				{% csrf_token %}
-				{% if post in user.like_posts.all %}
-				<button class="btn btn-line">♥ 좋아요</button>
-				{% else %}
-				<button class="btn btn-fill">♥ 좋아요</button>
-				{% endif %}
-			</form>
-			{% include 'include/share.html' %}
-		</div>
-	</div>
+    <h2>{{ post.title }}</h2>
+    <div class="detail-header">
+        <span>{{ post.updated_at }}</span>
+        <div class="btn-wrap">
+            <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}?next={% url 'post:post_detail' post_pk=post.pk %}"
+                method="POST">
+                {% csrf_token %}
+                {% if post in user.like_posts.all %}
+                <button class="btn btn-line">♥ 좋아요</button>
+                {% else %}
+                <button class="btn btn-fill">♥ 좋아요</button>
+                {% endif %}
+            </form>
+            {% include 'include/share.html' %}
+        </div>
+    </div>
 
-	<div class="detail-body">
-		{% if post.thumbnail %}
-		<div class="thumbnail">
-			<img src="{{ post.thumbnail.url }}" />
-		</div>
-		{% endif %}
-		<span class="post-background">{{ post.background|safe|linebreaks }}</span>
+    <div class="detail-body">
+        {% if post.thumbnail %}
+        <div class="thumbnail">
+            <img src="{{ post.thumbnail.url }}" />
+        </div>
+        {% endif %}
+        <span class="post-background">{{ post.background|safe|linebreaks }}</span>
 
-		{% if post.background_image1 %}
-		<div class="thumbnail"><img src="{{ post.background_image1.url }}" /></div>
-		{% endif %}
-		{% if post.background_image2 %}
-		<div class="thumbnail"><img src="{{ post.background_image2.url }}" /></div>
-		{% endif %}
-		{% if post.background_image3 %}
-		<div class="thumbnail"><img src="{{ post.background_image3.url }}" /></div>
-		{% endif %}
-	</div>
+        {% if post.background_image1 %}
+        <div class="thumbnail"><img src="{{ post.background_image1.url }}" /></div>
+        {% endif %}
+        {% if post.background_image2 %}
+        <div class="thumbnail"><img src="{{ post.background_image2.url }}" /></div>
+        {% endif %}
+        {% if post.background_image3 %}
+        <div class="thumbnail"><img src="{{ post.background_image3.url }}" /></div>
+        {% endif %}
+    </div>
 </div>
 
 <div class="opinion m60">
-	<h2>A or B 당신의 생각은?</h2>
+    <h2>A or B 당신의 생각은?</h2>
+</div>
+
+<div class="percent-wrap">
+    <div class="chart">
+        <div class="percentage pro-chart" data-percent="{% widthratio post.pro_percent 1 100 %}">
+            <span class="pro-title">{% widthratio post.con_percent 1 100 %}</span><sup class="pro-title">%</sup>
+        </div>
+    </div>
+    <div class="chart">
+        <div class="percentage con-chart" data-percent="{% widthratio post.con_percent 1 100 %}">
+            <span class="con-title">{% widthratio post.con_percent 1 100 %}</span><sup class="con-title">%</sup>
+        </div>
+    </div>
 </div>
 
 {% include 'comment/comment_list.html' %}
@@ -101,7 +114,8 @@
 
 {% block customJS %}
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="{% static 'js/post/post_detail.js' %}"></script>
+<script src="https://rendro.github.io/easy-pie-chart/javascripts/jquery.easy-pie-chart.js"></script>
+<script src="{% static 'js/post/post.js' %}"></script>
 <script>
     // ADD SHARE COUNT BY JUST CLICK
     $(document).ready(function () {
