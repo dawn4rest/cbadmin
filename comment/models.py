@@ -20,6 +20,14 @@ class Comment(TimeStampedModel):
     content = models.TextField()
     type = models.BooleanField(default=True)
 
+    @property
+    def count_comment_likes(self):
+        return self.like_comments.all().count()
+
+    @property
+    def count_comment_hates(self):
+        return self.hate_comments.all().count()
+
     def __str__(self):
         return f'Comment (PK: {self.pk}, Author: {self.author.username})'
 

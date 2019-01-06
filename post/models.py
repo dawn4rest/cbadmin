@@ -15,14 +15,17 @@ class TimeStampedModel(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField()
-    parent = models.ForeignKey('self', blank=True, null=True , related_name='children')
+    parent = models.ForeignKey(
+        'self', blank=True, null=True, related_name='children')
 
     class Meta:
-        unique_together = ('slug', 'parent',)   #enforcing that there can not be two
-        verbose_name_plural = "categories"      #categories under a parent with same slug
+        # enforcing that there can not be two
+        unique_together = ('slug', 'parent',)
+        verbose_name_plural = "categories"  # categories under a parent with same slug
 
     def __str__(self):                          # __str__ method elaborated later in
-        full_path = [self.name]                 # post.  use __unicode__ in place of
+        # post.  use __unicode__ in place of
+        full_path = [self.name]
         k = self.parent                         # __str__ if you are using python 2
 
         while k is not None:
@@ -39,9 +42,12 @@ class Post(TimeStampedModel):
     title = models.CharField(max_length=160, null=True)
     thumbnail = models.ImageField(upload_to='post', blank=True, null=True)
     background = models.TextField()
-    background_image1 = models.ImageField(upload_to='post', blank=True, null=True)
-    background_image2 = models.ImageField(upload_to='post', blank=True, null=True)
-    background_image3 = models.ImageField(upload_to='post', blank=True, null=True)
+    background_image1 = models.ImageField(
+        upload_to='post', blank=True, null=True)
+    background_image2 = models.ImageField(
+        upload_to='post', blank=True, null=True)
+    background_image3 = models.ImageField(
+        upload_to='post', blank=True, null=True)
     tag = TagField()
 
     view_count = models.PositiveSmallIntegerField(default=0)
@@ -62,6 +68,18 @@ class Post(TimeStampedModel):
     def comment_count(self):
         all_count = self.comment_set.count()
         return all_count
+
+    # @property
+    # def vs_abs(self):
+    #     pro_likes = self.comment_set.filter(type=True).count()
+    #     pro_comments = self.comment_set.filter(type=True)
+    #     for comment in pro_comments:
+    #         pro_likes = pro_likes + comment.count_comment_likes
+    #     con_likes = self.comment_set.filter(type=False).count()
+    #     con_comments = self.comment_set.filter(type=False)
+    #     for comment in con_comments:
+    #         con_likes = con_likes + comment.count_comment_likes
+    #     return abs(pro_likes - con_likes)
 
     def get_cat_list(self):
         k = self.category
