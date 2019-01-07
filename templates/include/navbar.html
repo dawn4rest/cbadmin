@@ -4,8 +4,8 @@
         <a class="navbar-brand" href="{% url 'post:post_list' %}"><img class="nav-logo" src="{% static '/img/logo.svg' %}" /></a>
 
         <ul class="navbar-nav ml-auto flex-row">
-            <li class="nav-item"><a class="nav-link" href="{% url 'post:search' %}"><img class="nav-icon" src="{% static '/img/search.svg' %}" style="width: 40px;" /></a></li>
-            <li class="nav-item" style="margin-right: 8px;"><a class="nav-link slide-trigger" href="#"><img class="nav-icon" src="{% static '/img/heart-fill.svg' %}" /></a></li>
+            <li class="nav-item web"><a class="nav-link" href="{% url 'post:search' %}"><img class="nav-icon" src="{% static '/img/search.svg' %}" style="width: 40px;" /></a></li>
+            <li class="nav-item web" style="margin-right: 8px;"><a class="nav-link slide-trigger" href="#"><img class="nav-icon" src="{% static '/img/heart-fill.svg' %}" /></a></li>
             {% if user.is_authenticated %}
                 <li class="nav-item"><a class="btn btn-fill" href="{% url 'post:post_create' %}">CREATE</a></li>
                 <li class="nav-item"><a class="btn btn-line" href="{% url 'member:my_page' %}">MY PAGE</a></li>

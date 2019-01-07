@@ -1,0 +1,12 @@
+/* Category CSS */
+.category { display: flex; width: 100%; }
+.category .category-link { margin-right: 20px; text-align: center; }
+.category .category-link .category-icon { width: 64px; height: 64px; margin-bottom: 6px; }
+
+.sort-button { display: flex; }
+.sort-button .select-change h5 { margin-right: 20px; color: #C3C5C7; }
+
+
+@media screen and (max-width: 768px) {
+    .category { display: flex; width: 100%; overflow-x: auto; }
+}

@@ -86,10 +86,14 @@ select:-moz-focusring {
 ::placeholder { color: #CBCBCB; opacity: 1; }
 
 
+/* GLOBAL STYLE */
+.web { display: auto !important; }
+.mobile { display: none !important; }
 
 
 /* NAVBAR STYLE */
 nav.navbar { height: 64px; background-color: #fff; border-bottom: 1px solid #707070; }
+nav.navbar .navbar-brand { display: flex; }
 nav.navbar .nav-logo { width: 144px; }
 nav.navbar .nav-item { display: flex; justify-content: center; flex-direction: column; text-align: center; margin-left: 24px; }
 nav.navbar .nav-icon { width: 24px; margin-top: 2px; }
@@ -101,7 +105,7 @@ footer { background-color: #fff; border-top: 1px solid #7f7f7f; margin-top: auto
 footer .inner { display: flex; justify-content: space-between; align-items: center; width: 100%; height: 80px; }
 footer .inner .column { display: flex; }
 footer .inner .column .list-item { margin-right: 40px; font-size: 14px; cursor: pointer; }
-footer .inner .copyright { font-size: 12px; line-height: 18px; }
+footer .inner .copyright { font-size: 12px; line-height: 18px; text-align: center; }
 
 
 /* FONT STYLE */
@@ -171,3 +175,34 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; }
 /* SPACE STYLE */
 .m60 { margin-top: 60px; margin-bottom: 60px; }
 .p60 { padding-top: 60px; padding-bottom: 60px; }
+
+
+
+
+@media screen and (max-width: 768px) {
+	/* GLOBAL STYLE */
+	.web { display: none !important; }
+	.mobile { display: auto !important; }
+
+
+	/* NAVBAR STYLE */
+	nav.navbar { height: 48px; padding: 0; }
+	nav.navbar .nav-logo { width: 108px; }
+	nav.navbar .nav-item { margin-left: 12px; }
+	nav.navbar .nav-icon { width: 20px; }
+	nav.navbar .nav-link .nav-img { width: 20px; }
+
+	/* FOOTER STYLE */
+	footer { padding: 0 15px; }
+	footer .inner { flex-direction: column; justify-content: center; align-items: left; height: 130px; }
+	footer .inner .column { display: block; margin-bottom: 16px; }
+	footer .inner .column .list-item { float: left; margin-right: 40px; font-size: 12px; }
+	footer .inner .copyright { font-size: 11px; text-align: left; }
+
+
+	/* BUTTON STYLE */
+	.btn {
+		padding: 4px 8px;
+		font-size: 12px;
+	}
+}
