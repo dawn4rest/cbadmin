@@ -167,7 +167,7 @@
             dataType: 'html',
             success: function (data, textStatus, jqXHR) {
                 $('.coc-form input').val('');
-                $('#coc-' + pk + ' .coc-list').prepend('<div class="coc-item">' + data + '</div>');
+                $('#action-' + pk + ' .coc-list').prepend('<div class="coc-item">' + data + '</div>');
             }
         });
     });
