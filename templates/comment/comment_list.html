@@ -90,7 +90,6 @@
 {% include 'include/modal.html' with modal_id='reportModal' modal_title='신고하기' modal_btn='신고하기' %}
 
 {% block customJS %}
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
     $(document).on('click', '.comment-create', function () {
         var content = $(this).parent().find('textarea').val();

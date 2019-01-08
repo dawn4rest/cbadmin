@@ -1,70 +1,70 @@
 {% extends 'base.html' %}
-{% load static  %}
+{% load static %}
 
 {% block title %}Search{% endblock %}
 
 {% block customCSS %}
-	<link rel="stylesheet" href="{% static 'css/post/post_list.css' %}">
-    <link rel="stylesheet" href="{% static 'css/post/search.css' %}">
+<link rel="stylesheet" href="{% static 'css/include/categories.css' %}" />
+<link rel="stylesheet" href="{% static 'css/include/sorts.css' %}" />
+<link rel="stylesheet" href="{% static 'css/post/post_list.css' %}" />
+<link rel="stylesheet" href="{% static 'css/post/search.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="row form-group">
-        <form id="search" action=""  method="get">
-            <img class="search-icon" src="{% static 'img/search.svg' %}" alt="">
-            <input id="search-value" class="form-control" type="text" placeholder="키워드, #hashtag" name="q" value="{{ q }}">
-            <img id="search-reset" class="search-icon" src="{% static 'img/close-fill.svg' %}" alt="">
-            <button id="search-submit" class="btn btn-line" type="submit">검색</button>
-        </form>
+<div class="row form-group">
+    <form id="search" action="" method="get">
+        <img class="search-icon" src="{% static 'img/search.svg' %}" alt="">
+        <input id="search-value" class="form-control" type="text" placeholder="키워드, #hashtag" name="q" value="{{ q }}">
+        <img id="search-reset" class="search-icon" src="{% static 'img/close-fill.svg' %}" alt="">
+        <button id="search-submit" class="btn btn-line" type="submit">검색</button>
+    </form>
+</div>
+
+{% if q %}
+<div class="row m60">
+    <div class="search-header">
+        <h4>ALL CATEGORY<span>({{ posts.count }})</span></h4>
     </div>
 
-    {% if q %}
-        <div class="row m60">
-            <div class="search-header">
-                <h4>ALL CATEGORY<span>({{ posts.count }})</span></h4>
-            </div>
+    <hr class="search-divider m60" />
 
-    		{% include 'include/sort.html' %}
-
-            <hr class="search-divider m60" />
-
-    		<div class="columns">
-                {% for post in posts %}
-                    {% include 'include/post.html' %}
-                {% endfor %}
-            </div>
-        </div>
-    {% else %}
-        <div class="row m60">
-            <div class="search-header">
-                <h4>인기 있는 #hashtag</h4>
-            </div>
-            <div class="tag-list col-6 p-0">
-                <span class="tag">제가</span>
-                <span class="tag">잘못한</span>
-                <span class="tag">일인지</span>
-                <span class="tag">객관적인</span>
-                <span class="tag">시선에서</span>
-                <span class="tag">보고</span>
-                <span class="tag">제가</span>
-                <span class="tag">잘못한</span>
-                <span class="tag">일인지</span>
-                <span class="tag">객관적인</span>
-                <span class="tag">시선에서</span>
-                <span class="tag">보고</span>
-                <span class="tag">제가</span>
-                <span class="tag">잘못한</span>
-                <span class="tag">일인지</span>
-                <span class="tag">객관적인</span>
-                <span class="tag">시선에서</span>
-                <span class="tag">보고</span>
-                <span class="tag">제가</span>
-                <span class="tag">잘못한</span>
-                <span class="tag">일인지</span>
-                <span class="tag">객관적인</span>
-                <span class="tag">시선에서</span>
-                <span class="tag">보고</span>
-            </div>
-        </div>
-    {% endif %}
+    <div class="columns">
+        {% for post in posts %}
+        {% include 'include/post.html' %}
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="row m60">
+    <div class="search-header">
+        <h4>인기 있는 #hashtag</h4>
+    </div>
+    <div class="tag-list col-6 p-0">
+        <span class="tag">제가</span>
+        <span class="tag">잘못한</span>
+        <span class="tag">일인지</span>
+        <span class="tag">객관적인</span>
+        <span class="tag">시선에서</span>
+        <span class="tag">보고</span>
+        <span class="tag">제가</span>
+        <span class="tag">잘못한</span>
+        <span class="tag">일인지</span>
+        <span class="tag">객관적인</span>
+        <span class="tag">시선에서</span>
+        <span class="tag">보고</span>
+        <span class="tag">제가</span>
+        <span class="tag">잘못한</span>
+        <span class="tag">일인지</span>
+        <span class="tag">객관적인</span>
+        <span class="tag">시선에서</span>
+        <span class="tag">보고</span>
+        <span class="tag">제가</span>
+        <span class="tag">잘못한</span>
+        <span class="tag">일인지</span>
+        <span class="tag">객관적인</span>
+        <span class="tag">시선에서</span>
+        <span class="tag">보고</span>
+    </div>
+</div>
+{% endif %}
 {% endblock %}

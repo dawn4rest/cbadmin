@@ -5,7 +5,7 @@
 #search .search-icon { width: 60px; padding: 12px; background-color: #E9EBEE; }
 #search #search-reset { margin-right: 36px; padding: 21px; cursor: pointer; }
 
-.search-header { width: 100%; margin-bottom: 32px; }
+.search-header { width: 100%; }
 .search-header h4 { font-weight: 700; }
 .search-header h4 span { margin-left: 12px; font-size: 20px; font-weight: 700; color: #2699FB; }
 

@@ -1,27 +1,34 @@
 {% extends 'base.html' %}
-{% load static  %}
+{% load static %}
 
 {% block customCSS %}
-	<link rel="stylesheet" href="{% static 'css/post/post_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/include/categories.css' %}" />
+<link rel="stylesheet" href="{% static 'css/include/sorts.css' %}" />
+<link rel="stylesheet" href="{% static 'css/post/post_list.css' %}" />
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-		{% include 'include/category.html' %}
-		{% include 'include/sort.html' %}
-	</div>
+<div class="row">
+    {% include 'include/category.html' %}
+    {% include 'include/sort.html' %}
+</div>
 
-	<div class="row m60">
-        {% if post_set %}
-			<div class="columns">
-	            {% for post in post_set %}
-	                {% include 'include/post.html' %}
-	            {% endfor %}
-			</div>
-		{% else %}
-			<div class="container text-center m-5 p-5"><h2>아직 게시물이 없습니다..</h2></div>
-        {% endif %}
+<div class="row m60">
+    {% if post_set %}
+    <div class="columns">
+        {% for post in post_set %}
+        {% include 'include/post.html' %}
+        {% endfor %}
     </div>
+    {% else %}
+    <div class="container text-center m-5 p-5">
+        <h2>아직 게시물이 없습니다..</h2>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
 
-
+{% block customJS %}
+<script src="{% static 'js/post/easy_pie_chart.js' %}"></script>
+<script src="{% static 'js/post/post.js' %}"></script>
 {% endblock %}

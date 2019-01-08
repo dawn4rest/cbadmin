@@ -13,24 +13,53 @@ from comment import forms as comment_forms
 
 def search(request):
     q = request.GET.get('q', '')
-    sort = request.GET.get('sort', '')
     posts = Post.objects.filter(Q(title__icontains=q) | Q(tag__icontains=q))
 
-    if sort == 'likes':
-        posts = posts.annotate(like_count=Count(
-            'like_users')).order_by('-like_count')
-    elif sort == 'new':
-        posts = posts.all().order_by('-created_at')
-    elif sort == 'views':
-        posts = posts.all().order_by('-view_count')
-    elif sort == 'comments':
-        posts = Post.objects.annotate(
-            count=Count('comment')).order_by('-count')
-    else:
-        posts = posts.all().order_by('-updated_at')
-
-    context = {'posts': posts, 'q': q}
+    context = {'posts': posts, 'q': q, }
     return render(request, 'post/search.html', context)
+
+
+def show_category(request, hierarchy=None):
+    sort = request.GET.get('sort', '')
+    categories = Category.objects.all()
+    category_slug = hierarchy.split('/')
+    category_queryset = list(Category.objects.all())
+    all_slugs = [x.slug for x in category_queryset]
+    parent = None
+
+    for slug in category_slug:
+        if slug in all_slugs:
+            target = slug
+            parent = get_object_or_404(Category, slug=slug, parent=parent)
+
+            if sort == 'likes':
+                post_set = parent.post_set.annotate(
+                    like_count=Count('like_users')).order_by('-like_count')
+            elif sort == 'new':
+                post_set = parent.post_set.all().order_by('-created_at')
+            elif sort == 'views':
+                post_set = parent.post_set.all().order_by('-view_count')
+            elif sort == 'comments':
+                post_set = parent.post_set.annotate(
+                    count=Count('comment')).order_by('-count')
+            else:
+                post_set = parent.post_set.all().order_by('-created_at')
+
+        else:
+            instance = get_object_or_404(Post, slug=slug)
+            breadcrumbs_link = instance.get_cat_list()
+            category_name = [' '.join(i.split('/')[-1].split('-'))
+                             for i in breadcrumbs_link]
+            breadcrumbs = zip(breadcrumbs_link, category_name)
+            return render(request, "post-detail.html", {'instance': instance, 'breadcrumbs': breadcrumbs})
+
+    return render(request, "post/category_list.html", {
+        'post_set': post_set,
+        'sub_categories': parent.children.all(),
+        'categories': categories,
+        'target': target,
+        'sort': sort,
+    })
 
 
 def post_list(request):
@@ -51,7 +80,7 @@ def post_list(request):
     else:
         posts = Post.objects.all().order_by('-created_at')
 
-    context = {'posts': posts, 'categories': categories}
+    context = {'posts': posts, 'categories': categories, 'sort': sort, }
     return render(request, 'post/post_list.html', context)
 
 
@@ -148,31 +177,6 @@ def post_delete(request, post_pk):
         post.delete()
         messages.success(request, '게시물이 삭제되었습니다.')
         return redirect('post:post_list')
-
-
-def show_category(request, hierarchy=None):
-    categories = Category.objects.all()
-    category_slug = hierarchy.split('/')
-    category_queryset = list(Category.objects.all())
-    all_slugs = [x.slug for x in category_queryset]
-    parent = None
-
-    for slug in category_slug:
-        if slug in all_slugs:
-            parent = get_object_or_404(Category, slug=slug, parent=parent)
-        else:
-            instance = get_object_or_404(Post, slug=slug)
-            breadcrumbs_link = instance.get_cat_list()
-            category_name = [' '.join(i.split('/')[-1].split('-'))
-                             for i in breadcrumbs_link]
-            breadcrumbs = zip(breadcrumbs_link, category_name)
-            return render(request, "post-detail.html", {'instance': instance, 'breadcrumbs': breadcrumbs})
-
-    return render(request, "post/category_list.html", {
-        'post_set': parent.post_set.all(),
-        'sub_categories': parent.children.all(),
-        'categories': categories,
-    })
 
 
 @login_required

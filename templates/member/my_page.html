@@ -1,64 +1,70 @@
 {% extends 'base.html' %}
-{% load static  %}
+{% load static %}
 
 {% block title %}My Page{% endblock %}
 
 {% block customCSS %}
-	<link rel="stylesheet" href="{% static 'css/member/my_page.css' %}">
+<link rel="stylesheet" href="{% static 'css/member/my_page.css' %}">
 {% endblock %}
 
 {% block content %}
-	<div class="row justify-content-center">
-		<div class="col-7 mypage">
-			<h2>My Page</h2>
-			<div class="info-area">
-				{% if user.bio %}
-					<h6>{{ user.bio }}</h6>
-				{% else %}
-					<h6>자기소개가 비어있습니다.<br />간단하게 프로필을 작성해보아요!</h6>
-				{% endif %}
-				<a class="btn btn-gray" href="{% url 'member:logout' %}">LOG OUT</a>
-			</div>
+<div class="row justify-content-center">
+    <div class="col-7 mypage">
+        <h2>My Page</h2>
+        <div class="info-area">
+            {% if user.bio %}
+            <h6>{{ user.bio }}</h6>
+            {% else %}
+            <h6>자기소개가 비어있습니다.<br />간단하게 프로필을 작성해보아요!</h6>
+            {% endif %}
+            <a class="btn btn-gray" href="{% url 'member:logout' %}">LOG OUT</a>
+        </div>
 
-			<div class="mypage-body">
-				<ul class="nav nav-pills nav-fill">
-					<li class="nav-item"><a class="tab-link active" href="#"><h5>프로필</h5></a></li>
-					<li class="nav-item"><a class="tab-link" href="{% url 'member:user_log' %}"><h5>활동로그</h5></a></li>
-					<li class="nav-item"><a class="tab-link" href="{% url 'member:contact' %}"><h5>문의하기</h5></a></li>
-				</ul>
-				
-                <div class="tab-pane" id="pills-profile">
-					<div class="mypage-header">
-						<img id="previewHolder" class="profile_image" src="/media/{{ user.profile_image }}" />
-						<img class="fake-btn" src="{% static '/img/camera.svg' %}" />
-			            <h4>{{ user }}</h4>
-					</div>
-					<div class="form-wrap">
-						<div class="form-group">
-							<label>E-mail</label>
-							<input type="email" class="form-control" placeholder="{{ user.email }}" readonly>
-						</div>
-						<div class="form-group">
-							<label>닉네임</label>
-							<input type="text" class="form-control" placeholder="{{ user.username }}" readonly>
-						</div>
-                        {% include 'include/form.html' with form=profile_form submit_class='btn-full' submit_title='수정하기' enctype='file' %}
-					</div>
-					<div class="btn-wrap">
-						<h6>탈퇴를 원하시면 회원탈퇴 버튼을 눌러주세요</h6>
-						<a id="pw-change" class="btn btn-line" href="{% url 'member:password_change' %}">비밀번호 변경</a>
-						<form action="{% url 'member:user_delete' %}" method="post">
-							{% csrf_token %}
-							<input id="del-user" class="btn btn-gray" type="submit" value="회원 탈퇴" onclick="return confirm('정말 삭제하시겠습니까?')">
-						</form>
-					</div>
+        <div class="mypage-body">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item"><a class="tab-link active" href="#">
+                        <h5>프로필</h5>
+                    </a></li>
+                <li class="nav-item"><a class="tab-link" href="{% url 'member:user_log' %}">
+                        <h5>활동로그</h5>
+                    </a></li>
+                <li class="nav-item"><a class="tab-link" href="{% url 'member:contact' %}">
+                        <h5>문의하기</h5>
+                    </a></li>
+            </ul>
+
+            <div class="tab-pane" id="pills-profile">
+                <div class="mypage-header">
+                    <img id="previewHolder" class="profile_image" src="/media/{{ user.profile_image }}" />
+                    <img class="fake-btn" src="{% static '/img/camera.svg' %}" />
+                    <h4>{{ user }}</h4>
+                </div>
+                <div class="form-wrap">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" class="form-control" placeholder="{{ user.email }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>닉네임</label>
+                        <input type="text" class="form-control" placeholder="{{ user.username }}" readonly>
+                    </div>
+                    {% include 'include/form.html' with form=profile_form submit_class='btn-full' submit_title='수정하기'
+                    enctype='file' %}
+                </div>
+                <div class="btn-wrap">
+                    <h6>탈퇴를 원하시면 회원탈퇴 버튼을 눌러주세요</h6>
+                    <a id="pw-change" class="btn btn-line" href="{% url 'member:password_change' %}">비밀번호 변경</a>
+                    <form action="{% url 'member:user_delete' %}" method="post">
+                        {% csrf_token %}
+                        <input id="del-user" class="btn btn-gray" type="submit" value="회원 탈퇴" onclick="return confirm('정말 삭제하시겠습니까?')">
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block customJS %}
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="{% static 'js/include/image_preview.js' %}"></script>
+<script src="{% static 'js/include/image_preview.js' %}"></script>
 {% endblock %}

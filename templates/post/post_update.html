@@ -4,264 +4,264 @@
 {% block title %}Post modify{% endblock %}
 
 {% block customCSS %}
-	<link rel="stylesheet" href="{% static 'css/post/post_create.css' %}">
-	<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
-	<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/post/post_create.css' %}">
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-	<nav class="lnb navbar">
-		<div class="container">
-			<a class="nav-icon" href="javascript:history.back()"><img class="nav-icon" src="{% static '/img/back.svg' %}" /></a>
-			<h4>채터박스를 수정 중입니다</h4>
-			<ul class="navbar-nav flex-row"></ul>
-		</div>
-	</nav>
+<nav class="lnb navbar">
+    <div class="container">
+        <a class="nav-icon" href="javascript:history.back()"><img class="nav-icon" src="{% static '/img/back.svg' %}" /></a>
+        <h4>채터박스를 수정 중입니다</h4>
+        <ul class="navbar-nav flex-row"></ul>
+    </div>
+</nav>
 
-	<div id="create-slider" class="carousel carousel-fade post-create row justify-content-center m60" data-interval="false">
-		<form class="carousel-inner col-8 m60" action="" method="post" enctype="multipart/form-data">
-			{% csrf_token %}
-			<div class="carousel-item m60 active">
-				<div class="item-header">
-					<h3>제목을 입력하세요</h3>
-					<ol class="indicators">
-						<li data-target="#create-slider" class="active"></li>
-						<li data-target="#create-slider"></li>
-						<li data-target="#create-slider"></li>
-						<li data-target="#create-slider"></li>
-					</ol>
-					<div class="clearfix">
-						<a class="btn btn-fill float-right nextTo2" href="#create-slider" role="button" data-slide="next">다음으로</a>
-					</div>
-				</div>
+<div id="create-slider" class="carousel carousel-fade post-create row justify-content-center m60" data-interval="false">
+    <form class="carousel-inner col-8 m60" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="carousel-item m60 active">
+            <div class="item-header">
+                <h3>제목을 입력하세요</h3>
+                <ol class="indicators">
+                    <li data-target="#create-slider" class="active"></li>
+                    <li data-target="#create-slider"></li>
+                    <li data-target="#create-slider"></li>
+                    <li data-target="#create-slider"></li>
+                </ol>
+                <div class="clearfix">
+                    <a class="btn btn-fill float-right nextTo2" href="#create-slider" role="button" data-slide="next">다음으로</a>
+                </div>
+            </div>
 
-				<div class="form-group item-body m60 {{ post_form.title.name }} {% if post_form.title.errors %} has-error {% endif %}">
-					{{ post_form.title.label_tag }}
-					{{ post_form.title }}
-					{% if post_form.title.errors %}
-						{% for error in post_form.title.errors %}
-						<span class="help-block">{{ error }}</span>
-						{% endfor %}
-					{% endif %}
-					<hr />
-				</div>
+            <div class="form-group item-body m60 {{ post_form.title.name }} {% if post_form.title.errors %} has-error {% endif %}">
+                {{ post_form.title.label_tag }}
+                {{ post_form.title }}
+                {% if post_form.title.errors %}
+                {% for error in post_form.title.errors %}
+                <span class="help-block">{{ error }}</span>
+                {% endfor %}
+                {% endif %}
+                <hr />
+            </div>
 
-				<div class="item-footer {{ post_form.title.name }}">
-					<label>Example</label>
-					<img src="/static/img/example-{{ post_form.title.name }}.png" alt="">
-				</div>
-			</div>
+            <div class="item-footer {{ post_form.title.name }}">
+                <label>Example</label>
+                <img src="/static/img/example-{{ post_form.title.name }}.png" alt="">
+            </div>
+        </div>
 
-			<div class="carousel-item m60">
-				<div class="item-header">
-					<h3>배경을 설명해주세요</h3>
-					<ol class="indicators">
-						<li data-target="#create-slider" class="active"></li>
-						<li data-target="#create-slider" class="active"></li>
-						<li data-target="#create-slider"></li>
-						<li data-target="#create-slider"></li>
-					</ol>
-					<div class="clearfix">
-						<a class="btn btn-line float-left" href="#create-slider" role="button" data-slide="prev">이전으로</a>
-						<a class="btn btn-fill float-right nextTo3" href="#create-slider" role="button" data-slide="next">다음으로</a>
-					</div>
-				</div>
+        <div class="carousel-item m60">
+            <div class="item-header">
+                <h3>배경을 설명해주세요</h3>
+                <ol class="indicators">
+                    <li data-target="#create-slider" class="active"></li>
+                    <li data-target="#create-slider" class="active"></li>
+                    <li data-target="#create-slider"></li>
+                    <li data-target="#create-slider"></li>
+                </ol>
+                <div class="clearfix">
+                    <a class="btn btn-line float-left" href="#create-slider" role="button" data-slide="prev">이전으로</a>
+                    <a class="btn btn-fill float-right nextTo3" href="#create-slider" role="button" data-slide="next">다음으로</a>
+                </div>
+            </div>
 
-				<div class="form-group item-body m60 {{ post_form.background.name }} {% if post_form.background.errors %} has-error {% endif %}">
-					{{ post_form.background.label_tag }}
-					{{ post_form.background }}
-					{% if post_form.background.errors %}
-						{% for error in post_form.background.errors %}
-						<span class="help-block">{{ error }}</span>
-						{% endfor %}
-					{% endif %}
+            <div class="form-group item-body m60 {{ post_form.background.name }} {% if post_form.background.errors %} has-error {% endif %}">
+                {{ post_form.background.label_tag }}
+                {{ post_form.background }}
+                {% if post_form.background.errors %}
+                {% for error in post_form.background.errors %}
+                <span class="help-block">{{ error }}</span>
+                {% endfor %}
+                {% endif %}
 
-					<div class="form-group hide1">
-						<div class="fake-btns fake-btn1">
-							<h6>배경 설명 이미지를 업로드 하려면 클릭하세요.</h6>
-							<h6>(배경 설명 이미지)</h6>
-							<img id="previewHolder1" />
-						</div>
-						{% if post_form.background_image1.errors %}
-							{% for error in post_form.background_image1.errors %}
-							<span class="help-block">{{ error }}</span>
-							{% endfor %}
-						{% endif %}
-					</div>
-					<div class="form-group origin1">
-						{{ post_form.background_image1 }}
-					</div>
+                <div class="form-group hide1">
+                    <div class="fake-btns fake-btn1">
+                        <h6>배경 설명 이미지를 업로드 하려면 클릭하세요.</h6>
+                        <h6>(배경 설명 이미지)</h6>
+                        <img id="previewHolder1" />
+                    </div>
+                    {% if post_form.background_image1.errors %}
+                    {% for error in post_form.background_image1.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group origin1">
+                    {{ post_form.background_image1 }}
+                </div>
 
-					<div class="form-group hidden hide2">
-						<div class="fake-btns fake-btn2">
-							<h6>배경 설명 이미지를 업로드 하려면 클릭하세요.</h6>
-							<h6>(배경 설명 이미지)</h6>
-							<img id="previewHolder2" />
-						</div>
-						{% if post_form.background_image2.errors %}
-							{% for error in post_form.background_image2.errors %}
-							<span class="help-block">{{ error }}</span>
-							{% endfor %}
-						{% endif %}
-					</div>
-					<div class="form-group origin2">
-						{{ post_form.background_image2 }}
-					</div>
+                <div class="form-group hidden hide2">
+                    <div class="fake-btns fake-btn2">
+                        <h6>배경 설명 이미지를 업로드 하려면 클릭하세요.</h6>
+                        <h6>(배경 설명 이미지)</h6>
+                        <img id="previewHolder2" />
+                    </div>
+                    {% if post_form.background_image2.errors %}
+                    {% for error in post_form.background_image2.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group origin2">
+                    {{ post_form.background_image2 }}
+                </div>
 
-					<div class="form-group hidden hide3">
-						<div class="fake-btns fake-btn3">
-							<h6>배경 설명 이미지를 업로드 하려면 클릭하세요.</h6>
-							<h6>(배경 설명 이미지)</h6>
-							<img id="previewHolder3" />
-						</div>
-						{% if post_form.background_image3.errors %}
-							{% for error in post_form.background_image3.errors %}
-							<span class="help-block">{{ error }}</span>
-							{% endfor %}
-						{% endif %}
-					</div>
-					<div class="form-group origin3">
-						{{ post_form.background_image3 }}
-					</div>
-					<hr />
-				</div>
+                <div class="form-group hidden hide3">
+                    <div class="fake-btns fake-btn3">
+                        <h6>배경 설명 이미지를 업로드 하려면 클릭하세요.</h6>
+                        <h6>(배경 설명 이미지)</h6>
+                        <img id="previewHolder3" />
+                    </div>
+                    {% if post_form.background_image3.errors %}
+                    {% for error in post_form.background_image3.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group origin3">
+                    {{ post_form.background_image3 }}
+                </div>
+                <hr />
+            </div>
 
-				<div class="item-footer {{ post_form.background.name }}">
-					<label>Example</label>
-					<img src="/static/img/example-{{ post_form.background.name }}.png" alt="">
-				</div>
-			</div>
+            <div class="item-footer {{ post_form.background.name }}">
+                <label>Example</label>
+                <img src="/static/img/example-{{ post_form.background.name }}.png" alt="">
+            </div>
+        </div>
 
-			<div class="carousel-item m60">
-				<div class="item-header">
-					<h3>옵션을 선택해주세요</h3>
-					<ol class="indicators">
-						<li data-target="#create-slider" class="active"></li>
-						<li data-target="#create-slider" class="active"></li>
-						<li data-target="#create-slider" class="active"></li>
-						<li data-target="#create-slider"></li>
-					</ol>
-					<div class="clearfix">
-						<a class="btn btn-line float-left" href="#create-slider" role="button" data-slide="prev">이전으로</a>
-						<a class="btn btn-fill float-right nextTo4" href="#create-slider" role="button" data-slide="next" disabled>다음으로</a>
-					</div>
-				</div>
+        <div class="carousel-item m60">
+            <div class="item-header">
+                <h3>옵션을 선택해주세요</h3>
+                <ol class="indicators">
+                    <li data-target="#create-slider" class="active"></li>
+                    <li data-target="#create-slider" class="active"></li>
+                    <li data-target="#create-slider" class="active"></li>
+                    <li data-target="#create-slider"></li>
+                </ol>
+                <div class="clearfix">
+                    <a class="btn btn-line float-left" href="#create-slider" role="button" data-slide="prev">이전으로</a>
+                    <a class="btn btn-fill float-right nextTo4" href="#create-slider" role="button" data-slide="next"
+                        disabled>다음으로</a>
+                </div>
+            </div>
 
-				<div class="item-body m60 {{ post_form.con_title.name }}{% if post_form.pro_title.errors %} has-error {% endif %}{% if post_form.con_title.errors %} has-error {% endif %}">
-					<label>Decision</label>
-					<div class="form-group">
-						{{ post_form.pro_title }}
-						{% if post_form.pro_title.errors %}
-							{% for error in post_form.pro_title.errors %}
-							<span class="help-block">{{ error }}</span>
-							{% endfor %}
-						{% endif %}
-					</div>
-					<div class="form-group">
-						{{ post_form.con_title }}
-						{% if post_form.con_title.errors %}
-							{% for error in post_form.con_title.errors %}
-							<span class="help-block">{{ error }}</span>
-							{% endfor %}
-						{% endif %}
-					</div>
-					<hr />
-				</div>
+            <div class="item-body m60 {{ post_form.con_title.name }}{% if post_form.pro_title.errors %} has-error {% endif %}{% if post_form.con_title.errors %} has-error {% endif %}">
+                <label>Decision</label>
+                <div class="form-group">
+                    {{ post_form.pro_title }}
+                    {% if post_form.pro_title.errors %}
+                    {% for error in post_form.pro_title.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ post_form.con_title }}
+                    {% if post_form.con_title.errors %}
+                    {% for error in post_form.con_title.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <hr />
+            </div>
 
-				<div class="item-footer {{ post_form.con_title.name }}">
-					<label>Example</label>
-					<img src="/static/img/example-{{ post_form.con_title.name }}.png" alt="">
-				</div>
-			</div>
+            <div class="item-footer {{ post_form.con_title.name }}">
+                <label>Example</label>
+                <img src="/static/img/example-{{ post_form.con_title.name }}.png" alt="">
+            </div>
+        </div>
 
-			<div class="carousel-item m60">
-				<div class="item-header">
-					<h3>배경을 설명해주세요</h3>
-					<ol class="indicators">
-						<li data-target="#create-slider" class="active"></li>
-						<li data-target="#create-slider" class="active"></li>
-						<li data-target="#create-slider" class="active"></li>
-						<li data-target="#create-slider" class="active"></li>
-					</ol>
-					<div class="clearfix">
-						<a class="btn btn-line float-left" href="#create-slider" role="button" data-slide="prev">이전으로</a>
-						<button class="btn btn-fill float-right last" type="submit">게시하기</button>
-					</div>
-				</div>
+        <div class="carousel-item m60">
+            <div class="item-header">
+                <h3>배경을 설명해주세요</h3>
+                <ol class="indicators">
+                    <li data-target="#create-slider" class="active"></li>
+                    <li data-target="#create-slider" class="active"></li>
+                    <li data-target="#create-slider" class="active"></li>
+                    <li data-target="#create-slider" class="active"></li>
+                </ol>
+                <div class="clearfix">
+                    <a class="btn btn-line float-left" href="#create-slider" role="button" data-slide="prev">이전으로</a>
+                    <button class="btn btn-fill float-right last" type="submit">게시하기</button>
+                </div>
+            </div>
 
-				<div class="item-body m60 {{ post_form.background.name }}">
-					<div class="form-group">
-						{{ post_form.category.label_tag }}
-						{{ post_form.category }}
-						{% if post_form.category.errors %}
-							{% for error in post_form.category.errors %}
-							<span class="help-block">{{ error }}</span>
-							{% endfor %}
-						{% endif %}
-					</div>
-					<div class="form-group m60">
-						<label>Hashtags</label>
-						{{ post_form.tag }}
-						{% if post_form.tag.errors %}
-							{% for error in post_form.tag.errors %}
-							<span class="help-block">{{ error }}</span>
-							{% endfor %}
-						{% endif %}
-					</div>
-					<div class="form-group">
-						<label>Thumbnail Image<span> (선택사항)</span></label>
-						<div class="fake-btn">
-							<h6>표지용 이미지를 업로드 하려면 클릭하세요.</h6>
-							<h6>(썸네일 용도)</h6>
-							<img id="previewHolder" class="thumb-holder" />
-						</div>
-						{% if post_form.thumbnail.errors %}
-							{% for error in post_form.thumbnail.errors %}
-							<span class="help-block">{{ error }}</span>
-							{% endfor %}
-						{% endif %}
-					</div>
-					<div class="form-group thumbnail-hidden">
-						{{ post_form.thumbnail }}
-					</div>
-					<hr />
-				</div>
+            <div class="item-body m60 {{ post_form.background.name }}">
+                <div class="form-group">
+                    {{ post_form.category.label_tag }}
+                    {{ post_form.category }}
+                    {% if post_form.category.errors %}
+                    {% for error in post_form.category.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group m60">
+                    <label>Hashtags</label>
+                    {{ post_form.tag }}
+                    {% if post_form.tag.errors %}
+                    {% for error in post_form.tag.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label>Thumbnail Image<span> (선택사항)</span></label>
+                    <div class="fake-btn">
+                        <h6>표지용 이미지를 업로드 하려면 클릭하세요.</h6>
+                        <h6>(썸네일 용도)</h6>
+                        <img id="previewHolder" class="thumb-holder" />
+                    </div>
+                    {% if post_form.thumbnail.errors %}
+                    {% for error in post_form.thumbnail.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group thumbnail-hidden">
+                    {{ post_form.thumbnail }}
+                </div>
+                <hr />
+            </div>
 
-				<div class="item-footer {{ post_form.thumbnail.name }}">
-					<label>Example</label>
-					<img src="/static/img/example-{{ post_form.thumbnail.name }}.png" alt="">
-				</div>
-			</div>
-		</form>
-	</div>
+            <div class="item-footer {{ post_form.thumbnail.name }}">
+                <label>Example</label>
+                <img src="/static/img/example-{{ post_form.thumbnail.name }}.png" alt="">
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}
 
 {% block customJS %}
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="{% static 'js/include/image_preview.js' %}"></script>
-	<script src="{% static 'js/post/post_create.js' %}"></script>
-	<script type="text/javascript">
-		$( document ).ready(function() {
-			$('.nextTo2').click(function() {
-				for (var counter = 1; counter < 4; counter++) {
-					if ($('.origin'+counter +' a').length) {
-						$('.hide'+counter).show();
-						var thumbPath = $('.origin'+ counter+' a').attr('href');
-						$('#previewHolder'+counter).attr('src',thumbPath);
-						$('.fake-btn'+counter+' h6').css('display','none');
-						var nextNum = counter + 1;
-						$('.hide'+nextNum).css('display','block');
-					}
-				}
-			});
+<script src="{% static 'js/include/image_preview.js' %}"></script>
+<script src="{% static 'js/post/post_create.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.nextTo2').click(function () {
+            for (var counter = 1; counter < 4; counter++) {
+                if ($('.origin' + counter + ' a').length) {
+                    $('.hide' + counter).show();
+                    var thumbPath = $('.origin' + counter + ' a').attr('href');
+                    $('#previewHolder' + counter).attr('src', thumbPath);
+                    $('.fake-btn' + counter + ' h6').css('display', 'none');
+                    var nextNum = counter + 1;
+                    $('.hide' + nextNum).css('display', 'block');
+                }
+            }
+        });
 
-			$('.nextTo4').click(function() {
-				if ($('.thumbnail-hidden a').length) {
-					var thumbPath = $('.thumbnail-hidden a').attr('href');
-					$('.thumb-holder').attr('src',thumbPath);
-					$('.fake-btn h6').css('display','none');
-				}
-			});
-		});
-	</script>
+        $('.nextTo4').click(function () {
+            if ($('.thumbnail-hidden a').length) {
+                var thumbPath = $('.thumbnail-hidden a').attr('href');
+                $('.thumb-holder').attr('src', thumbPath);
+                $('.fake-btn h6').css('display', 'none');
+            }
+        });
+    });
+</script>
 {% endblock %}

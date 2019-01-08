@@ -183,6 +183,8 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; }
 	/* GLOBAL STYLE */
 	.web { display: none !important; }
 	.mobile { display: auto !important; }
+    .m60 { margin-top: 40px; margin-bottom: 40px; }
+    .p60 { padding-top: 40px; padding-bottom: 40px; }
 
 
 	/* NAVBAR STYLE */
@@ -192,12 +194,24 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; }
 	nav.navbar .nav-icon { width: 20px; }
 	nav.navbar .nav-link .nav-img { width: 20px; }
 
+
 	/* FOOTER STYLE */
 	footer { padding: 0 15px; }
 	footer .inner { flex-direction: column; justify-content: center; align-items: left; height: 130px; }
 	footer .inner .column { display: block; margin-bottom: 16px; }
 	footer .inner .column .list-item { float: left; margin-right: 40px; font-size: 12px; }
 	footer .inner .copyright { font-size: 11px; text-align: left; }
+
+    
+    /* FONT STYLE */
+    h2 { font-size: 30px; line-height: 45px; }
+    h3 { font-size: 20px; line-height: 30px; }
+    h4 { font-size: 14px; line-height: 24px; }
+    h5 { font-size: 14px; line-height: 24px; }
+    h6 { font-size: 12px; line-height: 20px; }
+    p { font-size: 11px; line-height: 18px; }
+    span { font-size: 10px; line-height: 16px; }
+    label { font-size: 14px; line-height: 24px; }
 
 
 	/* BUTTON STYLE */

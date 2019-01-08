@@ -1,109 +1,114 @@
 {% extends 'base.html' %}
-{% load static  %}
+{% load static %}
 
 {% block title %}Contact{% endblock %}
 
 {% block customCSS %}
-	<link rel="stylesheet" href="{% static 'css/member/my_page.css' %}">
-	<link rel="stylesheet" href="{% static 'css/member/contact.css' %}">
+<link rel="stylesheet" href="{% static 'css/member/my_page.css' %}">
+<link rel="stylesheet" href="{% static 'css/member/contact.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="row justify-content-center">
-        <div class="col-7 mypage">
-            <h2>My Page</h2>
-            <div class="info-area">
-                {% if user.bio %}
-                    <h6>{{ user.bio }}</h6>
-                {% else %}
-                    <h6>자기소개가 비어있습니다.<br />간단하게 프로필을 작성해보아요!</h6>
-                {% endif %}
-                <a class="btn btn-gray" href="{% url 'member:logout' %}">LOG OUT</a>
-            </div>
+<div class="row justify-content-center">
+    <div class="col-7 mypage">
+        <h2>My Page</h2>
+        <div class="info-area">
+            {% if user.bio %}
+            <h6>{{ user.bio }}</h6>
+            {% else %}
+            <h6>자기소개가 비어있습니다.<br />간단하게 프로필을 작성해보아요!</h6>
+            {% endif %}
+            <a class="btn btn-gray" href="{% url 'member:logout' %}">LOG OUT</a>
+        </div>
 
-            <div class="mypage-body">
-                <ul class="nav nav-pills nav-fill">
-                    <li class="nav-item"><a class="tab-link" href="{% url 'member:my_page' %}"><h5>프로필</h5></a></li>
-                    <li class="nav-item"><a class="tab-link" href="{% url 'member:user_log' %}"><h5>활동로그</h5></a></li>
-                    <li class="nav-item"><a class="tab-link active" href="#"><h5>문의하기</h5></a></li>
-                </ul>
-                <div class="tab-pane" id="pills-contact">
-                    <div class="mypage-header">
-                        <h3>궁금한 것 무엇이든</h3>
-                        <h6>채터박스에 대해 궁금한 것, Q&A, 개선사항 등<br />질문 또는 의견을 아래 질문 채팅방에 남겨주세요.<br />확인한 후 답변드릴께요!</h6>
-                    </div>
+        <div class="mypage-body">
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item"><a class="tab-link" href="{% url 'member:my_page' %}">
+                        <h5>프로필</h5>
+                    </a></li>
+                <li class="nav-item"><a class="tab-link" href="{% url 'member:user_log' %}">
+                        <h5>활동로그</h5>
+                    </a></li>
+                <li class="nav-item"><a class="tab-link active" href="#">
+                        <h5>문의하기</h5>
+                    </a></li>
+            </ul>
+            <div class="tab-pane" id="pills-contact">
+                <div class="mypage-header">
+                    <h3>궁금한 것 무엇이든</h3>
+                    <h6>채터박스에 대해 궁금한 것, Q&A, 개선사항 등<br />질문 또는 의견을 아래 질문 채팅방에 남겨주세요.<br />확인한 후 답변드릴께요!</h6>
+                </div>
 
-                    <form id="add-chat-form" action="{% url 'member:create_chat' %}" method="POST">
-                        {% csrf_token %}
-                        {{ chat_form.content }}
-                        <input type="button" class="add-chat btn btn-fill" value="질문 등록">
-                    </form>
+                <form id="add-chat-form" action="{% url 'member:create_chat' %}" method="POST">
+                    {% csrf_token %}
+                    {{ chat_form.content }}
+                    <input type="button" class="add-chat btn btn-fill" value="질문 등록">
+                </form>
 
-                    <div class="chat-list">
-                        <h4>문의 이력</h4>
-                        <div class="list-header">
-                            <div class="admin-header">
-                                <img class="category-icon" src="{% static '/img/categories/all.png' %}" />
-                                <h6>채터박스</h6>
-                            </div>
-                            <div class="user-header">
-                                <h6>{{ user.username }}</h6>
-                                <img class="profile_image" src="/media/{{ user.profile_image }}" />
-                            </div>
+                <div class="chat-list">
+                    <h4>문의 이력</h4>
+                    <div class="list-header">
+                        <div class="admin-header">
+                            <img class="category-icon" src="{% static '/img/categories/all.png' %}" />
+                            <h6>채터박스</h6>
                         </div>
-                        <div class="list-body">
-                            <div class="load-chat">
-                                {% if chats %}
-                                    {% for chat in chats.all %}
-                                        {% if chat.author.is_staff %}
-                                            <div class="chat admin">
-                                                <h6>{{ chat.content }}</h6>
-                                                <span>{{ chat.natural_time }}</span>
-                                            </div>
-                                        {% else %}
-                                            <div class="chat">
-                                                <h6>{{ chat.content }}</h6>
-                                                <span>{{ chat.natural_time }}</span>
-                                            </div>
-                                        {% endif %}
-                                    {% endfor %}
-                                    <p>마지막 메세지 입니다.</p>
-                                {% else %}
-                                    <div class="empty">
-                                        <h4>문의 이력이 없습니다.</h4>
-                                        <img src="{% static '/img/help.svg' %}" alt="">
-                                        <p>질문을 등록해 놓으시면 채터박스가<br />확인 후에 답변을 남겨드려요.<br />질문이 아닌 단순한 글에는 답변이 달리지 않아요.</p>
-                                    </div>
-                                {% endif%}
+                        <div class="user-header">
+                            <h6>{{ user.username }}</h6>
+                            <img class="profile_image" src="/media/{{ user.profile_image }}" />
+                        </div>
+                    </div>
+                    <div class="list-body">
+                        <div class="load-chat">
+                            {% if chats %}
+                            {% for chat in chats.all %}
+                            {% if chat.author.is_staff %}
+                            <div class="chat admin">
+                                <h6>{{ chat.content }}</h6>
+                                <span>{{ chat.natural_time }}</span>
                             </div>
+                            {% else %}
+                            <div class="chat">
+                                <h6>{{ chat.content }}</h6>
+                                <span>{{ chat.natural_time }}</span>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            <p>마지막 메세지 입니다.</p>
+                            {% else %}
+                            <div class="empty">
+                                <h4>문의 이력이 없습니다.</h4>
+                                <img src="{% static '/img/help.svg' %}" alt="">
+                                <p>질문을 등록해 놓으시면 채터박스가<br />확인 후에 답변을 남겨드려요.<br />질문이 아닌 단순한 글에는 답변이 달리지 않아요.</p>
+                            </div>
+                            {% endif%}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 
 
 {% block customJS %}
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript">
-        $(document).on('click', '.add-chat', function() {
-            var content = $("#add-chat-form .content").val();
+<script type="text/javascript">
+    $(document).on('click', '.add-chat', function () {
+        var content = $("#add-chat-form .content").val();
 
-            $.ajax({
-                type: "POST",
-                url: "{% url 'member:create_chat' %}",
-                data: {
-                    'content':content,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                dataType: "json",
-                success: function(response) {}
-            });
-
-            $("#add-chat-form .content").val("");
-            $(".load-chat").load("{% url 'member:contact' %} .load-chat");
+        $.ajax({
+            type: "POST",
+            url: "{% url 'member:create_chat' %}",
+            data: {
+                'content': content,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            dataType: "json",
+            success: function (response) { }
         });
-    </script>
+
+        $("#add-chat-form .content").val("");
+        $(".load-chat").load("{% url 'member:contact' %} .load-chat");
+    });
+</script>
 {% endblock %}
