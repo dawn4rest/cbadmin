@@ -5,8 +5,6 @@
 
 {% block customCSS %}
 <link rel="stylesheet" href="{% static 'css/post/post_create.css' %}">
-<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
-<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -134,7 +132,7 @@
 
         <div class="carousel-item m60">
             <div class="item-header">
-                <h3>옵션을 선택해주세요</h3>
+                <h3>선택지를 입력해주세요</h3>
                 <ol class="indicators">
                     <li data-target="#create-slider" class="active"></li>
                     <li data-target="#create-slider" class="active"></li>
@@ -177,7 +175,7 @@
 
         <div class="carousel-item m60">
             <div class="item-header">
-                <h3>배경을 설명해주세요</h3>
+                <h3>옵션을 선택해주세요</h3>
                 <ol class="indicators">
                     <li data-target="#create-slider" class="active"></li>
                     <li data-target="#create-slider" class="active"></li>
@@ -209,28 +207,12 @@
                     {% endfor %}
                     {% endif %}
                 </div>
-                <div class="form-group">
-                    <label>Thumbnail Image<span> (선택사항)</span></label>
-                    <div class="fake-btn">
-                        <h6>표지용 이미지를 업로드 하려면 클릭하세요.</h6>
-                        <h6>(썸네일 용도)</h6>
-                        <img id="previewHolder" class="thumb-holder" />
-                    </div>
-                    {% if post_form.thumbnail.errors %}
-                    {% for error in post_form.thumbnail.errors %}
-                    <span class="help-block">{{ error }}</span>
-                    {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="form-group thumbnail-hidden">
-                    {{ post_form.thumbnail }}
-                </div>
                 <hr />
             </div>
 
-            <div class="item-footer {{ post_form.thumbnail.name }}">
+            <div class="item-footer">
                 <label>Example</label>
-                <img src="/static/img/example-{{ post_form.thumbnail.name }}.png" alt="">
+                <img src="/static/img/example-thumbnail.png" alt="">
             </div>
         </div>
     </form>
@@ -252,14 +234,6 @@
                     var nextNum = counter + 1;
                     $('.hide' + nextNum).css('display', 'block');
                 }
-            }
-        });
-
-        $('.nextTo4').click(function () {
-            if ($('.thumbnail-hidden a').length) {
-                var thumbPath = $('.thumbnail-hidden a').attr('href');
-                $('.thumb-holder').attr('src', thumbPath);
-                $('.fake-btn h6').css('display', 'none');
             }
         });
     });

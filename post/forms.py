@@ -9,7 +9,6 @@ class PostForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         class_update_fields = [
             'title',
-            'thumbnail',
             'background',
             'background_image1',
             'background_image2',
@@ -20,13 +19,13 @@ class PostForm(forms.ModelForm):
             'category',
         ]
         for field_name in class_update_fields:
-            self.fields[field_name].widget.attrs.update({'class': 'form-control'})
+            self.fields[field_name].widget.attrs.update(
+                {'class': 'form-control'})
 
     class Meta:
         model = Post
         fields = (
             'title',
-            'thumbnail',
             'background',
             'background_image1',
             'background_image2',
@@ -37,9 +36,9 @@ class PostForm(forms.ModelForm):
             'category',
         )
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': '주제 또는 제목을 입력하세요',}),
-            'pro_title': forms.TextInput(attrs={'placeholder': '첫 번째 의견을 입력해주세요',}),
-            'con_title': forms.TextInput(attrs={'placeholder': '두 번째 의견을 입력해주세요',}),
-            'category': forms.Select(attrs={'placeholder': '카테고리를 선택하세요.',}),
-            'tag': forms.TextInput(attrs={'placeholder': '태그를 자유롭게 입력하세요.',}),
+            'title': forms.TextInput(attrs={'placeholder': '주제 또는 제목을 입력하세요', }),
+            'pro_title': forms.TextInput(attrs={'placeholder': '첫 번째 의견을 입력해주세요', }),
+            'con_title': forms.TextInput(attrs={'placeholder': '두 번째 의견을 입력해주세요', }),
+            'category': forms.Select(attrs={'placeholder': '카테고리를 선택하세요.', }),
+            'tag': forms.TextInput(attrs={'placeholder': '태그를 자유롭게 입력하세요.', }),
         }

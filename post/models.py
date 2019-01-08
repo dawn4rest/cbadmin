@@ -40,7 +40,6 @@ class Post(TimeStampedModel):
     category = models.ForeignKey('Category')
 
     title = models.CharField(max_length=160, null=True)
-    thumbnail = models.ImageField(upload_to='post', blank=True, null=True)
     background = models.TextField()
     background_image1 = models.ImageField(
         upload_to='post', blank=True, null=True)
@@ -91,11 +90,19 @@ class Post(TimeStampedModel):
 
     @property
     def pro_percent(self):
-        return self.pro_count / self.all_count
+        if not self.all_count == 0:
+            result = self.pro_count / self.all_count
+        else:
+            result = 0
+        return result
 
     @property
     def con_percent(self):
-        return self.con_count / self.all_count
+        if not self.all_count == 0:
+            result = self.con_count / self.all_count
+        else:
+            result = 0
+        return result
 
     def get_cat_list(self):
         k = self.category

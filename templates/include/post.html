@@ -2,11 +2,6 @@
 {% load post_extras %}
 
 <figure id="post-{{ post.pk }}" style="width: 100%;">
-    {% if post.thumbnail %}
-    <a href="{% url 'post:post_detail' post_pk=post.pk %}">
-        <img src="{{ post.thumbnail.url }}" alt="" class="post-image">
-    </a>
-    {% endif %}
     <div class="tag-list">
         {% for tag in post.tag|split_tags %}
         <span class="tag">{{ tag }}</span>

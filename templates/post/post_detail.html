@@ -72,11 +72,6 @@
     </div>
 
     <div class="detail-body">
-        {% if post.thumbnail %}
-        <div class="thumbnail">
-            <img src="{{ post.thumbnail.url }}" />
-        </div>
-        {% endif %}
         <span class="post-background">{{ post.background|safe|linebreaks }}</span>
 
         {% if post.background_image1 %}
