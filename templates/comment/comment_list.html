@@ -26,11 +26,13 @@
 <div class="row comment-wrap">
     <div class="pro-comments col-6">
         <!-- @@@@@@@@@@@@@@@@ PRO COMMENT CREATE START @@@@@@@@@@@@@@@@ -->
+        {% if user.is_authenticated %}
         <div id="pro-form" class="form-wrap pro-form collapse">
             {{ comment_form.content }}
             <button class="btn btn-line" type="button"><a data-toggle="collapse" href="#pro-form">취소하기</a></button>
             <button class="btn btn-fill comment-create" name="pro">등록하기</button>
         </div>
+        {% endif %}
         <!-- @@@@@@@@@@@@@@@@ PRO COMMENT CREATE END @@@@@@@@@@@@@@@@ -->
         <!-- @@@@@@@@@@@@@@@@ PRO COMMENT LIST START @@@@@@@@@@@@@@@@ -->
         <div class="comment-list pro-list">
@@ -57,11 +59,13 @@
 
     <div class="con-comments col-6">
         <!-- @@@@@@@@@@@@@@@@ CON COMMENT CREATE START @@@@@@@@@@@@@@@@ -->
+        {% if user.is_authenticated %}
         <div id="con-form" class="form-wrap con-form collapse">
             {{ comment_form.content }}
             <button class="btn btn-line" type="button"><a data-toggle="collapse" href="#con-form">취소하기</a></button>
             <button class="btn btn-fill comment-create" name="con">등록하기</button>
         </div>
+        {% endif %}
         <!-- @@@@@@@@@@@@@@@@ CON COMMENT CREATE END @@@@@@@@@@@@@@@@ -->
         <!-- @@@@@@@@@@@@@@@@ CON COMMENT LIST START @@@@@@@@@@@@@@@@ -->
         <div class="comment-list con-list">

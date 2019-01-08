@@ -48,20 +48,24 @@
             <img src="{% static '/img/comment.png' %}" style="margin-right: 4px;" />
             <span class="count">{{ comment.comment_on_comment.count }}</span>
         </button>
+        {% if user.is_authenticated %}
         <button data-toggle="modal" data-target="#reportModal" onclick="$('.modal-content').load('{% url 'comment:comment_report' comment_pk=comment.pk %}');">
             <img src="{% static '/img/report.png' %}" />
             <span class="count">신고하기</span>
         </button>
+        {% endif %}
     </div>
     <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT TOGGLE END @@@@@@@@@@@@@@@@ -->
 </div>
 
 <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT CONTENT START @@@@@@@@@@@@@@@@ -->
 <div class="comment-action collapse" id="action-{{ comment.pk }}">
+    {% if user.is_authenticated %}
     <div class="coc-form">
         {{ comment_on_comment_form.content }}
         <button class="btn btn-fill coc-create" name="{{ comment.pk }}">등록하기</button>
     </div>
+    {% endif %}
 
     <div class="coc-list">
         {% for coc in comment.comment_on_comment.all reversed %}

@@ -148,9 +148,7 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; }
 }
 .tag {
 	display: inline;
-	margin-right: 10px;
-	padding: 4px 10px;
-	border: 1px solid #CBCBCB;
+	margin-right: 20px;
 	font-size: 12px;
 	line-height: 3;
 	font-weight: 400;

@@ -88,16 +88,24 @@ def post_detail(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
     procomments = comment_models.Comment.objects.filter(
         post=post, type=True).order_by('-created_at')
-    procomments_mine = procomments.filter(
-        author=request.user).order_by('-created_at')
-    procomments_exclude = procomments.exclude(
-        author=request.user).order_by('-created_at')
     concomments = comment_models.Comment.objects.filter(
         post=post, type=False).order_by('-created_at')
-    concomments_mine = concomments.filter(
-        author=request.user).order_by('-created_at')
-    concomments_exclude = concomments.exclude(
-        author=request.user).order_by('-created_at')
+
+    if request.user.is_authenticated():
+        procomments_mine = procomments.filter(
+            author=request.user).order_by('-created_at')
+        procomments_exclude = procomments.exclude(
+            author=request.user).order_by('-created_at')
+        concomments_mine = concomments.filter(
+            author=request.user).order_by('-created_at')
+        concomments_exclude = concomments.exclude(
+            author=request.user).order_by('-created_at')
+    else:
+        procomments_mine = None
+        procomments_exclude = procomments
+        concomments_mine = None
+        concomments_exclude = concomments
+
     comment_form = comment_forms.CommentForm()
     comment_on_comment_form = comment_forms.CommentOnCommentForm()
     report_comment_form = comment_forms.ReportCommentForm()

@@ -40,7 +40,7 @@
 .opinion h2 { font-size: 34px; line-height: 60px; }
 
 .comment_title { margin: 8px 0; }
-.comment_title .col-6 { display: flex; justify-content: space-between; padding: 24px; max-width: calc(50% - 4px); border: 1px solid #C3C5C7; }
+.comment_title .col-6 { display: flex; justify-content: space-between; align-items: center; padding: 24px; max-width: calc(50% - 4px); border: 1px solid #C3C5C7; }
 .comment_title .col-6 img { width: 32px; height: 32px; cursor: pointer; }
 .comment_title .pro-title { margin-right: 4px; }
 .comment_title .con-title { margin-left: 4px; }
