@@ -1,38 +1,49 @@
 {% extends 'base.html' %}
-{% load static  %}
+{% load static %}
 
 {% block title %}Sign Up{% endblock %}
 
 {% block customCSS %}
-	<link rel="stylesheet" href="{% static 'css/member/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/member/login.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="row m60">
-	<div class="example col-5">
-		<h2>채터박스</h2>
-		<h4>A or B. 어느 쪽이 맞아?</h4>
-		<h3>2지선다 오지랖 댓글 커뮤니티</h3>
-		<ul>
-			<li><img src="{% static '/img/check-icon.png' %}" alt=""><h6>일상의 이야기</h6></li>
-			<li><img src="{% static '/img/check-icon.png' %}" alt=""><h6>2지선다 선택 댓글</h6></li>
-			<li><img src="{% static '/img/check-icon.png' %}" alt=""><h6>익명 커뮤니티</h6></li>
-		</ul>
-		<img src="{% static '/img/example-login.png' %}" alt="">
-	</div>
-	<div class="col-1"></div>
-	<div class="login col-6">
-		<div class="login-header">
-			<h2>SIGN UP</h2>
-			<ul class="nav nav-pills nav-fill">
-				<li class="nav-item"><a class="tab-link" href="{% url 'member:login' %}"><h5>SIGN UP</h5></a></li>
-				<li class="nav-item"><a class="tab-link active" href="#"><h5>SIGN UP</h5></a></li>
-			</ul>
-		</div>
+    <div class="example col-5">
+        <h2>채터박스</h2>
+        <h4>A or B. 어느 쪽이 맞아?</h4>
+        <h3>2지선다 오지랖 댓글 커뮤니티</h3>
+        <ul>
+            <li><img src="{% static '/img/icons/check-icon.png' %}" alt="">
+                <h6>일상의 이야기</h6>
+            </li>
+            <li><img src="{% static '/img/icons/check-icon.png' %}" alt="">
+                <h6>2지선다 선택 댓글</h6>
+            </li>
+            <li><img src="{% static '/img/icons/check-icon.png' %}" alt="">
+                <h6>익명 커뮤니티</h6>
+            </li>
+        </ul>
+        <img src="{% static '/img/example-login.png' %}" alt="">
+    </div>
+    <div class="col-1"></div>
+    <div class="login col-6">
+        <div class="login-header">
+            <h2>SIGN UP</h2>
+            <ul class="nav nav-pills nav-fill">
+                <li class="nav-item"><a class="tab-link" href="{% url 'member:login' %}">
+                        <h5>SIGN UP</h5>
+                    </a></li>
+                <li class="nav-item"><a class="tab-link active" href="#">
+                        <h5>SIGN UP</h5>
+                    </a></li>
+            </ul>
+        </div>
 
-		{% include 'include/form.html' with form=signup_form submit_class='btn-full' submit_title='SIGN UP' enctype='file' %}
+        {% include 'include/form.html' with form=signup_form submit_class='btn-full' submit_title='SIGN UP'
+        enctype='file' %}
 
-		@@@ SNS LOGIN @@@
-	</div>
+        @@@ SNS LOGIN @@@
+    </div>
 </div>
 {% endblock %}

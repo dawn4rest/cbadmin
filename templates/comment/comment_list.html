@@ -11,13 +11,13 @@
     <div class="col-6 pro-title">
         <h5>{{ post.pro_title }}</h5>
         <a data-toggle="collapse" href="#pro-form">
-            <img class="add-pro" src="{% static 'img/add-pro.svg' %}" />
+            <img class="add-pro" src="{% static '/img/icons/add-pro.svg' %}" />
         </a>
     </div>
     <div class="col-6 con-title">
         <h5>{{ post.con_title }}</h5>
         <a data-toggle="collapse" href="#con-form">
-            <img class="add-con" src="{% static 'img/add-con.svg' %}" />
+            <img class="add-con" src="{% static '/img/icons/add-con.svg' %}" />
         </a>
     </div>
 </div>
@@ -211,12 +211,12 @@
                     var changeNum = Number($target.text()) - 1;
                     $target.text(changeNum);
                     $target.removeClass('active');
-                    $target.parent().children('img').attr('src', '{% static "/img/like_hate_empty.png" %}');
+                    $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-empty.png" %}');
                 } else {
                     var changeNum = Number($target.text()) + 1;
                     $target.text(changeNum);
                     $target.addClass('active');
-                    $target.parent().children('img').attr('src', '{% static "/img/like_hate_fill.png" %}');
+                    $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-fill.png" %}');
                 }
             }
         });
@@ -238,12 +238,12 @@
                     var changeNum = Number($target.text()) - 1;
                     $target.text(changeNum);
                     $target.removeClass('active');
-                    $target.parent().children('img').attr('src', '{% static "/img/like_hate_empty.png" %}');
+                    $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-empty.png" %}');
                 } else {
                     var changeNum = Number($target.text()) + 1;
                     $target.text(changeNum);
                     $target.addClass('active');
-                    $target.parent().children('img').attr('src', '{% static "/img/like_hate_fill.png" %}');
+                    $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-fill.png" %}');
                 }
             }
         });

@@ -205,3 +205,8 @@ def get_liked_posts(request):
         'liked_posts': liked_posts,
     }
     return render(request, 'include/slide_menu.html', context)
+
+
+@login_required
+def get_toggle(request):
+    return render(request, 'member/toggle.html')

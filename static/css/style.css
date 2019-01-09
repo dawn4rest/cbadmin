@@ -202,6 +202,18 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; }
     nav.navbar .nav-link .x2 { width: 32px; }
 
 
+    /* TOGGLE STYLE */
+    #toggleModal .modal-dialog { margin: 0; }
+    #toggleModal .modal-content { height: 100vh; margin: 0; border: 0; border-radius: 0; }
+    #toggleModal .modal-content .modal-header { border: 0; }
+    #toggleModal .modal-content .modal-body { padding: 0; text-align: center; }
+    #toggleModal .modal-content .modal-body h5 { margin: 40px 0; font-weight: 400; color: #7F7F7F; }
+    #toggleModal .modal-content .modal-body ul { width: 96px; margin: 0 auto; text-align: left; }
+    #toggleModal .modal-content .modal-body ul li h5 { display: flex; align-items: center; margin-top: 32px; font-weight: 700; color: #3d3d3d; }
+    #toggleModal .modal-content .modal-body ul li h5 img { width: 16px; margin-right: 16px; }
+    #toggleModal .modal-content .modal-footer { display: none; }
+
+
 	/* FOOTER STYLE */
 	footer { padding: 0; }
 	footer .inner { flex-direction: column; justify-content: center; align-items: left; height: 130px; }

@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^log/$', views.user_log, name='user_log'),
     url(r'^contact/create/$', views.create_chat, name='create_chat'),
     url(r'^get_liked_posts/$', views.get_liked_posts, name='get_liked_posts'),
+    url(r'^toggle/$', views.get_toggle, name='get_toggle'),
 ]

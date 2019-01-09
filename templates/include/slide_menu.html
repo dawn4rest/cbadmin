@@ -1,35 +1,46 @@
-{% load static  %}
+{% load static %}
 
 {% block customCSS %}
-	<link rel="stylesheet" href="{% static 'css/include/slide_menu.css' %}">
+<link rel="stylesheet" href="{% static 'css/include/slide_menu.css' %}">
 {% endblock %}
 
 <nav id="slide-menu">
     <div class="slide-header">
-        <img class="slide-close" src="{% static '/img/close-empty.svg' %}" />
+        <h3 class="close-white">&times;</h3>
         <h4>{{ slide_title }}</h4>
     </div>
     <div class="slide-body">
         {% if liked_posts %}
-            {% for post in liked_posts %}
-                <div class="like-card">
-                    <div class="btn-area">
-                        <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}?next={% url 'post:post_detail' post_pk=post.pk %}" method="POST">
-        				{% csrf_token %}
-							<button class="del-like"><img src="{% static '/img/close.svg' %}" alt=""></button>
-        				</form>
-                    </div>
+        {% for post in liked_posts %}
+        <div class="like-card">
+            <div class="btn-area">
+                <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}?next={% url 'post:post_detail' post_pk=post.pk %}"
+                    method="POST">
+                    {% csrf_token %}
+                    <button class="del-like">
+                        <h3>&times;</h3>
+                    </button>
+                </form>
+            </div>
 
-                    <label>Title</label>
-                    <a href="{% url 'post:post_detail' post_pk=post.id %}"><h6>{{ post.title }}</h6></a>
-                    <div class="subtitle-wrap clearfix"><div class="pro-title float-left"></div><p class="float-right">{{ post.pro_title }}</p></div>
-                    <div class="subtitle-wrap clearfix"><div class="con-title float-left"></div><p class="float-right">{{ post.con_title }}</p></div>
-                </div>
-            {% endfor %}
+            <label>Title</label>
+            <a href="{% url 'post:post_detail' post_pk=post.id %}">
+                <h6>{{ post.title }}</h6>
+            </a>
+            <div class="subtitle-wrap clearfix">
+                <div class="pro-title float-left"></div>
+                <p class="float-right">{{ post.pro_title }}</p>
+            </div>
+            <div class="subtitle-wrap clearfix">
+                <div class="con-title float-left"></div>
+                <p class="float-right">{{ post.con_title }}</p>
+            </div>
+        </div>
+        {% endfor %}
         {% else %}
         <div class="likes-empty">
             <h4>찜 목록이 없습니다.</h4>
-            <img src="{% static '/img/likes-empty.png' %}" />
+            <img src="{% static '/img/heart-empty.png' %}" />
         </div>
         {% endif %}
     </div>
