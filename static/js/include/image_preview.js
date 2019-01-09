@@ -81,7 +81,45 @@ function readURL3(input) {
         reader.readAsDataURL(input.files[0]);
     };
     $('.fake-btn3 h6').css('display', 'none');
+    $('.hide4').css('display', 'block');
 }
 $('#id_background_image3').change(function () {
     readURL3(this);
+});
+
+$('#id_background_image4').parent().css('display', 'none');
+$('.fake-btn4').click(function () {
+    $('#id_background_image4').click();
+});
+function readURL4(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#previewHolder4').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    };
+    $('.fake-btn4 h6').css('display', 'none');
+    $('.hide5').css('display', 'block');
+}
+$('#id_background_image4').change(function () {
+    readURL4(this);
+});
+
+$('#id_background_image5').parent().css('display', 'none');
+$('.fake-btn5').click(function () {
+    $('#id_background_image5').click();
+});
+function readURL5(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#previewHolder5').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    };
+    $('.fake-btn5 h6').css('display', 'none');
+}
+$('#id_background_image5').change(function () {
+    readURL5(this);
 });

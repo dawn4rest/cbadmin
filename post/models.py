@@ -47,6 +47,10 @@ class Post(TimeStampedModel):
         upload_to='post', blank=True, null=True)
     background_image3 = models.ImageField(
         upload_to='post', blank=True, null=True)
+    background_image4 = models.ImageField(
+        upload_to='post', blank=True, null=True)
+    background_image5 = models.ImageField(
+        upload_to='post', blank=True, null=True)
     tag = TagField()
 
     view_count = models.PositiveSmallIntegerField(default=0)

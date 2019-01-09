@@ -121,6 +121,39 @@
                 <div class="form-group origin3">
                     {{ post_form.background_image3 }}
                 </div>
+
+                <div class="form-group hidden hide4">
+                    <div class="fake-btns fake-btn4">
+                        <h6>배경 설명 이미지를 업로드 하려면 클릭하세요.</h6>
+                        <h6>(배경 설명 이미지)</h6>
+                        <img id="previewHolder4" />
+                    </div>
+                    {% if post_form.background_image4.errors %}
+                    {% for error in post_form.background_image4.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group origin4">
+                    {{ post_form.background_image4 }}
+                </div>
+
+                <div class="form-group hidden hide5">
+                    <div class="fake-btns fake-btn5">
+                        <h6>배경 설명 이미지를 업로드 하려면 클릭하세요.</h6>
+                        <h6>(배경 설명 이미지)</h6>
+                        <img id="previewHolder5" />
+                    </div>
+                    {% if post_form.background_image5.errors %}
+                    {% for error in post_form.background_image5.errors %}
+                    <span class="help-block">{{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group origin5">
+                    {{ post_form.background_image5 }}
+                </div>
+
                 <hr />
             </div>
 
@@ -225,7 +258,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('.nextTo2').click(function () {
-            for (var counter = 1; counter < 4; counter++) {
+            for (var counter = 1; counter < 6; counter++) {
                 if ($('.origin' + counter + ' a').length) {
                     $('.hide' + counter).show();
                     var thumbPath = $('.origin' + counter + ' a').attr('href');
