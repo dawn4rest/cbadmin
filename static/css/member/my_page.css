@@ -23,7 +23,7 @@
 @media screen and (max-width: 768px) {
     .mypage { margin: 40px 0; padding: 0 30px; }
     .mypage .info-area { margin-bottom: 40px; }
-    .mypage-body .mypage-header { margin: 30px 0; padding: 30px; border: 0; }
+    .mypage-body .mypage-header { margin: 30px 0; padding: 30px; }
     .mypage-body #pills-profile .mypage-header .profile_image { width: 120px; height: 120px; }
     .mypage-body #pills-profile .mypage-header h4 { margin-top: 28px; font-size: 20px; font-weight: 700; }
 }
