@@ -4,14 +4,18 @@
         <a class="navbar-brand" href="{% url 'post:post_list' %}"><img class="nav-logo" src="{% static '/img/logo.svg' %}" /></a>
 
         <ul class="navbar-nav ml-auto flex-row">
-            <li class="nav-item web"><a class="nav-link" href="{% url 'post:search' %}"><img class="nav-icon" src="{% static '/img/search.svg' %}" style="width: 40px;" /></a></li>
-            <li class="nav-item web" style="margin-right: 8px;"><a class="nav-link slide-trigger" href="#"><img class="nav-icon" src="{% static '/img/heart-fill.svg' %}" /></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'post:search' %}"><img class="nav-icon x2" src="{% static '/img/search.svg' %}" /></a></li>
+            <li class="nav-item web-flex" style="margin-right: 8px;"><a class="nav-link slide-trigger" href="#"><img
+                        class="nav-icon" src="{% static '/img/heart-fill.svg' %}" /></a></li>
             {% if user.is_authenticated %}
-                <li class="nav-item"><a class="btn btn-fill" href="{% url 'post:post_create' %}">CREATE</a></li>
-                <li class="nav-item"><a class="btn btn-line" href="{% url 'member:my_page' %}">MY PAGE</a></li>
+            <li class="nav-item"><a class="btn btn-fill" href="{% url 'post:post_create' %}">CREATE</a></li>
+            <li class="nav-item web-flex"><a class="btn btn-line" href="{% url 'member:my_page' %}">MY PAGE</a></li>
+            <li class="nav-item mobile-flex"><a class="nav-link" href="{% url 'member:my_page' %}"><img class="nav-icon x2"
+                        src="{% static '/img/toggle.svg' %}" style="margin-left: 4px;" /></a></li>
             {% else %}
-                <li class="nav-item"><a class="btn btn-fill" href="{% url 'member:login' %}">LOG IN</a></li>
-                <li class="nav-item"><a class="btn btn-line" href="{% url 'member:signup' %}">SIGN UP </a></li>
+            <li class="nav-item web-flex"><a class="btn btn-fill" href="{% url 'member:login' %}">LOG IN</a></li>
+            <li class="nav-item mobile-flex"><a class="nav-link" href="{% url 'member:login' %}"><img class="nav-icon x2"
+                        src="{% static '/img/login.svg' %}" /></a></li>
             {% endif %}
         </ul>
     </div>
