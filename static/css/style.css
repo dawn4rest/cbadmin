@@ -197,6 +197,7 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; }
 	nav.navbar .container { padding: 0 15px; }
 	nav.navbar .nav-logo { width: 108px; }
 	nav.navbar .nav-item { margin-left: 12px; }
+	nav.navbar .nav-item .btn { padding: 4px 8px; }
 	nav.navbar .nav-icon { width: 20px; margin-top: 6px; }
     nav.navbar .nav-link .nav-img { width: 20px; }
     nav.navbar .nav-link .x2 { width: 32px; }
@@ -234,8 +235,27 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; }
 
 
 	/* BUTTON STYLE */
-	.btn {
-		padding: 4px 8px;
-		font-size: 12px;
-	}
+	.btn { padding: 8px 9px; font-size: 12px; }
+    .btn-full { padding: 8px 0; }
+    
+
+    /* FORM STYLE */
+    .form-group label { font-size: 11px; font-weight: 700; line-height: 18px; }
+    .form-group .form-control { height: 36px; font-size: 14px; }
+    .form-wrap .form-group input { height: 36px; font-size: 14px; }
+    select {
+        background-position:
+            calc(100% - 16px) calc(1em),
+            calc(100% - 10px) calc(1em),
+            calc(100% - 2.1em) 0.5em;
+        background-size: 5px 5px, 6px 5px, 1px 1.5em;
+    }
+    select:focus {
+        background-position:
+            calc(100% - 10px) 1em,
+            calc(100% - 16px) 1em,
+            calc(100% - 2.1em) 0.5em;
+        background-size: 6px 5px, 5px 5px, 1px 1.5em;
+    }
+
 }

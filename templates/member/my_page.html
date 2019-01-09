@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-7 mypage">
+    <div class="col-md-7 mypage">
         <h2>My Page</h2>
         <div class="info-area">
             {% if user.bio %}
@@ -48,8 +48,8 @@
                         <label>닉네임</label>
                         <input type="text" class="form-control" placeholder="{{ user.username }}" readonly>
                     </div>
-                    {% include 'include/form.html' with form=profile_form submit_class='btn-full' submit_title='수정하기'
-                    enctype='file' %}
+
+                    {% include 'include/form.html' with form=profile_form submit_class='btn-full' submit_title='수정하기'%}
                 </div>
                 <div class="btn-wrap">
                     <h6>탈퇴를 원하시면 회원탈퇴 버튼을 눌러주세요</h6>
@@ -63,6 +63,7 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
 
 {% block customJS %}
