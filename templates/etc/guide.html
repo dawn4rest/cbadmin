@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{% static 'css/etc/guide.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="guide row justify-content-center m60">
+    <div class="col-md-8 p-0">
+        <div class="col-12 p60"></div>
+
+        <h2><strong>채터박스</strong> <span class="mobile-br"></span>이용 가이드</h2>
+
+        <div class="col-12 p60"></div>
+
+        <ul class="nav nav-pills nav-fill m60">
+            <li class="nav-item"><a class="tab-link active show" href="#question" data-toggle="pill">
+                    <h5>질문 할 때!</h5>
+                </a></li>
+            <li class="nav-item"><a class="tab-link" href="#participate" data-toggle="pill">
+                    <h5>참여 할 때!</h5>
+                </a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="question">
+                <div class="inner-wrap p60">
+                    <div class="text-wrap">
+                        <h2>01</h2>
+                        <h4>고민되는 썰과 선택지를 들려주세요!</h4>
+                        <h6>
+                            두 가지 선택에서 고민하고 있거나<br />
+                            둘 중 누구의 의견이 맞는지 궁금허거나<br />
+                            그런 일상의 썰과 선택지로 박스를 만드세요.
+                        </h6>
+                    </div>
+                    <img src="{% static '/img/example-title.png' %}" />
+                </div>
+                <div class="inner-wrap p60">
+                    <div class="text-wrap">
+                        <h2>02</h2>
+                        <h4>
+                            익명으로 주변에 공유하고<br />
+                            더 많은 유저들의 의견을 받으세요.
+                        </h4>
+                        <h6>
+                            SNS나 카카오톡 등 자유롭게 공유해보세요.<br />
+                            익명이니까 자신의 이야기도 부담없이 공유해요
+                        </h6>
+                    </div>
+                    <img class="img-half" src="{% static '/img/guide-1.png' %}" />
+                </div>
+            </div>
+            <div class="tab-pane fade" id="participate">
+                <div class="inner-wrap p60">
+                    <div class="text-wrap">
+                        <h2>01</h2>
+                        <h4>재밌어 보이는 채터박스를 찾아요!</h4>
+                        <h6>
+                            연애, 취업, 인간관계에서 멘탈관리까지<br />
+                            다양한 주제의 채터박스를 찾아<br />
+                            익명의 썰과 댓글을 구경하세요
+                        </h6>
+                    </div>
+                    <div class="row p-0 m60">
+                        <div class="col-4">
+                            <h6>연애 고민</h6><img src="{% static 'img/categories/love.png' %}">
+                        </div>
+                        <div class="col-4">
+                            <h6>취업/진로</h6><img src="{% static 'img/categories/course.png' %}">
+                        </div>
+                        <div class="col-4">
+                            <h6>투자</h6><img src="{% static 'img/categories/invest.png' %}">
+                        </div>
+                    </div>
+                    <div class="row p-0">
+                        <div class="col-4">
+                            <h6>멘탈 관리</h6><img src="{% static 'img/categories/care.png' %}">
+                        </div>
+                        <div class="col-4">
+                            <h6>인간 관계</h6><img src="{% static 'img/categories/relation.png' %}">
+                        </div>
+                        <div class="col-4">
+                            <h6>아무거나</h6><img src="{% static 'img/categories/etc.png' %}">
+                        </div>
+                    </div>
+                </div>
+                <div class="inner-wrap p60">
+                    <div class="text-wrap">
+                        <h2>02</h2>
+                        <h4>추천하고 의견을 남기고 공유하고!</h4>
+                        <h6>
+                            SNS나 카카오톡 등 자유롭게 공유해보세요.<br />
+                            동의하거나 센스 있는 의견에 추천을 누르거나<br />
+                            익명으로 자신의 의견을 남겨보세요.
+                        </h6>
+                    </div>
+                    <img src="{% static '/img/guide-3.png' %}" style="width: 100%;" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 p60"></div>
+
+        <h2>
+            채터박스의 수다쟁이가 <br />
+            될 준비가 되었어요!
+        </h2>
+        <button class="btn btn-fill btn-full">구경하러 가기</button>
+        <div class="col-12 p60"></div>
+    </div>
+</div>
+{% endblock %}

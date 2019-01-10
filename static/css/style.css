@@ -186,6 +186,7 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; }
     .web-block { display: none !important; }
     .mobile-flex { display: flex !important; }
     .mobile-block { display: block !important; }
+    .mobile-br { display: block; }
     .m60 { margin-top: 40px; margin-bottom: 40px; }
     .p60 { padding-top: 40px; padding-bottom: 40px; }
     .container { padding: 0 30px; }

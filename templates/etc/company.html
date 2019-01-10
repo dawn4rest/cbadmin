@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{% static 'css/etc/company.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="company row justify-content-center m60">
+    <div class="col-md-8 p-0">
+        <div class="col-12 p60"></div>
+
+        <h2 class="mobile-weak">A or B 당신의 선택은?</h2>
+        <h2>2지선다 오지랖 댓글<span class="mobile-br"></span> 커뮤니티 <strong>채터박스</strong></h2>
+
+        <div class="col-12 p60"></div>
+
+        <ul class="nav nav-pills nav-fill m60">
+            <li class="nav-item"><a class="tab-link active show" href="#intro" data-toggle="pill">
+                    <h5>채터박스는?</h5>
+                </a></li>
+            <li class="nav-item"><a class="tab-link" href="#tips" data-toggle="pill">
+                    <h5>사용 꿀 TIP</h5>
+                </a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="intro">
+                <div class="col-12 p60"></div>
+                <h3>같지만 다른 커뮤티니 서비스</h3>
+                <hr class="m60">
+                <div class="inner-wrap p60">
+                    <img src="{% static '/img/company-1.png' %}" />
+                    <div class="text-wrap">
+                        <h4>일상에서의 이야기들</h4>
+                        <h6>
+                            진로, 연애, 인간관계, 멘탈관리까지. <br />
+                            이럴까 저럴까 고민하게 되는 일상의 <br />
+                            이야기들을 나눠보세요.
+                        </h6>
+                    </div>
+                </div>
+                <div class="inner-wrap p60">
+                    <img src="{% static '/img/company-2.png' %}" />
+                    <div class="text-wrap">
+                        <h4>둘 중 하나를 선택해서 댓글 달기</h4>
+                        <h6>
+                            애매하고 결론 없는 의견은 NO! <br />
+                            두 가지 선택지 중 하나를 골라서 <br />
+                            댓글을 달 수 있어요! <br />
+                        </h6>
+                    </div>
+                </div>
+                <div class="inner-wrap p60">
+                    <img src="{% static '/img/company-3.png' %}" />
+                    <div class="text-wrap">
+                        <h4>익명으로 자유롭게</h4>
+                        <h6>
+                            이메일과 닉네임만으로 회원가입! <br />
+                            익명 커뮤니티로 솔직한 <br />
+                            의견을 나눠요! <br />
+                        </h6>
+                    </div>
+                </div>
+                <div class="inner-wrap p60">
+                    <img src="{% static '/img/company-4.png' %}" />
+                    <div class="text-wrap">
+                        <h4>다른 사람들의 선택은?</h4>
+                        <h6>
+                            채터박스는 일정 시간 후 의견을 마감해요. <br />
+                            2지선다 중 사람들은 어떤 선택을 했을지 <br />
+                            결과를 확인해보세요! <br />
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tips">
+                <div class="col-12 p60"></div>
+                <h3>채터박스가 필요할 때</h3>
+                <hr class="m60">
+                <div class="inner-wrap reverse p60">
+                    <div class="text-wrap">
+                        <h4>선택이 필요할 때</h4>
+                        <h6>
+                            두 가지 중 하나는 꼭 선택해야 할 때!<br />
+                            아무리 고민해도 답을 모르겠어요.<br />
+                            익명으로 솔직한 의견 받고 싶어요!
+                        </h6>
+                    </div>
+                    <img src="{% static '/img/company-5.png' %}" />
+                </div>
+                <div class="inner-wrap reverse p60 order-2">
+                    <img src="{% static '/img/company-6.png' %}" />
+                    <div class="text-wrap reverse">
+                        <h4>잘잘못을 가릴 때</h4>
+                        <h6>
+                            난 정말 억울한데 상대도 억울해해요.<br />
+                            하지만 아무리 생각해도 내가 억울해요.<br />
+                            수다쟁이들의 생각은 어떤가요?
+                        </h6>
+                    </div>
+                </div>
+                <div class="inner-wrap reverse p60">
+                    <div class="text-wrap">
+                        <h4>상대의 생각이 궁금할 때</h4>
+                        <h6>
+                            나와는 반대되는 의견들이 있어요.<br />
+                            왜 그렇게 생각하는지 궁금해요.<br />
+                            상대방을 조금 더 잘 이해하고 싶어요!
+                        </h6>
+                    </div>
+                    <img src="{% static '/img/company-7.png' %}" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 p60"></div>
+
+        <h2>
+            채터박스의 수다쟁이가 <br />
+            될 준비가 되었어요!
+        </h2>
+        <button class="btn btn-fill btn-full">구경하러 가기</button>
+        <div class="col-12 p60"></div>
+    </div>
+</div>
+{% endblock %}
