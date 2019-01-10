@@ -13,21 +13,24 @@
 {% block content %}
 <div class="row form-group">
     <form id="search" action="" method="get">
-        <img class="search-icon" src="{% static 'img/icons/search-fill.svg' %}" alt="">
+        <img id="search-icon" class="search-icon" src="{% static 'img/icons/search-fill.svg' %}" alt="">
         <input id="search-value" class="form-control" type="text" placeholder="키워드, #hashtag" name="q" value="{{ q }}">
-        <img id="search-reset" class="search-icon" src="{% static 'img/icons/close-fill.png' %}" alt="">
+        <img id="search-reset" class="search-icon" src="{% static 'img/icons/close-fill.svg' %}" alt="">
         <button id="search-submit" class="btn btn-line" type="submit">검색</button>
     </form>
 </div>
 
 {% if q %}
+{% if posts %}
 <div class="row m60">
     <div class="search-header">
         <h4>ALL CATEGORY<span>({{ posts.count }})</span></h4>
     </div>
 
-    <hr class="search-divider m60" />
+    <hr class="search-divider" />
+</div>
 
+<div class="row p-0">
     <div class="columns">
         {% for post in posts %}
         {% include 'include/post.html' %}
@@ -35,11 +38,18 @@
     </div>
 </div>
 {% else %}
+<div class="web-block p60"></div>
+<div class="search-empty m60">
+    <h3>검색 결과가 없습니다.</h3>
+    <img src="{% static 'img/search-empty.png' %}" alt="">
+</div>
+{% endif %}
+{% else %}
 <div class="row m60">
     <div class="search-header">
         <h4>인기 있는 #hashtag</h4>
     </div>
-    <div class="tag-list col-6 p-0">
+    <div class="tag-list col-md-6 p-0">
         <span class="tag">제가</span>
         <span class="tag">잘못한</span>
         <span class="tag">일인지</span>
@@ -67,4 +77,10 @@
     </div>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block customJS %}
+<script src="{% static 'js/post/easy_pie_chart.js' %}"></script>
+<script src="{% static 'js/post/post.js' %}"></script>
+<script src="{% static 'js/post/search.js' %}"></script>
 {% endblock %}

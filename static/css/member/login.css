@@ -16,6 +16,7 @@
 
 
 @media screen and (max-width: 768px) {
+    .login { padding: 0; }
     .login-header .nav-pills { margin: 40px 0; }
     .login .btn-wrap a { padding: 10px 0; }
 }

@@ -8,5 +8,5 @@
 
 @media screen and (max-width: 768px) {
     .category-wrap { height: 160px; overflow-x: auto; overflow-y: hidden; }
-    .category { padding: 0 30px 50px; overflow-x: auto; }
+    .category { padding: 0 0 50px; overflow-x: auto; }
 }
