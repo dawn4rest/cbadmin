@@ -1,27 +1,36 @@
 {% load static %}
-<h2>MY PAGE</h2>
-<h5>
-    자기소개가 비어있습니다.<br />
-    간단하게 프로필을 작성해보아요!
-</h5>
-<hr />
-<ul>
-    <li><a href="#">
-            <h5><img src="{% static '/img/icons/heart-fill.svg' %}" />좋아요</h5>
-        </a></li>
-    <li><a href="#">
-            <h5><img src="{% static '/img/icons/alert-fill.png' %}" />알림내역</h5>
-        </a></li>
-    <li><a href="{% url 'member:my_page' %}">
-            <h5><img src="{% static '/img/icons/profile.png' %}" />프로필</h5>
-        </a></li>
-    <li><a href="{% url 'member:user_log' %}">
-            <h5><img src="{% static '/img/icons/time-fill.png' %}" />활동로그</h5>
-        </a></li>
-    <li><a href="{% url 'member:contact' %}">
-            <h5><img src="{% static '/img/icons/help-fill.png' %}" />문의하기</h5>
-        </a></li>
-    <li><a href="{% url 'member:logout' %}">
-            <h5><img src="{% static '/img/icons/submit.png' %}" />LOG OUT</h5>
-        </a></li>
-</ul>
+<div class="slide-header">
+    <h3 class="slide-close">&times;</h3>
+    <h4></h4>
+</div>
+
+<div class="slide-body">
+    <div class="toggle-wrap">
+        <h2>MY PAGE</h2>
+        <h5>
+            자기소개가 비어있습니다.<br />
+            간단하게 프로필을 작성해보아요!
+        </h5>
+        <hr />
+        <ul>
+            <li><a href="#" class="like-trigger">
+                    <h5><img src="{% static '/img/icons/heart-fill.svg' %}" />좋아요</h5>
+                </a></li>
+            <li><a href="#">
+                    <h5><img src="{% static '/img/icons/alert-fill.png' %}" />알림내역</h5>
+                </a></li>
+            <li><a href="{% url 'member:my_page' %}">
+                    <h5><img src="{% static '/img/icons/profile.png' %}" />프로필</h5>
+                </a></li>
+            <li><a href="{% url 'member:user_log' %}">
+                    <h5><img src="{% static '/img/icons/time-fill.png' %}" />활동로그</h5>
+                </a></li>
+            <li><a href="{% url 'member:contact' %}">
+                    <h5><img src="{% static '/img/icons/help-fill.png' %}" />문의하기</h5>
+                </a></li>
+            <li><a href="{% url 'member:logout' %}">
+                    <h5><img src="{% static '/img/icons/submit.png' %}" />LOG OUT</h5>
+                </a></li>
+        </ul>
+    </div>
+</div>
