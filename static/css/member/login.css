@@ -13,3 +13,9 @@
 .login .btn-fill { margin-top: 30px; width: calc(100% - 2px); }
 .login .btn-wrap { display: flex; margin-top: 8px; }
 .login .btn-wrap a { width: calc(50% - 4px); padding: 12px 0; border-radius: 0;}
+
+
+@media screen and (max-width: 768px) {
+    .login-header .nav-pills { margin: 40px 0; }
+    .login .btn-wrap a { padding: 10px 0; }
+}
