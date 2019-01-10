@@ -26,7 +26,18 @@
 .item-footer { text-align: center; }
 .item-footer label { display: block; text-align: left; margin-bottom: 60px; }
 
-.carousel-item label { font-size: 12px; font-weight: 700; color: #7F7F7F; }
+.carousel-item label { font-size: 12px; font-weight: 700; color: #7F7F7F; margin-bottom: 8px; }
 .carousel-item label span { font-weight: 700; color: #FF725C; }
 #cke_id_background { max-width: 100% !important; }
 .cke_editable { font-size: 16px !important; }
+
+
+@media screen and (max-width: 768px) {
+    .item-body textarea { height: 180px !important; }
+    .item-body .fake-btns { min-height: 180px; }
+    .item-body .fake-btns h6 { font-size: 14px; }
+
+    .item-footer { margin-top: 40px; }
+    .item-footer label { margin-bottom: 40px; }
+    .item-footer img { width: 100%; }
+}
