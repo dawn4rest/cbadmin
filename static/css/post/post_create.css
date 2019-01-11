@@ -11,10 +11,12 @@
 .item-header .indicators li { width: 8px; height: 8px; margin: 32px 5px; border-radius: 50%; background-color: #C3C5C7; cursor: pointer; }
 .item-header .indicators li.active { background-color: #2699FB; }
 
+.item-body .count { margin: 8px 0; font-weight:500; color: #2699FB; }
 .item-body hr { width: 100%; margin-top: 60px; border-color: #C3C5C7; }
-.item-body textarea { height: 300px !important; margin-bottom: 60px; }
+.item-body textarea { height: 300px !important; }
 .item-body #id_pro_title { border-color: #41CC90; }
 .item-body #id_con_title { border-color: #FF725C; }
+.item-body .hide1 { margin-top: 60px; }
 .item-body .hidden { display: none; }
 .item-body .fake-btn { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; min-height: 300px; border: 1px solid #C3C5C7; cursor: pointer; }
 .item-body .fake-btn h6 { color: #2699FB; font-size: 16px; font-weight: 500; }
@@ -36,6 +38,7 @@
     .item-body textarea { height: 180px !important; }
     .item-body .fake-btns { min-height: 180px; }
     .item-body .fake-btns h6 { font-size: 14px; }
+    .item-body .hide1 { margin-top: 40px; }
 
     .item-footer { margin-top: 40px; }
     .item-footer label { margin-bottom: 40px; }

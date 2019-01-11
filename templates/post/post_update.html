@@ -36,6 +36,7 @@
             <div class="form-group item-body m60 {{ post_form.title.name }} {% if post_form.title.errors %} has-error {% endif %}">
                 {{ post_form.title.label_tag }}
                 {{ post_form.title }}
+                <h6 id="title_count" class="count">0</h6>
                 {% if post_form.title.errors %}
                 {% for error in post_form.title.errors %}
                 <span class="help-block">{{ error }}</span>
@@ -68,6 +69,7 @@
             <div class="form-group item-body m60 {{ post_form.background.name }} {% if post_form.background.errors %} has-error {% endif %}">
                 {{ post_form.background.label_tag }}
                 {{ post_form.background }}
+                <h6 id="background_count" class="count">0</h6>
                 {% if post_form.background.errors %}
                 {% for error in post_form.background.errors %}
                 <span class="help-block">{{ error }}</span>
@@ -183,6 +185,7 @@
                 <label>Decision</label>
                 <div class="form-group">
                     {{ post_form.pro_title }}
+                    <h6 id="pro_title_count" class="count">0</h6>
                     {% if post_form.pro_title.errors %}
                     {% for error in post_form.pro_title.errors %}
                     <span class="help-block">{{ error }}</span>
@@ -191,6 +194,7 @@
                 </div>
                 <div class="form-group">
                     {{ post_form.con_title }}
+                    <h6 id="con_title_count" class="count">0</h6>
                     {% if post_form.con_title.errors %}
                     {% for error in post_form.con_title.errors %}
                     <span class="help-block">{{ error }}</span>
@@ -269,6 +273,11 @@
                 }
             }
         });
+
+        $('#title_count').text($('#id_title').val().length);
+        $('#background_count').text($('#id_background').val().length);
+        $('#pro_title_count').text($('#id_pro_title').val().length);
+        $('#con_title_count').text($('#id_con_title').val().length);
     });
 </script>
 {% endblock %}
