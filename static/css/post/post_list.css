@@ -2,6 +2,7 @@
 .columns { column-width:320px; column-gap: 36px; }
 .columns figure { display: inline-block; border: 6px solid #E8E8E8; margin-bottom: 36px; }
 .columns figure .tag-list { margin: 30px 20px 20px; }
+.columns figure .tag-list .tag { border: 0; padding: 0; }
 .columns figure img { width: 100%; }
 .columns figure h3 { margin: 0 20px 20px; }
 .columns figure .background { max-height: 100px; overflow: hidden; margin: 0 20px 20px; }

@@ -8,6 +8,16 @@ $(document).ready(function () {
         }
     });
 
+    $('.info-btn').click(function () {
+        if ($(this).hasClass('collapsed')) {
+            $(this).children('span').text('방 정보 접기');
+            $(this).children('img').css('transform', 'rotate(180deg)');
+        } else {
+            $(this).children('span').text('방 정보 펼치기');
+            $(this).children('img').css('transform', 'rotate(0deg)');
+        };
+    });
+
     $('.pro-chart').easyPieChart({
         barColor: '#41cc90',
         scaleColor: false,
