@@ -2,21 +2,21 @@
 <div class="item-header comment-header">
     <div class="header-left">
         <img src="/media/{{ coc.author.profile_image }}" />
-        <h6>{{ coc.author }}<br><span>{{ coc.created_at }}</span></h6>
+        <h6>{{ coc.author }}<br><span>{{ coc.natural_time }}</span></h6>
     </div>
     <div class="header-right">
         {% if user.is_authenticated %}
         <a href="#reportModal" data-toggle="modal" onclick="$('.modal-content').load('{% url 'comment:coc_report' coc_pk=coc.pk %}');"><img
                 src="{% static '/img/icons/report.png' %}" />
-            <span>신고하기</span>
+            <span>신고</span>
         </a>
         {% endif %}
         {% if coc.author == request.user %}
         <a onclick="$('.coc-clear-btn').click();$('#coc-content-{{ coc.pk }}').load('{% url 'comment:coc_update' coc_pk=coc.pk %}');"><img
                 src="{% static '/img/icons/edit.png' %}">
-            수정하기
+            수정
         </a>
-        <a class="coc-delete" name="{{ coc.pk }}"><img src="{% static '/img/icons/delete.png' %}" />삭제하기</a>
+        <a class="coc-delete" name="{{ coc.pk }}"><img src="{% static '/img/icons/delete.png' %}" />삭제</a>
         {% endif %}
     </div>
 </div>

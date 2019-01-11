@@ -39,3 +39,27 @@
 .comment-footer .btn-wrap button .hate { -webkit-transform:rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg); }
 .comment-footer .btn-wrap .count { margin: 0 12px 0 4px; font-weight: 500; color: #C3C5C7; }
 .comment-footer .btn-wrap .active { color: #2699FB !important; }
+
+
+@media screen and (max-width: 768px) {
+    .comment-wrap { margin: 0 -30px; margin-bottom: 0; background-color: #E9EBEE; }
+    .comment-wrap .col-6 { max-width: calc(50% -4px); padding: 0; }
+    .comment-wrap .pro-comments { margin-right: 4px; }
+    .comment-wrap .con-comments { margin-left: 4px; }
+
+    .comment-list .comment { padding: 20px 8px; border: 0; background-color: #fff; }
+    .comment-wrap .col-6 .form-wrap { background-color: #fff; } 
+    .comment-wrap .col-6 .form-wrap button { margin: 8px; margin-right: 0; margin-bottom: 0; }
+    
+    .comment-header { flex-direction: column; align-items: left; }
+    .comment-header .header-right { justify-content: space-around; width:100%; padding: 8px; }
+    .comment-header .header-right a { font-size: 10px; }
+    .comment-header .header-right img { width: 12px; height: 12px; margin-left: 0; }
+    .comment-header .header-left img { width: 40px; height: 40px; }
+    .comment-header .header-left h6 { line-height: 1.2; }
+    .comment-header .header-left h6 span { color: #C3C5C7; }
+    .comment-content { padding-top: 0; }
+    .comment-content p { word-break: break-all; }
+    .comment-footer .btn-wrap .count { font-size: 10px; margin-right: 8px; }
+    .btn-wrap button img { width: 12px; height: 12px; }
+}

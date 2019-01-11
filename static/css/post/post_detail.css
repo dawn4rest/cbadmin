@@ -1,6 +1,5 @@
 /* DETAIL BODY STYLE */
 .post-body { padding: 60px 84px; border: 1px solid #C3C5C7; }
-.post-body h2 { font-size: 34px; line-height: 60px; }
 .post-body .detail-header { display: flex; justify-content: space-between; align-items: center; padding: 48px 0; }
 .post-body .detail-header .btn-wrap { display: flex; flex-direction: row; align-items: center; }
 .post-body .detail-header .btn-wrap .btn { margin-right: 20px; }
@@ -55,3 +54,38 @@
 .percent-wrap .easyPieChart span { font-size: 16px; }
 .percent-wrap .easyPieChart sup { top: 0; margin-left: 1px; }
 .percent-wrap canvas { position: absolute; top: 0; left: 0; }
+
+
+@media screen and (max-width: 768px) {/* DETAIL BODY STYLE */
+    .post-body { padding: 0; border: 0; }
+    .post-body .detail-header { flex-direction: column; align-items: left; padding: 0; }
+    .post-body .detail-header .btn-wrap { justify-content: space-between; width: 100%; margin: 40px 0; }
+    .post-body .detail-header .btn-wrap .share-sns a { display: block; width: 28px; height: 28px; margin-left: 8px; }
+
+    .post-body .detail-info { padding: 20px 16px; }
+    .post-body .detail-info label { margin-bottom: 12px; font-size: 12px; }
+    .post-body .detail-info .info-header { display: flex; align-items: center; margin-bottom: 24px; }
+    .post-body .detail-info .info-header h4 { line-height: 1.2; }
+    .post-body .detail-info .info-header .profile-image { width: 48px; height: 48px; margin-right: 32px; margin-bottom: 0; }
+
+    .post-body .detail-info .conditions-wrap { justify-content: space-between; margin-bottom: 24px; }
+    .post-body .detail-info .conditions-wrap .conditions-item { margin-right: 0; }
+    .post-body .detail-info .tag-list { margin-bottom: 24px; }
+
+    .post-body .detail-info .btn-wrap { padding: 0 25px; }
+    .post-body .detail-info .btn-wrap .col-6 { padding: 0 5px; }
+
+    /* OPINION STYLE */
+    .opinion { margin-bottom: 20px; padding: 0; border: 0; }
+    .opinion h2 { font-size: 20px; line-height: 30px; }
+
+    .comment_title { margin: 0 -30px; }
+    .comment_title .col-6 { padding: 20px 16px; max-width: 50%; border-top: 8px solid #E9EBEE; border-bottom: 0; }
+    .comment_title .col-6 a { display: flex; }
+    .comment_title .col-6 img { width: 20px; height: 20px; }
+    .comment_title .pro-title { margin-right: 0; border-right: 4px solid #E9EBEE; border-left: 0; }
+    .comment_title .con-title { margin-left: 0; border-left: 4px solid #E9EBEE; border-right: 0; }
+
+    /* PIE CHART CSS */
+    .percent-wrap { margin-bottom: 0; }
+}

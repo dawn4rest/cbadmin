@@ -42,6 +42,10 @@ class CommentOnComment(TimeStampedModel):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     content = models.TextField()
 
+    @property
+    def natural_time(self):
+        return naturaltime(self.created_at)
+
     def __str__(self):
         return f'Comment (PK: {self.pk}, Author: {self.author.username})'
 

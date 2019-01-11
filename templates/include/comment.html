@@ -2,7 +2,7 @@
 <div class="comment-header">
     <div class="header-left">
         <img src="{{ comment.author.profile_image.url }}" />
-        <h6>{{ comment.author }}<br><span>{{ comment.created_at }}</span></h6>
+        <h6>{{ comment.author }}<br><span>{{ comment.natural_time }}</span></h6>
     </div>
     <div class="header-right">
         {% if comment.author == request.user %}
@@ -51,7 +51,7 @@
         {% if user.is_authenticated %}
         <button data-toggle="modal" data-target="#reportModal" onclick="$('.modal-content').load('{% url 'comment:comment_report' comment_pk=comment.pk %}');">
             <img src="{% static '/img/icons/report.png' %}" />
-            <span class="count">신고하기</span>
+            <span class="count web-flex">신고하기</span>
         </button>
         {% endif %}
     </div>

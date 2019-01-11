@@ -7,7 +7,7 @@
 {% endblock %}
 
 <!-- @@@@@@@@@@@@@@@@ COMMENT TITLE START @@@@@@@@@@@@@@@@ -->
-<div class="row comment_title">
+<div class="row comment_title p-0">
     <div class="col-6 pro-title">
         <h5>{{ post.pro_title }}</h5>
         <a data-toggle="collapse" href="#pro-form">
@@ -23,8 +23,8 @@
 </div>
 <!-- @@@@@@@@@@@@@@@@ COMMENT TITLE END @@@@@@@@@@@@@@@@ -->
 
-<div class="row comment-wrap">
-    <div class="pro-comments col-6">
+<div class="row comment-wrap p-0">
+    <div class="pro-comments col-6 p-0">
         <!-- @@@@@@@@@@@@@@@@ PRO COMMENT CREATE START @@@@@@@@@@@@@@@@ -->
         {% if user.is_authenticated %}
         <div id="pro-form" class="form-wrap pro-form collapse">
@@ -57,7 +57,7 @@
         <!-- @@@@@@@@@@@@@@@@ PRO COMMENT LIST END @@@@@@@@@@@@@@@@ -->
     </div>
 
-    <div class="con-comments col-6">
+    <div class="con-comments col-6 p-0">
         <!-- @@@@@@@@@@@@@@@@ CON COMMENT CREATE START @@@@@@@@@@@@@@@@ -->
         {% if user.is_authenticated %}
         <div id="con-form" class="form-wrap con-form collapse">

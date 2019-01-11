@@ -18,3 +18,20 @@
 .comment-action .report-form .form-group ul li { padding: 8px 0; }
 .comment-action .report-form .form-group ul li input { width: 20px; height: 20px; margin-right: 28px; }
 .comment-action .report-form .form-group ul li label { display: flex; align-items: center; font-size: 16px; font-weight: 400; color: #C3C5C7; }
+
+
+@media screen and (max-width: 768px) {
+    .comment-wrap .col-6 .comment-update textarea { height: 80px; }
+    .coc-item .comment-header .header-left img { width: 32px; height: 32px; }
+    .coc-item .comment-header .header-right { justify-content: left; padding: 0; }
+    .coc-item .comment-header .header-right a { padding-right: 8px; }
+
+    .comment-action .coc-form { flex-direction: column; align-items: flex-end; margin: 20px 0 0; }
+    .comment-action .coc-form input { height: 40px; font-size: 12px; }
+    .comment-action .coc-form button { margin-top: 8px; }
+    .comment-action .coc-list .coc-item { padding: 8px 0; }
+    .comment-action .coc-list .coc-item:first-child { margin-top: 8px; }
+    .comment-action .coc-list .coc-item:last-child { margin-bottom: 8px; }
+    .comment-action .coc-list .coc-item .item-header { align-items: left; }
+    
+}

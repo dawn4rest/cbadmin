@@ -33,14 +33,15 @@
     </button>
 
     <div class="row detail-info collapse m-0" id="info-toggle">
-        <div class="info-left col-6">
+        <div class="info-left col-md-6">
             <label>Hwo Asked?</label>
-            <img class="profile-image" src="{{ post.author.profile_image.url }}" />
-            <h4>{{ post.author }}</h4>
-            <span>Joined {{ post.created_at|date:"Y. m. d" }}</span>
+            <div class="info-header">
+                <img class="profile-image" src="{{ post.author.profile_image.url }}" />
+                <h4>{{ post.author }}<br /><span>Joined {{ post.author.date_joined|date:"Y. m. d" }}</span></h4>
+            </div>
         </div>
 
-        <div class="info-right col-6">
+        <div class="info-right col-md-6">
             <label>Conditions</label>
             <div class="conditions-wrap">
                 <div class="conditions-item">
@@ -75,8 +76,8 @@
             {% if request.user == post.author %}
             <form class="btn-wrap row" action="{% url 'post:post_delete' post.pk %}" method="post">
                 {% csrf_token %}
-                <div class="col-6"><a class="btn btn-fill btn-full" href="{% url 'post:post_update' post.pk %}" style="border: 0;">수정</a></div>
-                <div class="col-6"><input class="btn btn-gray btn-full" type="submit" value="삭제" onclick="return confirm('정말 삭제하시겠습니까?')"></div>
+                <div class="col-6"><a class="btn btn-fill btn-full" href="{% url 'post:post_update' post.pk %}" style="border: 0;">수정하기</a></div>
+                <div class="col-6"><input class="btn btn-gray btn-full" type="submit" value="삭제하기" onclick="return confirm('정말 삭제하시겠습니까?')"></div>
             </form>
             {% endif %}
         </div>
@@ -109,7 +110,7 @@
     <h2>A or B 당신의 생각은?</h2>
 </div>
 
-<div class="percent-wrap">
+<div class="percent-wrap row p-0">
     <div class="chart">
         <div class="percentage pro-chart" data-percent="{% widthratio post.pro_percent 1 100 %}">
             <span class="pro-title">{% widthratio post.con_percent 1 100 %}</span><sup class="pro-title">%</sup>
