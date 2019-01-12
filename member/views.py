@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+
+from django.contrib import messages
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib import messages
 from itertools import chain
 from django.contrib.auth import (
     authenticate,
@@ -19,9 +20,6 @@ from comment import models as comment_models
 
 def login(request):
     if request.method == 'POST':
-        # 로그인 성공 후 이동할 URL. 주어지지 않으면 None
-        next = request.GET.get('next')
-
         # Data bounded form인스턴스 생성
         # AuthenticationForm의 첫 번째 인수는 해당 request가 되어야 한다
         login_form = LoginForm(request=request, data=request.POST)
@@ -33,8 +31,7 @@ def login(request):
             user = login_form.get_user()
             # Django의 auth앱에서 제공하는 login함수를 실행해 앞으로의 요청/응답에 세션을 유지한다
             django_login(request, user)
-            # next가 존재하면 해당 위치로, 없으면 Post목록 화면으로 이동
-            return redirect(next if next else 'post:post_list')
+            return redirect('post:post_list')
         # 인증에 실패하면 login_form에 non_field_error를 추가한다
         login_form.add_error(None, '아이디 또는 비밀번호가 올바르지 않습니다')
     else:
@@ -49,6 +46,8 @@ def login(request):
 @login_required
 def logout(request):
     django_logout(request)
+    messages.success(
+        request, '<h4>로그아웃 되었습니다.</h4><p>채터박스는 익명으로 의견을 나누는 [YES OR NO] 댓글 SNS입니다.</p><p>두 가지 중 선택이 어려울 때 질문하고 의견을 나누어보세요.</p>')
     return redirect('post:post_list')
 
 
@@ -60,6 +59,8 @@ def signup(request):
             # 유저를 생성 후 해당 User를 로그인 시킨다
             user = signup_form.save()
             django_login(request, user)
+            messages.success(
+                request, '<h4>회원가입이 완료되었습니다.</h4><p>채터박스의 회원이 되신 것을 축하드립니다. </p><p>채터박스는 익명으로 썰을 공유하고 </p><p>2지선다로 댓글 의견을 나누는  커뮤니티 입니다.</p>')
             return redirect('post:post_list')
     else:
         signup_form = SignupForm()
@@ -83,7 +84,6 @@ def my_page(request):
         if profile_form.is_valid():
             user = profile_form.save()
             django_login(request, user)
-            messages.success(request, '프로필이 수정되었습니다')
             return redirect('member:my_page')
     else:
         profile_form = ProfileForm(instance=user)
@@ -105,10 +105,7 @@ def password_change(request):
         if password_form.is_valid():
             user = password_form.save()
             update_session_auth_hash(request, user)  # Important!
-            messages.success(request, '비밀번호가 정상적으로 변경되었습니다.')
             return redirect('member:my_page')
-        else:
-            messages.error(request, '오류가 발생하였습니다.')
     else:
         password_form = PasswordChangeForm(request.user)
 
@@ -124,10 +121,8 @@ def user_delete(request):
 
     if request.method == 'POST':
         user.delete()
-        messages.success(request, '사용자가 삭제되었습니다.')
         return redirect('member:my_page')
     else:
-        messages.error(request, '오류가 발생하였습니다.')
         return redirect('member:my_page')
 
 

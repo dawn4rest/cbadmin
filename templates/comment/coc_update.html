@@ -18,6 +18,8 @@
                 dataType: 'html',
                 success: function (data, textStatus, jqXHR) {
                     $target.load('{% url "comment:coc_detail" coc_pk=coc.pk %}');
+                    $('.toast .content').html('<p>댓글을 수정하셨습니다.</p>');
+                    $('.toast').toast('show');
                 }
             })
         });

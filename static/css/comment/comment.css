@@ -52,8 +52,8 @@
     .comment-wrap .col-6 .form-wrap button { margin: 8px; margin-right: 0; margin-bottom: 0; }
     
     .comment-header { flex-direction: column; align-items: left; }
-    .comment-header .header-right { justify-content: space-around; width:100%; padding: 8px; }
-    .comment-header .header-right a { font-size: 10px; }
+    .comment-header .header-right { justify-content: left; padding: 8px 4px; }
+    .comment-header .header-right a { font-size: 10px; padding-right: 8px; }
     .comment-header .header-right img { width: 12px; height: 12px; margin-left: 0; }
     .comment-header .header-left img { width: 40px; height: 40px; }
     .comment-header .header-left h6 { line-height: 1.2; }

@@ -1,7 +1,7 @@
 import json
+from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib import messages
 from utils.decorators import login_required
 from django.db.models import Count, Q, Func, F
 
@@ -135,8 +135,8 @@ def post_create(request):
             post = post_form.save(commit=False)
             post.author = request.user
             post.save()
-
-            messages.success(request, '게시물이 등록되었습니다')
+            messages.success(
+                request, '<h4>새로운 채터박스가 만들어졌어요!</h4><p>성공적으로 채터박스가 만들어졌습니다.</p><p>익명으로 많은 사람들에게 공유하고 의견을 받아보세요.</p>')
             return redirect('post:post_detail', post_pk=post.pk)
     else:
         post_form = PostForm()
@@ -152,7 +152,6 @@ def post_update(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
 
     if post.author != request.user:
-        messages.warning(request, '잘못된 접근입니다.')
         return redirect('post:post_detail', post_pk=post_pk)
     else:
         if request.method == 'POST':
@@ -160,8 +159,8 @@ def post_update(request, post_pk):
 
             if post_form.is_valid():
                 post = post_form.save()
-
-                messages.success(request, '게시물이 수정되었습니다')
+                messages.success(
+                    request, '<h4>채터박스를 수정했어요!</h4><p>성공적으로 채터박스를 수정하셨습니다.</p><p>익명으로 많은 사람들에게 공유하고 의견을 받아보세요.</p>')
                 return redirect('post:post_detail', post_pk=post_pk)
         else:
             post_form = PostForm(instance=post)
@@ -178,12 +177,12 @@ def post_delete(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
 
     if post.author != request.user or request.method == 'GET':
-        messages.warning(request, '잘못된 접근입니다.')
         return redirect('post:post_list')
 
     if request.method == 'POST':
         post.delete()
-        messages.success(request, '게시물이 삭제되었습니다.')
+        messages.success(
+            request, '<h4>채터박스를 삭제했어요.</h4><p>성공적으로 채터박스를 삭제하셨습니다.</p><p>새로운 채터박스를 기다릴게요!</p>')
         return redirect('post:post_list')
 
 
@@ -203,9 +202,9 @@ def post_like_toggle(request, post_pk):
     filtered_like_posts = user.like_posts.filter(pk=post.pk)
     if filtered_like_posts.exists():
         user.like_posts.remove(post)
-        messages.success(request, '해당 게시물 좋아요 취소')
     else:
         user.like_posts.add(post)
-        messages.success(request, '게시물 좋아요 성공')
+        messages.success(
+            request, '<h4>"좋아요"를 누르셨어요!</h4><p>언제든  ♥좋아요 목록에서 확인하실 수 있어요.</p>')
 
     return redirect('post:post_detail', post_pk=post_pk)

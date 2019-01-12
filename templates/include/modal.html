@@ -1,3 +1,9 @@
+{% load static %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{% static 'css/include/modal.css' %}">
+{% endblock %}
+
 <div class="modal fade" id="{{ modal_id }}">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -6,7 +12,6 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                ...
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-line" data-dismiss="modal">취소하기</button>

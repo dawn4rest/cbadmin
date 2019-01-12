@@ -1,2 +1,8 @@
 .modal-dialog { margin: 0 auto; }
 .modal-content { background-color: #fff; }
+
+#alertModal .modal-header { display: none; }
+#alertModal .modal-footer { display: none; }
+#alertModal .modal-body { padding: 40px 0; }
+#alertModal .modal-body h4 { text-align: center; margin-bottom: 32px; }
+#alertModal .modal-body p { text-align: center; }

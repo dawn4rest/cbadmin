@@ -1,7 +1,7 @@
 import json
+from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib import messages
 from utils.decorators import login_required
 from django.db.models import Count, Q
 
@@ -42,7 +42,6 @@ def comment_update(request, comment_pk):
     post_pk = comment.post.pk
 
     if comment.author != request.user:
-        messages.warning(request, '잘못된 접근입니다.')
         return redirect('post:post_detail', post_pk=post_pk)
     else:
         if request.method == 'POST':
@@ -51,7 +50,6 @@ def comment_update(request, comment_pk):
 
             if comment_form.is_valid():
                 comment = comment_form.save()
-                messages.success(request, '게시물이 수정되었습니다')
         else:
             comment_form = CommentForm(instance=comment)
 
@@ -93,7 +91,6 @@ def coc_create(request):
             coc.comment = comment
             coc.author = request.user
             coc.save()
-            messages.success(request, '댓글을 등록했습니다')
             return render(request, 'include/coc.html', {'coc': coc})
     else:
         context = {
@@ -107,7 +104,8 @@ def coc_update(request, coc_pk):
     coc = get_object_or_404(CommentOnComment, pk=coc_pk)
 
     if coc.author != request.user:
-        messages.warning(request, '잘못된 접근입니다.')
+        post_pk = coc.comment.post.pk
+        return redirect('post:post_detail', post_pk=post_pk)
     else:
         if request.method == 'POST':
             comment_on_comment_form = CommentOnCommentForm(
@@ -115,7 +113,6 @@ def coc_update(request, coc_pk):
 
             if comment_on_comment_form.is_valid():
                 comment = comment_on_comment_form.save()
-                messages.success(request, '게시물이 수정되었습니다')
         else:
             comment_on_comment_form = CommentOnCommentForm(instance=coc)
 
@@ -184,7 +181,8 @@ def comment_report(request, comment_pk):
             report_comment.comment = comment
             report_comment.author = request.user
             report_comment.save()
-            messages.success(request, '댓글이 신고되었습니다!')
+            messages.success(
+                request, '<h4>신고가 접수되었어요.</h4><p>신고가 성공적으로 접수되었습니다.</p><p>신고해주신 내용으로 검토 후 삭제 등 조치 예정입니다.</p>')
             return redirect('post:post_detail', post_pk=post_pk)
     else:
         report_comment_form = ReportCommentForm()
@@ -209,7 +207,8 @@ def coc_report(request, coc_pk):
             report_coc.comment_on_comment = coc
             report_coc.author = request.user
             report_coc.save()
-            messages.success(request, '대댓글이 신고되었습니다!')
+            messages.success(
+                request, '<h4>신고가 접수되었어요.</h4><p>신고가 성공적으로 접수되었습니다.</p><p>신고해주신 내용으로 검토 후 삭제 등 조치 예정입니다.</p>')
             return redirect('post:post_detail', post_pk=post_pk)
     else:
         report_coc_form = ReportCommentOnCommentForm()

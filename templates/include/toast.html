@@ -1,0 +1,12 @@
+{% load static %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{% static 'css/include/toast.css' %}">
+{% endblock %}
+
+<div class="toast" role="alert" aria-live="polite" aria-atomic="true" data-delay="5000">
+    <div class="toast-header">
+        <div class="content"></div>
+        <button type="button" data-dismiss="toast">OK</button>
+    </div>
+</div>

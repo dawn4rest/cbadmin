@@ -14,8 +14,7 @@
     <div class="detail-header">
         <span>{{ post.updated_at }}</span>
         <div class="btn-wrap">
-            <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}?next={% url 'post:post_detail' post_pk=post.pk %}"
-                method="POST">
+            <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}" method="POST">
                 {% csrf_token %}
                 {% if post in user.like_posts.all %}
                 <button class="btn btn-fill">♥ 좋아요</button>
@@ -77,7 +76,7 @@
             <form class="btn-wrap row" action="{% url 'post:post_delete' post.pk %}" method="post">
                 {% csrf_token %}
                 <div class="col-6"><a class="btn btn-fill btn-full" href="{% url 'post:post_update' post.pk %}" style="border: 0;">수정하기</a></div>
-                <div class="col-6"><input class="btn btn-gray btn-full" type="submit" value="삭제하기" onclick="return confirm('정말 삭제하시겠습니까?')"></div>
+                <div class="col-6"><input class="btn btn-gray btn-full" type="submit" value="삭제하기" onclick="return confirm('정말로 삭제할까요? \n\n게시물을 삭제하시면 해당 게시물의 \n모든 이력도 초기화 됩니다.')"></div>
             </form>
             {% endif %}
         </div>

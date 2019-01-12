@@ -18,8 +18,10 @@
                 dataType: 'html',
                 success: function (data, textStatus, jqXHR) {
                     $target.load('{% url "comment:comment_detail" comment_pk=comment.pk %}');
+                    $('.toast .content').html('<p>의견을 수정하셨습니다.</p><p>자신의 의견은 최상단에 표시됩니다.</p>');
+                    $('.toast').toast('show');
                 }
-            })
+            });
         });
 
         $('#btn-clear-{{ comment.pk }}').click(function () {

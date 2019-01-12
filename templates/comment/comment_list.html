@@ -3,7 +3,6 @@
 {% block customCSS %}
 <link rel="stylesheet" href="{% static 'css/comment/comment.css' %}">
 <link rel="stylesheet" href="{% static 'css/comment/comment_action.css' %}">
-<link rel="stylesheet" href="{% static 'css/include/modal.css' %}">
 {% endblock %}
 
 <!-- @@@@@@@@@@@@@@@@ COMMENT TITLE START @@@@@@@@@@@@@@@@ -->
@@ -91,6 +90,7 @@
     </div>
 </div>
 
+{% include 'include/toast.html' %}
 {% include 'include/modal.html' with modal_id='reportModal' modal_title='신고하기' modal_btn='신고하기' %}
 
 {% block customJS %}
@@ -128,12 +128,14 @@
                         $('.con-list .mine').append('<div class="comment-divider con-divider"><hr><span>나의 등록 의견</span><hr></div>');
                     };
                 }
+                $('.toast .content').html('<p>의견을 작성하셨습니다.</p><p>자신의 의견은 최상단에 표시됩니다.</p>');
+                $('.toast').toast('show');
             }
         });
     });
 
     $(document).on('click', '.comment-delete', function () {
-        if (!confirm("정말 삭제하시겠습니까?")) { return };
+        if (!confirm('정말로 삭제할까요? \n\n의견을 삭제하시면 해당 의견의 \n추천/비추천 등 이력도 초기화 됩니다.')) { return };
         var pk = $(this).attr('name');
         var $target = $(this).parent().parent().parent();
         $.ajax({
@@ -172,12 +174,14 @@
             success: function (data, textStatus, jqXHR) {
                 $('.coc-form input').val('');
                 $('#action-' + pk + ' .coc-list').prepend('<div class="coc-item">' + data + '</div>');
+                $('.toast .content').html('<p>댓글을 작성하셨습니다.</p>');
+                $('.toast').toast('show');
             }
         });
     });
 
     $(document).on('click', '.coc-delete', function () {
-        if (!confirm("정말 삭제하시겠습니까?")) { return };
+        if (!confirm('정말로 삭제할까요? \n\n의견을 삭제하시면 해당 의견의 \n모든 이력도 초기화 됩니다.')) { return };
         var pk = $(this).attr('name');
         var $target = $(this).parent().parent().parent();
         $.ajax({

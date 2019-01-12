@@ -14,9 +14,8 @@
             {% if liked_posts %}
             {% for post in liked_posts %}
             <div class="like-card">
-                <div class="btn-area">
-                    <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}?next={% url 'post:post_detail' post_pk=post.pk %}"
-                        method="POST">
+                <div class="btn-area" onclick="return confirm('좋아요 목록에서 제외하기 \n\n제외하시면 좋아요 목록에서 사라집니다. \n이후에 다시 찜하면 목록에 표시 됩니다.')">
+                    <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}" method="POST">
                         {% csrf_token %}
                         <button class="del-like">
                             <h3>&times;</h3>
