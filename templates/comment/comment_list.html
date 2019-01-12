@@ -211,16 +211,21 @@
             },
             dataType: "json",
             success: function (response) {
-                if ($target.hasClass('active')) {
-                    var changeNum = Number($target.text()) - 1;
-                    $target.text(changeNum);
-                    $target.removeClass('active');
-                    $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-empty.png" %}');
-                } else {
-                    var changeNum = Number($target.text()) + 1;
-                    $target.text(changeNum);
-                    $target.addClass('active');
-                    $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-fill.png" %}');
+                $('.toast .content').html('<p>' + response.message + '</p>');
+                $('.toast').toast('show');
+                console.log(response.result);
+                if (response.result) {
+                    if ($target.hasClass('active')) {
+                        var changeNum = Number($target.text()) - 1;
+                        $target.text(changeNum);
+                        $target.removeClass('active');
+                        $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-empty.png" %}');
+                    } else {
+                        var changeNum = Number($target.text()) + 1;
+                        $target.text(changeNum);
+                        $target.addClass('active');
+                        $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-fill.png" %}');
+                    }
                 }
             }
         });
@@ -238,16 +243,21 @@
             },
             dataType: "json",
             success: function (response) {
-                if ($target.hasClass('active')) {
-                    var changeNum = Number($target.text()) - 1;
-                    $target.text(changeNum);
-                    $target.removeClass('active');
-                    $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-empty.png" %}');
-                } else {
-                    var changeNum = Number($target.text()) + 1;
-                    $target.text(changeNum);
-                    $target.addClass('active');
-                    $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-fill.png" %}');
+                $('.toast .content').html('<p>' + response.message + '</p>');
+                $('.toast').toast('show');
+                console.log(response.result);
+                if (response.result) {
+                    if ($target.hasClass('active')) {
+                        var changeNum = Number($target.text()) - 1;
+                        $target.text(changeNum);
+                        $target.removeClass('active');
+                        $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-empty.png" %}');
+                    } else {
+                        var changeNum = Number($target.text()) + 1;
+                        $target.text(changeNum);
+                        $target.addClass('active');
+                        $target.parent().children('img').attr('src', '{% static "/img/icons/like-hate-fill.png" %}');
+                    }
                 }
             }
         });

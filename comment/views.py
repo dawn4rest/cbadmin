@@ -141,15 +141,21 @@ def comment_like_toggle(request):
     comment_pk = request.POST.get('comment_pk', None)
     comment = get_object_or_404(Comment, pk=comment_pk)
     filtered_like_comments = request.user.like_comments.filter(pk=comment.pk)
+    filtered_hate_comments = request.user.hate_comments.filter(pk=comment.pk)
 
-    if filtered_like_comments.exists():
-        request.user.like_comments.remove(comment)
-        message = '좋아요 취소'
+    if filtered_hate_comments.exists():
+        message = '이미 비추천하신 의견에는 추천을 누를 수 없습니다.'
+        result = False
     else:
-        request.user.like_comments.add(comment)
-        message = '좋아요'
+        if filtered_like_comments.exists():
+            request.user.like_comments.remove(comment)
+            message = '좋아요를 취소하셨어요!'
+        else:
+            request.user.like_comments.add(comment)
+            message = '의견을 좋아하셨어요!'
+        result = True
 
-    return HttpResponse(json.dumps({'message': message}), content_type="application/json")
+    return HttpResponse(json.dumps({'message': message, 'result': result}), content_type="application/json")
 
 
 @login_required
@@ -157,15 +163,21 @@ def comment_hate_toggle(request):
     comment_pk = request.POST.get('comment_pk', None)
     comment = get_object_or_404(Comment, pk=comment_pk)
     filtered_hate_comments = request.user.hate_comments.filter(pk=comment.pk)
+    filtered_like_comments = request.user.like_comments.filter(pk=comment.pk)
 
-    if filtered_hate_comments.exists():
-        request.user.hate_comments.remove(comment)
-        message = '싫어요 취소'
+    if filtered_like_comments.exists():
+        message = '이미 추천하신 의견에는 비추천을 누를 수 없습니다.'
+        result = False
     else:
-        request.user.hate_comments.add(comment)
-        message = '싫어요'
+        if filtered_hate_comments.exists():
+            request.user.hate_comments.remove(comment)
+            message = '싫어요를 취소하셨어요!'
+        else:
+            request.user.hate_comments.add(comment)
+            message = '의견을 싫어하셨어요!'
+        result = True
 
-    return HttpResponse(json.dumps({'message': message}), content_type="application/json")
+    return HttpResponse(json.dumps({'message': message, 'result': result}), content_type="application/json")
 
 
 @login_required
