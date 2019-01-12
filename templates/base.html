@@ -27,19 +27,6 @@
     {% include 'include/slide_menu.html' %}
 
     <div id="content">
-        {% if messages %}
-        {% include 'include/modal.html' with modal_id='alertModal' %}
-
-        {% for message in messages %}
-        <div class="message d-none">{{ message }}</div>
-        {% endfor %}
-
-        <script>
-            var message = $('.message').text();
-            $('#alertModal .modal-body').html(message);
-            $('#alertModal').modal('show');
-        </script>
-        {% endif %}
         <div class="container">
             {% block content %}
 
@@ -55,6 +42,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
     {% block customJS %}{% endblock %}
+    {% if messages %}
+    {% include 'include/modal.html' with modal_id='alertModal' %}
+
+    {% for message in messages %}
+    <div class="message d-none">{{ message }}</div>
+    {% endfor %}
+
+    <script>
+        var message = $('.message').text();
+        $('#alertModal .modal-body').html(message);
+        $('#alertModal').modal('show');
+    </script>
+    {% endif %}
 </body>
 
 </html>

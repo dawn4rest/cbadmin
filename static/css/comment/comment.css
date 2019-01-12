@@ -47,7 +47,7 @@
     .comment-wrap .pro-comments { margin-right: 4px; }
     .comment-wrap .con-comments { margin-left: 4px; }
 
-    .comment-list .comment { padding: 20px 8px; border: 0; background-color: #fff; }
+    .comment-list .comment { padding: 20px 8px 8px; border: 0; background-color: #fff; }
     .comment-wrap .col-6 .form-wrap { background-color: #fff; } 
     .comment-wrap .col-6 .form-wrap button { margin: 8px; margin-right: 0; margin-bottom: 0; }
     

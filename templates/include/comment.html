@@ -72,5 +72,9 @@
         <div class="coc-item">{% include 'include/coc.html' %}</div>
         {% endfor %}
     </div>
+    <button class="coc-fold" data-toggle="collapse" data-target="#action-{{ comment.pk }}">
+        <img src="{% static '/img/icons/down.png' %}" alt="">
+        <p>접기</p>
+    </button>
 </div>
 <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT CONTENT END @@@@@@@@@@@@@@@@ -->
