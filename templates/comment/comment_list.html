@@ -213,7 +213,6 @@
             success: function (response) {
                 $('.toast .content').html('<p>' + response.message + '</p>');
                 $('.toast').toast('show');
-                console.log(response.result);
                 if (response.result) {
                     if ($target.hasClass('active')) {
                         var changeNum = Number($target.text()) - 1;
@@ -245,7 +244,6 @@
             success: function (response) {
                 $('.toast .content').html('<p>' + response.message + '</p>');
                 $('.toast').toast('show');
-                console.log(response.result);
                 if (response.result) {
                     if ($target.hasClass('active')) {
                         var changeNum = Number($target.text()) - 1;

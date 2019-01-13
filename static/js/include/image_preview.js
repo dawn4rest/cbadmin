@@ -1,5 +1,5 @@
 // 진짜 file field 숨김
-$('#id_profile_image').parent().css('display', 'none');
+$('#id_profile_image').parent().hide();
 
 
 // fake btn으로 진짜 file field 클릭
@@ -17,7 +17,7 @@ function readURL(input) {
         }
         reader.readAsDataURL(input.files[0]);
     };
-    $('.fake-btn h6').css('display', 'none');
+    $('.fake-btn h6').hide();
 }
 
 
@@ -27,99 +27,43 @@ $('#id_profile_image').change(function () {
 });
 
 
-// 배경 설명 3개
-$('#id_background_image1').parent().css('display', 'none');
-$('.fake-btn1').click(function () {
-    $('#id_background_image1').click();
-});
-function readURL1(input) {
+// 배경 설명 5개
+function loopReadURL(input, i) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#previewHolder1').attr('src', e.target.result);
+            $('#previewHolder' + i).attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
     };
-    $('.fake-btn1 h6').css('display', 'none');
-    $('.hide2').css('display', 'block');
-}
-$('#id_background_image1').change(function () {
-    readURL1(this);
-});
+    $('.fake-btn' + i + ' h6').hide();
+    $('.del-' + i).remove();
+    $('.hide' + i).prepend('<span class="del-image del-' + i + '">&times;</span>');
+    $('#background_image' + i + '-clear_id').removeProp('checked');
 
+    var nextHide = i + 1;
+    $('.hide' + nextHide).css('display', 'block');
+};
+function delImage(i) {
+    $('#previewHolder' + i).removeAttr('src');
+    $('#id_background_image' + i).val('');
+    $('.fake-btn' + i + ' h6').show();
+    $('#background_image' + i + '-clear_id').prop('checked', 'checked');
+    $('.del-' + i).remove();
+};
+for (let i = 1; i < 6; i++) {
+    $('#id_background_image' + i).parent().hide();
 
-$('#id_background_image2').parent().css('display', 'none');
-$('.fake-btn2').click(function () {
-    $('#id_background_image2').click();
-});
-function readURL2(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#previewHolder2').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    };
-    $('.fake-btn2 h6').css('display', 'none');
-    $('.hide3').css('display', 'block');
-}
-$('#id_background_image2').change(function () {
-    readURL2(this);
-});
+    $('.fake-btn' + i).click(function () {
+        $('#id_background_image' + i).click();
+    });
 
+    $('#id_background_image' + i).change(function () {
+        loopReadURL(this, i);
+    });
 
-$('#id_background_image3').parent().css('display', 'none');
-$('.fake-btn3').click(function () {
-    $('#id_background_image3').click();
-});
-function readURL3(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#previewHolder3').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    };
-    $('.fake-btn3 h6').css('display', 'none');
-    $('.hide4').css('display', 'block');
-}
-$('#id_background_image3').change(function () {
-    readURL3(this);
-});
+    $(document).on('click', '.del-' + i, function () {
+        delImage(i);
+    });
+};
 
-$('#id_background_image4').parent().css('display', 'none');
-$('.fake-btn4').click(function () {
-    $('#id_background_image4').click();
-});
-function readURL4(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#previewHolder4').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    };
-    $('.fake-btn4 h6').css('display', 'none');
-    $('.hide5').css('display', 'block');
-}
-$('#id_background_image4').change(function () {
-    readURL4(this);
-});
-
-$('#id_background_image5').parent().css('display', 'none');
-$('.fake-btn5').click(function () {
-    $('#id_background_image5').click();
-});
-function readURL5(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $('#previewHolder5').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    };
-    $('.fake-btn5 h6').css('display', 'none');
-}
-$('#id_background_image5').change(function () {
-    readURL5(this);
-});

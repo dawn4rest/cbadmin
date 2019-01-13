@@ -267,6 +267,8 @@
                     $('.hide' + counter).show();
                     var thumbPath = $('.origin' + counter + ' a').attr('href');
                     $('#previewHolder' + counter).attr('src', thumbPath);
+
+                    $('.hide' + counter).prepend('<span class="del-image del-' + counter + '">&times;</span>');
                     $('.fake-btn' + counter + ' h6').css('display', 'none');
                     var nextNum = counter + 1;
                     $('.hide' + nextNum).css('display', 'block');
