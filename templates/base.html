@@ -46,7 +46,9 @@
     {% include 'include/modal.html' with modal_id='alertModal' %}
 
     {% for message in messages %}
+    {% if forloop.first %}
     <div class="message d-none">{{ message }}</div>
+    {% endif %}
     {% endfor %}
 
     <script>
