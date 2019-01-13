@@ -17,8 +17,8 @@ pipenv 설치 후 가상환경 구축
 
 가상환경에서 프로젝트 clone
 
-pip install django-tagging
-pip install django-multiselectfield
-pip install pillow
-pip install pilkit
-pip install django-imagekit
+pip install django-tagging  
+pip install django-multiselectfield  
+pip install pillow  
+pip install pilkit  
+pip install django-imagekit  
