@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="fixed-share web-block">{% include 'include/share.html' %}</div>
 <div class="post-body m60">
     <h2>{{ post.title }}</h2>
     <div class="detail-header">
@@ -22,7 +23,22 @@
                 <button class="btn btn-line">♥ 좋아요</button>
                 {% endif %}
             </form>
-            {% include 'include/share.html' %}
+
+            <div class="share-sns">
+                <a href="javascript:shareFacebook()">
+                    <img src="{% static '/img/facebook.png' %}" />
+                </a>
+                <a href="javascript:shareNaver()">
+                    <img src="{% static '/img/naver.png' %}" />
+                </a>
+                <a href="javascript:shareKatalk()">
+                    <img src="{% static '/img/kakao.png' %}" />
+                </a>
+                <a href="javascript:shareLink()">
+                    <img src="{% static '/img/clip.png' %}" />
+                </a>
+                <input type="text" value="Copy Url" id="linkInput">
+            </div>
         </div>
     </div>
 
