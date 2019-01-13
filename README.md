@@ -12,8 +12,8 @@
 # Pipenv로 가상환경 관리
 pipenv 설치 후 가상환경 구축
 
-> pipenv --python 3.6.4
-> pipenv shell
+> pipenv --python 3.6.4  
+> pipenv shell  
 
 가상환경에서 프로젝트 clone
 
