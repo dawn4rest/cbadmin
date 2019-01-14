@@ -1,5 +1,5 @@
 # Requirements List
-- Python 3.6.4
+- Python 3.5.2
 - Django 1.11.3
 - pipenv
 - pillow
@@ -12,18 +12,39 @@
 ~~~
 sudo apt update
 sudo apt upgrade
+sudo apt install python3-pip
+pip3 install pipenv
+~~~
+우분투 실행 경로에 pipenv 추가
+~~~
+vi ~/.profile
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$PATH:$HOME/.local/bin"
+fi
 ~~~
 
 # Pipenv로 가상환경 관리
-pipenv 설치 후 가상환경 구축
+~~~
+mkdir chatterbox
+cd chatterbox
+pipenv --three
+pipenv shell
+~~~
 
-> pipenv --python 3.6.4  
-> pipenv shell  
+# 가상환경에서 프로젝트 clone
+~~~
+git clone http://github.com/dawn4rest/cbadmin.git
+mv cbadmin src
+cd src
+~~~
 
-가상환경에서 프로젝트 clone
-
+# Django Requirements 설치
+~~~
+pipenv install django==1.11.3py
 pip install django-tagging  
 pip install django-multiselectfield  
 pip install pillow  
 pip install pilkit  
 pip install django-imagekit  
+~~~
