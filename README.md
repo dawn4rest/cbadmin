@@ -1,5 +1,5 @@
-# Requirements List
-- Python 3.5.2
+# Requirements List(개발 당시 버전)
+- Python 3.6.4
 - Django 1.11.3
 - pipenv
 - pillow
@@ -14,6 +14,11 @@ sudo apt update
 sudo apt upgrade
 sudo apt install python3-pip
 pip3 install pipenv
+
+# 16.04에서 python 3.6이 없을 경우
+sudo add-apt-repository ppa:jonathonf/python-3.6
+sudo apt-get update
+sudo apt-get install python3.6
 ~~~
 우분투 실행 경로에 pipenv 추가
 ~~~
@@ -28,7 +33,7 @@ fi
 ~~~
 mkdir chatterbox
 cd chatterbox
-pipenv --three
+pipenv --python 3.6
 pipenv shell
 ~~~
 
@@ -44,7 +49,5 @@ cd src
 pipenv install django==1.11.3py
 pip install django-tagging  
 pip install django-multiselectfield  
-pip install pillow  
-pip install pilkit  
-pip install django-imagekit  
+pip install pillow pilkit django-imagekit  
 ~~~
