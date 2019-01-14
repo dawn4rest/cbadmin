@@ -8,6 +8,11 @@
 - django-tagging
 - django-multiselectfield
 
+# AWS 구축
+~~~
+sudo apt update
+sudo apt upgrade
+~~~
 
 # Pipenv로 가상환경 관리
 pipenv 설치 후 가상환경 구축
