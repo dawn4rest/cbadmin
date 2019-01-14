@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #fff;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="그룹_1613" data-name="그룹 1613" transform="translate(-158 -189)">
+    <g id="사각형_2141" data-name="사각형 2141" class="cls-1" transform="translate(158 189)">
+      <rect class="cls-4" width="60" height="60"/>
+      <rect class="cls-2" x="1" y="1" width="58" height="58"/>
+    </g>
+    <g id="Facebook" transform="translate(-1165 -641)">
+      <rect id="사각형_1458" data-name="사각형 1458" class="cls-2" width="32" height="32" transform="translate(1337 844)"/>
+      <path id="패스_1" data-name="패스 1" class="cls-3" d="M90.844,32V17.422h4.978l.711-5.689H90.844V8.178c0-1.6.533-2.844,2.844-2.844h3.022V.178C96,.178,94.222,0,92.267,0,88,0,84.978,2.667,84.978,7.467v4.267H80v5.689h4.978V32Z" transform="translate(1265 844)"/>
+    </g>
+  </g>
+</svg>

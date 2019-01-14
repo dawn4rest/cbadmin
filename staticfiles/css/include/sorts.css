@@ -1,0 +1,9 @@
+.sort-button { display: flex; }
+.sort-button .select-change h5 { margin-right: 20px; color: #C3C5C7; }
+.sort-button .select-change h5.active { color: #2699FB; padding-bottom: 4px; border-bottom: 2px solid #2699FB; }
+
+
+@media screen and (max-width: 768px) {
+    .sort-button { display: flex; justify-content: space-between; width: 100%; margin-bottom: 0; padding: 0; }
+    .sort-button .select-change h5 { margin-right: 0; }
+}

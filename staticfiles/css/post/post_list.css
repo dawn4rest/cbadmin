@@ -1,0 +1,29 @@
+/* POST LIST CSS */
+.columns { column-width:320px; column-gap: 36px; }
+.columns figure { display: inline-block; border: 6px solid #E8E8E8; margin-bottom: 36px; }
+.columns figure .tag-list { margin: 30px 20px 20px; }
+.columns figure .tag-list .tag { border: 0; padding: 0; }
+.columns figure img { width: 100%; }
+.columns figure h3 { margin: 0 20px 20px; }
+.columns figure .background { max-height: 100px; overflow: hidden; margin: 0 20px 20px; }
+.columns figure .btn-area { display: flex; margin: 0 20px; padding-bottom: 20px; }
+.columns figure .btn-area img { margin-top: 5px; width: 16px; height: 16px; }
+.columns figure .btn-area h6 { display: inline; margin: 0 28px 0 8px; color: #C3C5C7; font-weight: 700; }
+.columns figure .btn-area span { line-height: 24px; color: #C3C5C7; }
+
+
+/* PIE CHART CSS */
+.percent-wrap { display: flex; justify-content: center; align-items: center; }
+.percent-wrap .pro-title { color: #41cc90; }
+.percent-wrap .con-title { color: #FF725C; }
+.percent-wrap .chart { width: 50%; text-align: center; }
+.percent-wrap .easyPieChart { position: relative; margin: 8px auto 32px; text-align: center; }
+.percent-wrap .easyPieChart span { font-size: 16px; }
+.percent-wrap .easyPieChart sup { top: 0; margin-left: 1px; }
+.percent-wrap canvas { position: absolute; top: 0; left: 0; }
+
+
+@media screen and (max-width: 768px) {
+    .columns { border-top: 4px solid #E8E8E8; border-bottom: 4px solid #E8E8E8; margin-bottom: 0; }
+    .columns figure { margin: 0; border: 4px solid #E8E8E8; border-left: 0; border-right: 0; }
+}

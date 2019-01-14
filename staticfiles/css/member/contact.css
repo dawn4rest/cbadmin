@@ -1,0 +1,35 @@
+/* CONTACT CSS */
+#add-chat-form { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 65px; }
+#add-chat-form .content { width: 100%; height: 92px; margin-right: 25px; padding: 12px; border: 1px solid #C3C5C7; }
+#add-chat-form .add-chat { width: 78px; }
+
+.chat-list { border-bottom: 4px solid #3d3d3d; }
+.chat-list h3 { padding-bottom: 8px; font-weight: 700; }
+
+.chat-list .list-header { display: flex; justify-content: space-between; padding: 30px 0; border-top: 4px solid #3D3D3D; border-bottom: 1px solid #C3C5C7; }
+.chat-list .list-header img { width: 48px; height: 48px; border-radius: 50%; }
+.chat-list .list-header h6 { display: inline; font-weight: 700; margin: 0 20px; }
+.chat-list .list-body { overflow: auto; margin-top: 15px; }
+.chat-list .list-body .chat { width: 60%; float: right; margin: 15px 0; text-align: right; }
+.chat-list .list-body .chat h6 { padding: 20px; background-color: #2699FB; color: #fff; }
+.chat-list .list-body .admin { float: left; text-align: left; }
+.chat-list .list-body .admin h6 {padding: 20px; background-color: #fff; color: #3D3D3D; border: 1px solid #C3C5C7;}
+.chat-list .list-body p { padding: 15px 0 30px; color: #2699FB; text-align: center; float: left; width: 100%; }
+
+.chat-list .empty { text-align: center; padding: 60px 0; }
+.chat-list .empty img { width: 50%; padding: 30px 0 20px; }
+.chat-list .empty p { color: #C3C5C7; }
+
+
+@media screen and (max-width: 768px) {
+    #add-chat-form { flex-direction: column; align-items: flex-end; margin: 10px 0 60px; }
+    #add-chat-form .content { margin: 0 0 24px; }
+
+    .chat-list { border-bottom: 2px solid #3d3d3d; }
+    .chat-list h3 { padding-bottom: 4px; }
+    .chat-list .list-header { padding: 20px 0 12px; border-top: 2px solid #3D3D3D; }
+    .chat-list .list-header img { width: 40px; height: 40px; border-radius: 50%; }
+    .chat-list .list-header h6 { margin: 0 8px; }
+    .chat-list .list-body .chat h6 { padding: 8px 12px; }
+    .chat-list .list-body .admin h6 { padding: 8px 12px; }
+}
