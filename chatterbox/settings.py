@@ -33,9 +33,9 @@ def get_secret(setting, secrets=secrets):
 
 SECRET_KEY = get_secret("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*','chatterboxes.kr','www.chatterboxes.kr']
 
 AUTH_USER_MODEL = 'member.User'
 
