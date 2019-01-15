@@ -47,7 +47,5 @@ cd src
 # Django Requirements 설치
 ~~~
 pipenv install django==1.11.3
-pip install django-tagging  
-pip install django-multiselectfield  
-pip install pillow pilkit django-imagekit  
+pip install django-tagging django-multiselectfield pillow pilkit django-imagekit  
 ~~~
