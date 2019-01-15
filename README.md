@@ -47,7 +47,7 @@ pip install django-tagging django-multiselectfield pillow pilkit django-imagekit
 ~~~
 
 # Nginx & uWSGI 배포
-> https://rainsound-k.github.io/deploy/2018/05/02/instance-setting-and-django-deploy-part2.html
+> https://rainsound-k.github.io/deploy/2018/05/02/instance-setting-and-django-deploy-part2.html  
 > 매우 큰 도움. 감사 설명들 친절한.
 
 pipenv venv path 문제로 포기  
