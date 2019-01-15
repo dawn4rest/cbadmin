@@ -14,12 +14,8 @@ sudo apt update
 sudo apt upgrade
 sudo apt install python3-pip
 pip3 install pipenv
-
-# 16.04에서 python 3.6이 없을 경우
-sudo add-apt-repository ppa:jonathonf/python-3.6
-sudo apt-get update
-sudo apt-get install python3.6
 ~~~
+
 우분투 실행 경로에 pipenv 추가
 ~~~
 vi ~/.profile
@@ -49,3 +45,14 @@ cd src
 pipenv install django==1.11.3
 pip install django-tagging django-multiselectfield pillow pilkit django-imagekit  
 ~~~
+
+# Nginx & uWSGI 배포
+> https://rainsound-k.github.io/deploy/2018/05/02/instance-setting-and-django-deploy-part2.html  
+> 매우 큰 도움. 감사 설명들 친절한.
+
+pipenv venv path 문제로 포기  
+pyenv virtualenv 로 다시 진행  
+
+# HTTPS SSL 설정
+> http://blog.kimgihong.com/devlog/AWS_EC2_letsencrypt_SSL  
+certbot 이 아니라 letsencrypt 로 SSL 관리, 자동 연장
