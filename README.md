@@ -51,5 +51,8 @@ pip install django-tagging django-multiselectfield pillow pilkit django-imagekit
 > 매우 큰 도움. 감사 설명들 친절한.
 
 pipenv venv path 문제로 포기  
-pyenv virtualenv로 다시 진행  
+pyenv virtualenv 로 다시 진행  
 
+# HTTPS SSL 설정
+> http://blog.kimgihong.com/devlog/AWS_EC2_letsencrypt_SSL  
+certbot 이 아니라 letsencrypt 로 SSL 관리, 자동 연장
