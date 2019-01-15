@@ -45,6 +45,8 @@ LOGIN_REDIRECT_URL = 'post:post_list'
 # 로그인이 필요할 경우 이동할 URL
 LOGIN_URL = 'member:login'
 
+LOGOUT_REDIRECT_URL = '/login/'
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -100,7 +102,6 @@ WSGI_APPLICATION = 'chatterbox.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -108,10 +109,8 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -127,10 +126,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
-
 LANGUAGE_CODE = 'ko'
 
 TIME_ZONE = 'Asia/Seoul'
@@ -141,34 +138,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 
-LOGOUT_REDIRECT_URL = '/login/'
-
-CKEDITOR_BASEPATH = "/my_static/ckeditor/ckeditor"
-CKEDITOR_UPLOAD_PATH = "uploads/"
-CKEDITOR_CONFIGS = {
-    'width': '100%',
-    'defaultLanguage': 'ko',
-    'default': {
-        'toolbar_Full': [
-            ['Format', 'Bold', 'Italic', 'Underline', 'Strike', ],
-            ['TextColor', 'BGColor'],
-            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Image', 'Link', 'Unlink', ],
-            ['Source'],
-        ],
-        'extraPlugins': 'justify,liststyle,indent',
-    },
-}
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
