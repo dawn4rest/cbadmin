@@ -56,3 +56,7 @@ pyenv virtualenv 로 다시 진행
 # HTTPS SSL 설정
 > http://blog.kimgihong.com/devlog/AWS_EC2_letsencrypt_SSL  
 certbot 이 아니라 letsencrypt 로 SSL 관리, 자동 연장
+
+# Allauth Social Login 연동
+> https://github.com/YeongBaeeee/practice/wiki/26-OAuth-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85%EA%B3%BC-%EB%8F%99%EC%8B%9C%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8
+페이스북 콜백 URL 개 까탈스러움 후
