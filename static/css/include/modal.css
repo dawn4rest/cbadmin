@@ -3,6 +3,6 @@
 
 #alertModal .modal-header { display: none; }
 #alertModal .modal-footer { display: none; }
-#alertModal .modal-body { padding: 40px 0; }
+#alertModal .modal-body { padding: 40px 0; text-align: center; }
 #alertModal .modal-body h4 { text-align: center; margin-bottom: 32px; }
 #alertModal .modal-body p { text-align: center; }

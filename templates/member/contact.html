@@ -95,7 +95,6 @@
 <script type="text/javascript">
     $(document).on('click', '.add-chat', function () {
         var content = $("#add-chat-form .content").val();
-
         $.ajax({
             type: "POST",
             url: "{% url 'member:create_chat' %}",
@@ -106,7 +105,6 @@
             dataType: "json",
             success: function (response) { }
         });
-
         $("#add-chat-form .content").val("");
         $(".load-chat").load("{% url 'member:contact' %} .load-chat");
     });

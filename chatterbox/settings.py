@@ -55,20 +55,67 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',                     # allauth registration
+    'django.contrib.sites',
     'django.forms',
 
-    'allauth',                                  # allauth registration
-    'allauth.account',                          # allauth registration
-    'allauth.socialaccount',                    # allauth registration
-    'allauth.socialaccount.providers.facebook',  # allauth registration Facebook
-
+    'accounts',
     'member',
     'post',
     'comment',
     'tagging',
     'multiselectfield',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.naver',
 ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # 기본 인증 백엔드
+    'allauth.account.auth_backends.AuthenticationBackend',  # 추가
+]
+# 디폴트 SITE의 id
+# 등록하지 않으면,각 요청 시에 host명의 Site 인스턴스를 찾습니다.
+SITE_ID = 2
+# 이메일 확인을 하지 않음.
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'  # 아니면  smtp 로 설정
+OCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', ],  # 'user_friends'는 요청 안 함
+        # 'AUTH_PARAMS': {'auth_type': 'reauthenticate'}, # 매번 비밀번호 묻지 않으려면 주석처리
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'kr_KR',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.4',
+    },
+    'google': {
+        'SCOPE': [
+            'profile',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -98,7 +145,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',  # allauth registration
             ],
         },
     },
@@ -132,17 +178,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = (
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-
-SITE_ID = 1
-
-SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 LANGUAGE_CODE = 'ko'
@@ -169,29 +204,3 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
-
-SOCIALACCOUNT_PROVIDERS = {
-    'facebook': {
-        'METHOD': 'oauth2',
-        'SCOPE': ['email', 'public_profile', 'user_friends'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'INIT_PARAMS': {'cookie': True},
-        'FIELDS': [
-            'id',
-            'email',
-            'name',
-            'first_name',
-            'last_name',
-            'verified',
-            'locale',
-            'timezone',
-            'link',
-            'gender',
-            'updated_time',
-        ],
-        'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': 'path.to.callable',
-        'VERIFIED_EMAIL': False,
-        'VERSION': 'v2.12',
-    }
-}

@@ -18,13 +18,17 @@ class User(AbstractUser):
         (GENDER_FEMALE, '여성'),
         (GENDER_OTHER, '기타'),
     )
-    profile_image = models.ImageField(default='default/user.png', null=True, upload_to='user')
+    profile_image = models.ImageField(
+        default='default/user.png', null=True, upload_to='user')
     bio = models.CharField(max_length=160, null=True)
     gender = models.CharField(max_length=1, choices=CHOICES_GENDER)
 
-    like_posts = models.ManyToManyField('post.Post', blank=True, related_name='like_users')
-    like_comments = models.ManyToManyField('comment.Comment', blank=True, related_name='like_comments')
-    hate_comments = models.ManyToManyField('comment.Comment', blank=True, related_name='hate_comments')
+    like_posts = models.ManyToManyField(
+        'post.Post', blank=True, related_name='like_users')
+    like_comments = models.ManyToManyField(
+        'comment.Comment', blank=True, related_name='like_comments')
+    hate_comments = models.ManyToManyField(
+        'comment.Comment', blank=True, related_name='hate_comments')
 
     objects = UserManager()
 
