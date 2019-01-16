@@ -31,21 +31,21 @@ def get_secret(setting, secrets=secrets):
         raise ImproperlyConfigured(error_msg)
 
 
-SECRET_KEY = get_secret("SECRET_KEY")
+SECRET_KEY = get_secret('SECRET_KEY')
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*','chatterboxes.kr','www.chatterboxes.kr']
+ALLOWED_HOSTS = ['*', 'chatterboxes.kr', 'www.chatterboxes.kr']
 
 AUTH_USER_MODEL = 'member.User'
 
-# 로그인이 완료되면 이동할 URL
-LOGIN_REDIRECT_URL = 'post:post_list'
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+ACCOUNT_AUTHENTICATED_LOGOUT_REDIRECTS = True
 
-# 로그인이 필요할 경우 이동할 URL
 LOGIN_URL = 'member:login'
-
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 # Application definition
 INSTALLED_APPS = [
@@ -55,7 +55,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',                     # allauth registration
     'django.forms',
+
+    'allauth',                                  # allauth registration
+    'allauth.account',                          # allauth registration
+    'allauth.socialaccount',                    # allauth registration
+    'allauth.socialaccount.providers.facebook',  # allauth registration Facebook
 
     'member',
     'post',
@@ -92,13 +98,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',  # allauth registration
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'chatterbox.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -126,6 +132,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 LANGUAGE_CODE = 'ko'
@@ -152,3 +169,29 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': 'path.to.callable',
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v2.12',
+    }
+}

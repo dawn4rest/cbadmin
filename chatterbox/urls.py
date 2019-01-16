@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^post/', include('post.urls', namespace='post')),
     url(r'^comment/', include('comment.urls', namespace='comment')),
     url(r'^member/', include('member.urls', namespace='member')),
+    url(r'^accounts/', include('allauth.urls')), 
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', post_views.post_list, name='post_list'),
