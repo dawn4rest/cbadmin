@@ -58,5 +58,12 @@ pyenv virtualenv 로 다시 진행
 certbot 이 아니라 letsencrypt 로 SSL 관리, 자동 연장
 
 # Allauth Social Login 연동
-> https://github.com/YeongBaeeee/practice/wiki/26-OAuth-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85%EA%B3%BC-%EB%8F%99%EC%8B%9C%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8
-페이스북 콜백 URL 개 까탈스러움 후
+> Allauth 공식 문서: https://django-allauth.readthedocs.io/en/latest/providers.html#facebook  
+> 가장 친절했던 설명: https://github.com/YeongBaeeee/practice/wiki/26-OAuth-%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85%EA%B3%BC-%EB%8F%99%EC%8B%9C%EC%97%90-%EB%A1%9C%EA%B7%B8%EC%9D%B8. 
+페이스북 콜백 URL 개 까탈스러움 후  
+  
+차단된 리디렉션 URI가 앱의 클라이언트 OAuth 설정의 화이트리스트에 없으므로 리디렉션하지 못했습니다.  
+클라이언트 및 웹 OAuth 로그인이 설정되었는지 확인하고 모든 앱 도메인을 유효한 OAuth 리디렉션 URI로 추가하세요.  
+  
+괜히 화이트리스트 IP 헷갈려서 고치지 말자. 그냥 콜백 URL이 정확하지 않은 것. 
+https://chatterboxes.kr/accounts/facebook/login/callback 이거로 해결.
