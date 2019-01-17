@@ -18,6 +18,8 @@
 #social-login .social-btn { display: flex; align-items: center; font-size: 14px; color: #7F7F7F; }
 #social-login .social-btn img { width: 44px; height: 44px; margin-right: 12px; }
 
+.sub-link { font-weight: 400; color: #C3C5C7; }
+
 
 @media screen and (max-width: 768px) {
     .login { padding: 0; }

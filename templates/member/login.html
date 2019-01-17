@@ -43,6 +43,10 @@
 
         {% include 'include/form.html' with form=login_form submit_class='btn-full' submit_title='LOG IN' %}
 
+        <a href="/accounts/password/reset">
+            <h5 class="pt-3 sub-link">계정을 잊어버리셨나요?</h5>
+        </a>
+
         <div id="social-login" class="btn-wrap row m60">
             <a class="col-md-6 col-12 social-btn facebook" href="/accounts/facebook/login/?process=login">
                 <img src="{% static '/img/facebook.png' %}" />FACEBOOK으로 계속하기
