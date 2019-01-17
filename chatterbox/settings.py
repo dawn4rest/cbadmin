@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.forms',
 
-    'accounts',
     'member',
     'post',
     'comment',
@@ -77,12 +76,25 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',  # 기본 인증 백엔드
     'allauth.account.auth_backends.AuthenticationBackend',  # 추가
 ]
-# 디폴트 SITE의 id
-# 등록하지 않으면,각 요청 시에 host명의 Site 인스턴스를 찾습니다.
+
+# 디폴트 SITE의 id 등록하지 않으면,각 요청 시에 host명의 Site 인스턴스를 찾습니다.
 SITE_ID = 2
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = DEFAULT_FROM_EMAIL = 'chatterbox4921@gmail.com'
+EMAIL_HOST_PASSWORD = 'seollebam4921'
+
 # 이메일 확인을 하지 않음.
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'  # 아니면  smtp 로 설정
 OCIALACCOUNT_AUTO_SIGNUP = True
+# 유저네임 대신 이메일로 로그인할 경우
+# ACCOUNT_AUTHENTICATION_METHOD = "email"
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_USERNAME_REQUIRED = False
+
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'METHOD': 'oauth2',
