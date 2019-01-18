@@ -2,6 +2,7 @@ import json
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from utils.decorators import login_required
 from django.db.models import Count, Q, Func, F
 
@@ -80,12 +81,29 @@ def post_list(request):
     else:
         posts = Post.objects.all().order_by('-created_at')
 
+    paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
     context = {'posts': posts, 'categories': categories, 'sort': sort, }
     return render(request, 'post/post_list.html', context)
 
 
 def post_detail(request, post_pk):
     post = get_object_or_404(Post, pk=post_pk)
+    post.view_count = post.view_count + 1
+    post.save()
+
+    comment_form = comment_forms.CommentForm()
+    comment_on_comment_form = comment_forms.CommentOnCommentForm()
+    report_comment_form = comment_forms.ReportCommentForm()
+
     procomments = comment_models.Comment.objects.filter(
         post=post, type=True).order_by('-created_at')
     concomments = comment_models.Comment.objects.filter(
@@ -105,13 +123,6 @@ def post_detail(request, post_pk):
         procomments_exclude = procomments
         concomments_mine = None
         concomments_exclude = concomments
-
-    comment_form = comment_forms.CommentForm()
-    comment_on_comment_form = comment_forms.CommentOnCommentForm()
-    report_comment_form = comment_forms.ReportCommentForm()
-
-    post.view_count = post.view_count + 1
-    post.save()
 
     context = {
         'post': post,
