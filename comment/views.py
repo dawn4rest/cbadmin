@@ -12,8 +12,8 @@ from post import models as post_models
 
 def comment_detail(request, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
-
-    return render(request, 'include/comment.html', {'comment': comment})
+    comment_on_comment_form = CommentOnCommentForm()
+    return render(request, 'include/comment.html', {'comment': comment, 'comment_on_comment_form': comment_on_comment_form})
 
 
 @login_required
@@ -30,8 +30,8 @@ def comment_create(request, post_pk):
             if type == "con":
                 comment.type = False
             comment.save()
-
-            return render(request, 'include/comment.html', {'comment': comment})
+            comment_on_comment_form = CommentOnCommentForm()
+            return render(request, 'include/comment.html', {'comment': comment, 'comment_on_comment_form': comment_on_comment_form})
 
     return redirect('post:post_detail', post_pk=post_pk)
 
