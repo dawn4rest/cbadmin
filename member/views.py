@@ -72,7 +72,7 @@ def signup(request):
 
 
 @login_required
-def my_page(request):
+def my_page(request, backend='django.contrib.auth.backends.ModelBackend'):
     user = request.user
     chats = ContactChat.objects.filter(owner=user)
     chat_form = ContactChatForm()
@@ -83,7 +83,10 @@ def my_page(request):
 
         if profile_form.is_valid():
             user = profile_form.save()
-            django_login(request, user)
+            messages.success(
+                request, '<h4>프로필을 수정했어요!</h4><p>채터박스는 익명으로 의견을 나누는 [YES OR NO] 댓글 SNS입니다.</p><p>두 가지 중 선택이 어려울 때 질문하고 의견을 나누어보세요.</p>')
+            django_login(
+                request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('member:my_page')
     else:
         profile_form = ProfileForm(instance=user)
@@ -104,6 +107,8 @@ def password_change(request):
 
         if password_form.is_valid():
             user = password_form.save()
+            messages.success(
+                request, '<h4>비밀번호를 변경했어요!</h4><p>채터박스는 익명으로 의견을 나누는 [YES OR NO] 댓글 SNS입니다.</p><p>두 가지 중 선택이 어려울 때 질문하고 의견을 나누어보세요.</p>')
             update_session_auth_hash(request, user)  # Important!
             return redirect('member:my_page')
     else:
@@ -121,6 +126,8 @@ def user_delete(request):
 
     if request.method == 'POST':
         user.delete()
+        messages.success(
+            request, '<h4>회원 탈퇴가 처리되었습니다.</h4><p>그 동안 채터박스를 이용해주셔서 감사합니다.</p>')
         return redirect('member:my_page')
     else:
         return redirect('member:my_page')
