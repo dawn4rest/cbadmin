@@ -13,16 +13,18 @@
     {% include 'include/sort.html' %}
 </div>
 
-<div class="row m60">
+<div class="row justify-content-center p-0">
     {% if post_set %}
-    <div class="columns">
+    <div class="infinite-container columns col-12 p-0 m60">
         {% for post in post_set %}
-        {% include 'include/post.html' %}
+        <figure id="post-{{ post.pk }}" class="infinite-item">
+            {% include 'include/post.html' %}
+        </figure>
         {% endfor %}
     </div>
     {% else %}
-    <div class="container text-center m-5 p-5">
-        <h2>아직 게시물이 없습니다..</h2>
+    <div class="container text-center my-5 py-5">
+        <h3>아직 게시물이 없습니다..</h3>
     </div>
     {% endif %}
 </div>
@@ -30,5 +32,5 @@
 
 {% block customJS %}
 <script src="{% static 'js/post/easy_pie_chart.js' %}"></script>
-<script src="{% static 'js/post/post.js' %}"></script>
+<script src="{% static 'js/post/post_detail.js' %}"></script>
 {% endblock %}

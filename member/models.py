@@ -21,7 +21,8 @@ class User(AbstractUser):
     profile_image = models.ImageField(
         default='default/user.png', null=True, upload_to='user')
     bio = models.CharField(max_length=160, null=True)
-    gender = models.CharField(max_length=1, choices=CHOICES_GENDER)
+    gender = models.CharField(
+        max_length=1, choices=CHOICES_GENDER, null=True, blank=True)
 
     like_posts = models.ManyToManyField(
         'post.Post', blank=True, related_name='like_users')

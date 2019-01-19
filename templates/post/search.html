@@ -30,10 +30,12 @@
     <hr class="search-divider" />
 </div>
 
-<div class="row p-0">
-    <div class="columns">
+<div class="row justify-content-center p-0">
+    <div class="infinite-container columns col-12 p-0 m60">
         {% for post in posts %}
-        {% include 'include/post.html' %}
+        <figure id="post-{{ post.pk }}" class="infinite-item">
+            {% include 'include/post.html' %}
+        </figure>
         {% endfor %}
     </div>
 </div>
@@ -81,6 +83,6 @@
 
 {% block customJS %}
 <script src="{% static 'js/post/easy_pie_chart.js' %}"></script>
-<script src="{% static 'js/post/post.js' %}"></script>
+<script src="{% static 'js/post/post_detail.js' %}"></script>
 <script src="{% static 'js/post/search.js' %}"></script>
 {% endblock %}

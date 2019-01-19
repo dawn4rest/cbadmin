@@ -53,8 +53,7 @@ class ProfileForm(forms.ModelForm):
         kwargs.setdefault('label_suffix', '')
         super().__init__(*args, **kwargs)
         self.fields['bio'].label = '자기소개'
-        self.fields['gender'].label = '성별'
-        class_update_fields = ['bio', 'gender', ]
+        class_update_fields = ['bio', ]
         for field_name in class_update_fields:
             self.fields[field_name].widget.attrs.update({
                 'class': 'form-control'
@@ -65,7 +64,6 @@ class ProfileForm(forms.ModelForm):
         fields = (
             'profile_image',
             'bio',
-            'gender',
         )
 
 

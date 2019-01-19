@@ -13,24 +13,31 @@
         </h5>
         <hr />
         <ul>
-            <li><a href="#" class="like-trigger">
+            <li>
+                <a href="#" class="like-trigger">
                     <h5><img src="{% static '/img/icons/heart-fill.svg' %}" />좋아요</h5>
-                </a></li>
-            <li><a href="#">
-                    <h5><img src="{% static '/img/icons/alert-fill.png' %}" />알림내역</h5>
-                </a></li>
-            <li><a href="{% url 'member:my_page' %}">
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'member:my_page' %}">
                     <h5><img src="{% static '/img/icons/profile.png' %}" />프로필</h5>
-                </a></li>
-            <li><a href="{% url 'member:user_log' %}">
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'member:user_log' %}">
                     <h5><img src="{% static '/img/icons/time-fill.png' %}" />활동로그</h5>
-                </a></li>
-            <li><a href="{% url 'member:contact' %}">
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'member:contact' %}">
                     <h5><img src="{% static '/img/icons/help-fill.png' %}" />문의하기</h5>
-                </a></li>
-            <li><a href="{% url 'member:logout' %}">
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'member:logout' %}">
                     <h5><img src="{% static '/img/icons/submit.png' %}" />LOG OUT</h5>
-                </a></li>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
