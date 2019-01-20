@@ -1,6 +1,6 @@
 .sort-button { display: flex; }
-.sort-button .select-change h5 { margin-right: 20px; color: #C3C5C7; }
-.sort-button .select-change h5.active { color: #2699FB; padding-bottom: 4px; border-bottom: 2px solid #2699FB; }
+.sort-button .select-change h5 { margin-right: 20px; -webkit-text-fill-color: #C3C5C7; color: #C3C5C7; }
+.sort-button .select-change h5.active { -webkit-text-fill-color: #2699FB; color: #2699FB; padding-bottom: 4px; border-bottom: 2px solid #2699FB; }
 
 
 @media screen and (max-width: 768px) {

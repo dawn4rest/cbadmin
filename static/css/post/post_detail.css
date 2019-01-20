@@ -1,3 +1,5 @@
+footer { display: none; }
+
 .post-body { padding: 60px 84px; border: 1px solid #C3C5C7; }
 .post-body h2 { word-break: break-all; }
 .post-body .detail-header { display: flex; justify-content: space-between; align-items: center; padding: 48px 0; }
@@ -8,7 +10,7 @@
 .post-body .info-btn { width: calc(100% - 2px); background-color: #E9EBEE; border: 1px solid #C3C5C7; }
 .post-body .info-btn img { margin-left: 54px; }
 .post-body .collapsed img { margin-left: 64px; }
-.post-body .info-btn span { float: right; margin-right: 16px; }
+.post-body .info-btn span { -webkit-text-fill-color: #7f7f7f; float: right; margin-right: 16px; }
 
 .post-body .detail-info { padding: 48px 42px; border: 1px solid #C3C5C7; }
 .post-body .detail-info label { width: 100%; margin-bottom: 16px; font-size: 14px; }
@@ -41,21 +43,13 @@
 .comment_title .con-title h5 { color: #FF725C; word-break: break-all; }
 
 
-/* PIE CHART CSS */
-.percent-wrap { display: flex; justify-content: center; align-items: center; margin-bottom: 48px; }
-.percent-wrap .pro-title { color: #41cc90; }
-.percent-wrap .con-title { color: #FF725C; }
-.percent-wrap .chart { width: 50%; text-align: center; }
-.percent-wrap .easyPieChart { position: relative; margin: 8px auto 32px; text-align: center; }
-.percent-wrap .easyPieChart span { font-size: 16px; }
-.percent-wrap .easyPieChart sup { top: 0; margin-left: 1px; }
-.percent-wrap canvas { position: absolute; top: 0; left: 0; }
 
 
 @media screen and (max-width: 768px) {
     /* DETAIL BODY STYLE */
     .post-body { padding: 0; border: 0; }
     .post-body .detail-header { flex-direction: column; align-items: left; padding: 0; }
+    .post-body .detail-header span { margin-right: auto; }
     .post-body .detail-header .btn-wrap { justify-content: space-between; width: 100%; margin: 40px 0; }
 
     .post-body .detail-info { padding: 20px 16px; }

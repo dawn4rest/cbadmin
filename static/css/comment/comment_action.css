@@ -9,7 +9,7 @@
 .comment-action .coc-list .coc-item .item-header { display: flex; align-items: center; }
 .item-header img { width: 32px; height: 32px; margin-right: 16px; border-radius: 50%; }
 .comment-action .coc-list .coc-item .item-header h6 { font-weight: 700; line-height: 1; }
-.comment-action .coc-list .coc-item .item-header span { color: #C3C5C7; }
+.comment-action .coc-list .coc-item .item-header span { -webkit-text-fill-color: #C3C5C7; color: #C3C5C7; }
 .comment-action .coc-list .coc-item h6 { margin: 8px 0; }
 .comment-action .coc-list .coc-item .coc-update { padding: 16px 0 0; border: 0; }
 
@@ -21,7 +21,7 @@
 
 .comment-action .coc-fold { display: flex; justify-content: center; align-items: center; width: 100%; }
 .comment-action .coc-fold img { transform: rotate(180deg); margin-right: 16px; }
-.comment-action .coc-fold p { color: #2699FB; font-weight: 500; }
+.comment-action .coc-fold p { -webkit-text-fill-color: #2699FB; color: #2699FB; font-weight: 500; }
 
 @media screen and (max-width: 768px) {
     .comment-wrap .col-6 .comment-update textarea { height: 80px; }

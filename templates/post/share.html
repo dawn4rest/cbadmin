@@ -1,7 +1,7 @@
 {% load static %}
 
 {% block customCSS %}
-<link rel="stylesheet" href="{% static 'css/include/share.css' %}">
+<link rel="stylesheet" href="{% static 'css/post/share.css' %}">
 {% endblock %}
 
 <div class="share-sns">
@@ -25,9 +25,8 @@
 
 {% block customJS %}
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
-<script src="{% static 'js/include/share.js' %}"></script>
+<script src="{% static 'js/post/share.js' %}"></script>
 <script>
     // ADD SHARE COUNT BY JUST CLICK
     $(document).ready(function () {

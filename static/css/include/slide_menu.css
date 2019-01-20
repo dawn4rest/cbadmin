@@ -7,7 +7,7 @@
 
 #slide-menu .like-card { margin: 0; padding: 20px 25px; border-bottom: 1px solid #C3C5C7; }
 #slide-menu .like-card .btn-area { text-align: right; }
-#slide-menu .like-card .btn-area .del-like h3 { padding: 0; color: #2699FB; }
+#slide-menu .like-card .btn-area .del-like h3 { padding: 0; -webkit-text-fill-color: #2699FB; color: #2699FB; }
 #slide-menu .like-card label { font-size: 14px; padding-bottom: 8px; }
 #slide-menu .like-card h3 { font-weight: 700; padding-bottom: 20px; }
 #slide-menu .like-card .subtitle-wrap { padding-bottom: 8px; }
@@ -16,7 +16,7 @@
 #slide-menu .like-card .subtitle-wrap .con-title { width: 8px; height: 8px; border-radius: 50%; margin-top: 7px; margin-right: 16px; background-color: #FF725C; }
 
 #slide-menu .likes-empty { text-align: center; }
-#slide-menu .likes-empty h3 { margin: 80px 0; }
+#slide-menu .likes-empty h4 { margin: 80px 0; }
 #slide-menu .likes-empty img { width: 168px; height: 168px; }
 
 

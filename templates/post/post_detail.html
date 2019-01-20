@@ -5,11 +5,12 @@
 {% block title %}Post Detail{% endblock %}
 
 {% block customCSS %}
+<link rel="stylesheet" href="{% static 'css/include/pie_chart.css' %}">
 <link rel="stylesheet" href="{% static 'css/post/post_detail.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="fixed-share web-block">{% include 'include/share.html' %}</div>
+<div class="fixed-share web-block">{% include 'post/share.html' %}</div>
 <div class="post-body m60">
     <h2>{{ post.title }}</h2>
     <div class="detail-header">
@@ -74,7 +75,7 @@
                     <h6>{{ post.share_count }}</h6>
                 </div>
                 <div class="conditions-item">
-                    <img src="{% static '/img/icons/share-empty.png' %}" style="opacity: .6;" />
+                    <img src="{% static '/img/icons/share-empty.png' %}" />
                     <h6>{{ post.share_count }}</h6>
                 </div>
             </div>
@@ -143,6 +144,6 @@
 
 
 {% block customJS %}
-<script src="{% static 'js/post/easy_pie_chart.js' %}"></script>
+<script src="{% static 'js/include/easy_pie_chart.js' %}"></script>
 <script src="{% static 'js/post/post_detail.js' %}"></script>
 {% endblock %}

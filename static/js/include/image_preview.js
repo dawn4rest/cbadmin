@@ -33,6 +33,7 @@ function loopReadURL(input, i) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#previewHolder' + i).attr('src', e.target.result);
+            $('#previewHolder' + i).css('height', 'auto');
         }
         reader.readAsDataURL(input.files[0]);
     };
@@ -46,6 +47,7 @@ function loopReadURL(input, i) {
 };
 function delImage(i) {
     $('#previewHolder' + i).removeAttr('src');
+    $('#previewHolder' + i).css('height', '0');
     $('#id_background_image' + i).val('');
     $('.fake-btn' + i + ' h6').show();
     $('#background_image' + i + '-clear_id').prop('checked', 'checked');

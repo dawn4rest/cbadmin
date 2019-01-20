@@ -45,7 +45,7 @@
     <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT TOGGLE START @@@@@@@@@@@@@@@@ -->
     <div class="btn-wrap">
         <button data-toggle="collapse" data-target="#action-{{ comment.pk }}">
-            <img src="{% static '/img/icons/comment.png' %}" style="margin-right: 4px;" />
+            <img src="{% static '/img/icons/comment.png' %}" style="opacity: .32; margin-right: 4px;" />
             <span class="count">{{ comment.comment_on_comment.count }}</span>
         </button>
         {% if user.is_authenticated %}

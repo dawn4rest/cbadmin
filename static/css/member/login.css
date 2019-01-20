@@ -1,24 +1,24 @@
 .example { display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.example h2 { margin-bottom: 28px; color: #2699FB; }
+.example h2 { margin-bottom: 28px; -webkit-text-fill-color: #2699FB; color: #2699FB; }
 .example ul { margin: 34px 0 45px; }
 .example ul li { display: flex; align-items: center;  margin: 6px 0; }
 .example ul img { width: 16px; margin-right: 16px; }
-.example ul h6 { color: #7F7F7F; }
+.example ul h6 { -webkit-text-fill-color: #7F7F7F; color: #7F7F7F; }
 
 .login-header { text-align: center; }
 .login-header .nav-pills { margin: 60px 0; border-bottom: 1px solid #C3C5C7; }
 .login-header .nav-pills .tab-link h5 { padding: 10px; }
-.login-header .nav-pills .tab-link.active h5 { color: #2699FB; border-bottom: 3px solid #2699FB; }
+.login-header .nav-pills .tab-link.active h5 { -webkit-text-fill-color: #2699FB; color: #2699FB; border-bottom: 3px solid #2699FB; }
 
 .login .btn-fill { margin-top: 30px; width: calc(100% - 2px); }
 .login .btn-wrap { display: flex; }
 .login .btn-wrap a { width: calc(50% - 4px); padding: 12px 0; border-radius: 0;}
 
 #social-login { margin: 20px 0; }
-#social-login .social-btn { display: flex; align-items: center; font-size: 14px; color: #7F7F7F; }
+#social-login .social-btn { display: flex; align-items: center; font-size: 14px; -webkit-text-fill-color: #7F7F7F; color: #7F7F7F; }
 #social-login .social-btn img { width: 44px; height: 44px; margin-right: 12px; }
 
-.sub-link { font-weight: 400; color: #C3C5C7; }
+.sub-link { font-weight: 400; -webkit-text-fill-color: #C3C5C7; color: #C3C5C7; }
 
 
 @media screen and (max-width: 768px) {

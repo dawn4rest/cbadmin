@@ -4,6 +4,7 @@
 {% block customCSS %}
 <link rel="stylesheet" href="{% static 'css/include/categories.css' %}" />
 <link rel="stylesheet" href="{% static 'css/include/sorts.css' %}" />
+<link rel="stylesheet" href="{% static 'css/include/pie_chart.css' %}">
 <link rel="stylesheet" href="{% static 'css/post/post_list.css' %}" />
 {% endblock %}
 
@@ -31,6 +32,6 @@
 {% endblock %}
 
 {% block customJS %}
-<script src="{% static 'js/post/easy_pie_chart.js' %}"></script>
+<script src="{% static 'js/include/easy_pie_chart.js' %}"></script>
 <script src="{% static 'js/post/post_detail.js' %}"></script>
 {% endblock %}

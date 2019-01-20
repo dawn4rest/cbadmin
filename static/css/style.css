@@ -135,15 +135,18 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; wo
 	border-radius: 0;
 }
 .btn-fill {
+    -webkit-text-fill-color: #fff !important;
 	color: #fff !important;
 	background-color: #2699FB;
 }
 .btn-line {
+    -webkit-text-fill-color: #2699FB !important;
 	color: #2699FB !important;
     background-color: #fff;
     border: 1px solid #2699FB;
 }
 .btn-gray {
+    -webkit-text-fill-color: #fff !important;
 	color: #fff !important;
 	background-color: #C3C5C7;
 }
@@ -170,7 +173,7 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; wo
 /* NAV STYLE */
 .nav-pills { border-bottom: 1px solid #C3C5C7; }
 .nav-pills .tab-link h5 { padding: 10px; }
-.nav-pills .tab-link.active h5 { color: #2699FB; border-bottom: 3px solid #2699FB; }
+.nav-pills .tab-link.active h5 { -webkit-text-fill-color: #2699FB; color: #2699FB; border-bottom: 3px solid #2699FB; }
 
 
 /* SPACE STYLE */
@@ -189,7 +192,7 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; wo
     .mobile-br { display: block; }
     .m60 { margin-top: 40px; margin-bottom: 40px; }
     .p60 { padding-top: 40px; padding-bottom: 40px; }
-    .container { padding: 0 30px; }
+    .container { width: 100%; max-width: 100%; padding: 0 30px; }
     .row { margin-left: -30px; margin-right: -30px; padding-left: 30px; padding-right: 30px; }
 
 
