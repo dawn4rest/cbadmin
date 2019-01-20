@@ -8,6 +8,10 @@
         $('#btn-coc-update-{{ coc.pk }}').click(function () {
             var content = $('.coc-update input').val();
             var $target = $(this).parent().parent().parent();
+            if (content.length > 256) {
+                alert('댓글은 최대 256자 입력 가능합니다. 현재 글자수 :' + content.length)
+                return;
+            }
             $.ajax({
                 type: 'POST',
                 url: '{% url "comment:coc_update" coc_pk=coc.pk %}',

@@ -7,7 +7,7 @@ footer { display: none; }
 .post-body .detail-header .btn-wrap .btn { margin-right: 20px; }
 .post-body .detail-header .btn-wrap .btn-line { border-color: #C3C5C7; color: #C3C5C7 !important; }
 
-.post-body .info-btn { width: calc(100% - 2px); background-color: #E9EBEE; border: 1px solid #C3C5C7; }
+.post-body .info-btn { width: 100%; background-color: #E9EBEE; border: 1px solid #C3C5C7; }
 .post-body .info-btn img { margin-left: 54px; }
 .post-body .collapsed img { margin-left: 64px; }
 .post-body .info-btn span { -webkit-text-fill-color: #7f7f7f; float: right; margin-right: 16px; }

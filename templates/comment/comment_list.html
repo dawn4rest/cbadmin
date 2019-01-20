@@ -103,8 +103,8 @@
     $(document).on('click', '.comment-create', function () {
         var content = $(this).parent().find('textarea').val();
         var type = $(this).attr('name');
-        if (content.length > 140) {
-            alert('댓글은 최대 140자 입력 가능합니다. 현재 글자수 :' + content.length)
+        if (content.length > 256) {
+            alert('댓글은 최대 256자 입력 가능합니다. 현재 글자수 :' + content.length)
             return;
         }
         $.ajax({
@@ -163,8 +163,8 @@
     $(document).on('click', '.coc-create', function () {
         var content = $(this).parent().find('input').val();
         var pk = $(this).attr('name');
-        if (content.length > 140) {
-            alert('댓글은 최대 140자 입력 가능합니다. 현재 글자수 :' + content.length)
+        if (content.length > 256) {
+            alert('댓글은 최대 256자 입력 가능합니다. 현재 글자수 :' + content.length)
             return;
         }
         $.ajax({
