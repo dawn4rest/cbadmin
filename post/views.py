@@ -104,20 +104,20 @@ def post_detail(request, post_pk):
     comment_on_comment_form = comment_forms.CommentOnCommentForm()
     report_comment_form = comment_forms.ReportCommentForm()
 
-    procomments = comment_models.Comment.objects.filter(
-        post=post, type=True).order_by('-created_at')
-    concomments = comment_models.Comment.objects.filter(
-        post=post, type=False).order_by('-created_at')
+    procomments = comment_models.Comment.objects.filter(post=post, type=True).annotate(
+        like_count=Count('like_comments')).order_by('-like_count')
+    concomments = comment_models.Comment.objects.filter(post=post, type=False).annotate(
+        like_count=Count('like_comments')).order_by('-like_count')
 
     if request.user.is_authenticated():
-        procomments_mine = procomments.filter(
-            author=request.user).order_by('-created_at')
-        procomments_exclude = procomments.exclude(
-            author=request.user).order_by('-created_at')
-        concomments_mine = concomments.filter(
-            author=request.user).order_by('-created_at')
-        concomments_exclude = concomments.exclude(
-            author=request.user).order_by('-created_at')
+        procomments_mine = procomments.filter(author=request.user).annotate(
+            like_count=Count('like_comments')).order_by('-like_count')
+        procomments_exclude = procomments.exclude(author=request.user).annotate(
+            like_count=Count('like_comments')).order_by('-like_count')
+        concomments_mine = concomments.filter(author=request.user).annotate(
+            like_count=Count('like_comments')).order_by('-like_count')
+        concomments_exclude = concomments.exclude(author=request.user).annotate(
+            like_count=Count('like_comments')).order_by('-like_count')
     else:
         procomments_mine = None
         procomments_exclude = procomments

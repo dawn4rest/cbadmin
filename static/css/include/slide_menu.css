@@ -1,4 +1,8 @@
-#slide-menu { display: block; float: right; position: fixed; top: 0; right: -320px; bottom: 81px; width: 100%; height: 100%; max-width: 320px; border-left: 1px solid #C3C5C7; background-color: #fff; -moz-transition: all 300ms; -webkit-transition: all 300ms; transition: all 300ms; overflow: auto; z-index: 1; }
+#slide-menu { 
+    display: block; float: right; position: fixed; top: 0; right: -320px; bottom: 81px; overflow: auto; z-index: 2;
+    width: 100%; height: 100%; max-width: 320px; border-left: 1px solid #C3C5C7; background-color: #fff; 
+    -moz-transition: all 300ms; -webkit-transition: all 300ms; transition: all 300ms;
+}
 #slide-menu.active { right: 0px !important; }
 #slide-menu .slide-header { display: flex; align-items: center; height: 64px; background-color: #3d3d3d; }
 #slide-menu .slide-header .slide-close { margin-left: 18px; color: #fff; cursor: pointer; }
@@ -30,13 +34,4 @@
 
     #slide-menu .likes-empty h4 { margin: 40px 0; padding-top: 40px; }
     #slide-menu .likes-empty img { width: 102px; height: 102px; }
-    
-
-    /* TOGGLE STYLE */
-    .toggle-wrap { text-align: center; }
-    .toggle-wrap h5 { margin: 40px 0; font-weight: 400; color: #7F7F7F; }
-    .toggle-wrap ul { width: 96px; margin: 0 auto; text-align: left; }
-    .toggle-wrap ul li h5 { display: flex; align-items: center; margin-top: 32px; font-weight: 700; color: #3d3d3d; }
-    .toggle-wrap ul li h5 img { width: 16px; margin-right: 16px; }
-    .toggle-wrap .modal-footer { display: none; }
 }

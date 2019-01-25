@@ -13,6 +13,10 @@
         </a>
         {% endfor %}
     </div>
+    <div class="category-paddles">
+        <button class="category-paddle category-paddle-left"><img src="{% static '/img/categories/left.svg' %}"></button>
+        <button class="category-paddle category-paddle-right"><img style="transform: rotate(180deg);" src="{% static '/img/categories/left.svg' %}"></button>
+    </div>
 </div>
 
 <script>
@@ -23,5 +27,18 @@
         } else {
             $('#all').addClass('active');
         }
+
+        $('.category-paddle-left').click(function (event) {
+            event.preventDefault();
+            $('.category').animate({
+                scrollLeft: "-=64px"
+            }, "fast");
+        });
+        $('.category-paddle-right').click(function (event) {
+            event.preventDefault();
+            $('.category').animate({
+                scrollLeft: "+=64px"
+            }, "fast");
+        });
     });
 </script>

@@ -9,6 +9,17 @@
 {% endblock %}
 
 {% block content %}
+<nav class="lnb navbar">
+    <div class="container">
+        <a href="javascript:history.back()">
+            <img class="nav-icon" src="{% static '/img/icons/back.png' %}" />
+            <span class="highlight">MY PAGE</span>
+        </a>
+        <h3>문의하기</h3>
+        <ul class="navbar-nav flex-row"></ul>
+    </div>
+</nav>
+
 <div class="row justify-content-center">
     <div class="col-md-7 p-0 mypage">
         <h2>My Page</h2>

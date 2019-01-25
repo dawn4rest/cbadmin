@@ -1,9 +1,4 @@
 {% load static %}
-
-{% block customCSS %}
-<link rel="stylesheet" href="{% static 'css/post/share.css' %}">
-{% endblock %}
-
 <div class="share-sns">
     <a href="javascript:shareFacebook()">
         <img src="{% static '/img/share-fb.svg' %}" />
@@ -22,17 +17,3 @@
     </a>
     <input type="text" value="Copy Url" id="linkInput">
 </div>
-
-{% block customJS %}
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
-<script src="{% static 'js/post/share.js' %}"></script>
-<script>
-    // ADD SHARE COUNT BY JUST CLICK
-    $(document).ready(function () {
-        $(document).on('click', '.share-sns a', function () {
-            $.ajax({ url: "{% url 'post:add_share_count' post.pk %}", });
-        });
-    });
-</script>
-{% endblock %}

@@ -9,13 +9,13 @@
 <div class="row comment_title p-0">
     <div class="col-6 pro-title">
         <h5>{{ post.pro_title }}</h5>
-        <a data-toggle="collapse" href="#pro-form">
+        <a class="comment-toggle" data-toggle="collapse" href="#pro-form">
             <img class="add-pro {% if not user.is_authenticated %}plzLogin{% endif %}" src="{% static '/img/icons/add-pro.svg' %}" />
         </a>
     </div>
     <div class="col-6 con-title">
         <h5>{{ post.con_title }}</h5>
-        <a data-toggle="collapse" href="#con-form">
+        <a class="comment-toggle" data-toggle="collapse" href="#con-form">
             <img class="add-con {% if not user.is_authenticated %}plzLogin{% endif %}" src="{% static '/img/icons/add-con.svg' %}" />
         </a>
     </div>
@@ -95,11 +95,6 @@
 
 {% block customJS %}
 <script type="text/javascript">
-    $(document).on('click', '.plzLogin', function () {
-        $('.toast .content').html('<p>의견을 남기시려면 로그인이 필요해요.</p>');
-        $('.toast').toast('show');
-    });
-
     $(document).on('click', '.comment-create', function () {
         var content = $(this).parent().find('textarea').val();
         var type = $(this).attr('name');

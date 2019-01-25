@@ -51,14 +51,15 @@ def logout(request):
     return redirect('post:post_list')
 
 
-def signup(request):
+def signup(request, backend='django.contrib.auth.backends.ModelBackend'):
     if request.method == 'POST':
         signup_form = SignupForm(request.POST, files=request.FILES)
         # 유효성 검증에 통과한 경우 (username의 중복과 password1, 2의 일치 여부)
         if signup_form.is_valid():
             # 유저를 생성 후 해당 User를 로그인 시킨다
             user = signup_form.save()
-            django_login(request, user)
+            django_login(
+                request, user, backend='django.contrib.auth.backends.ModelBackend')
             messages.success(
                 request, '<h4>회원가입이 완료되었습니다.</h4><p>채터박스의 회원이 되신 것을 축하드립니다. </p><p>채터박스는 익명으로 썰을 공유하고 </p><p>2지선다로 댓글 의견을 나누는  커뮤니티 입니다.</p>')
             return redirect('post:post_list')
@@ -74,8 +75,6 @@ def signup(request):
 @login_required
 def my_page(request, backend='django.contrib.auth.backends.ModelBackend'):
     user = request.user
-    chats = ContactChat.objects.filter(owner=user)
-    chat_form = ContactChatForm()
 
     if request.method == 'POST':
         profile_form = ProfileForm(
@@ -93,9 +92,7 @@ def my_page(request, backend='django.contrib.auth.backends.ModelBackend'):
 
     context = {
         'user': user,
-        'chats': chats,
         'profile_form': profile_form,
-        'chat_form': chat_form,
     }
     return render(request, 'member/my_page.html', context)
 

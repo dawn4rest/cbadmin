@@ -35,10 +35,6 @@
 <script src="{% static 'js/include/jquery.waypoints.min.js' %}"></script>
 <script src="{% static 'js/include/infinite.min.js' %}"></script>
 <script>
-    var infinite = new Waypoint.Infinite({
-        element: $('.infinite-container')[0]
-    });
-
     function customChart() {
         $('.pro-chart').easyPieChart({
             barColor: '#41cc90',
@@ -72,7 +68,12 @@
 
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-            customChart();
+            var infinite = new Waypoint.Infinite({
+                element: $('.infinite-container')[0]
+            });
+            setTimeout(function () {
+                customChart();
+            }, 1000);
         }
     });
 </script>

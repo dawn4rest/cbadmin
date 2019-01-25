@@ -36,6 +36,9 @@
 .comment-footer .btn-wrap .like-hate form { padding: 0; border: 0; }
 .comment-wrap .col-6 .comment-footer .btn-wrap button { display: flex; align-items: center; margin: 0; }
 .comment-wrap .col-6 .comment-footer .btn-wrap button a { display: flex; align-items: center; }
+.comment-wrap .col-6 .comment-footer .btn-wrap .coc-toggle img { width: 16px; margin-right: 4px; opacity: .32; }
+.comment-wrap .col-6 .comment-footer .btn-wrap .coc-toggle .count { -webkit-text-fill-color: #2699FB; color: #2699FB !important; }
+.comment-wrap .col-6 .comment-footer .btn-wrap .collapsed .count { -webkit-text-fill-color: #C3C5C7; color: #C3C5C7; }
 .comment-footer .btn-wrap button .hate { -webkit-transform:rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg); }
 .comment-footer .btn-wrap .count { margin: 0 12px 0 4px; font-weight: 500; -webkit-text-fill-color: #C3C5C7; color: #C3C5C7; }
 .comment-footer .btn-wrap .active { -webkit-text-fill-color: #2699FB; color: #2699FB !important; }

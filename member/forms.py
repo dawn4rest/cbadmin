@@ -49,11 +49,17 @@ class SignupForm(UserCreationForm):
 
 
 class ProfileForm(forms.ModelForm):
+    email = forms.EmailField(required=False)
+    username = forms.CharField(required=False)
+    bio = forms.CharField(required=False)
+
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('label_suffix', '')
         super().__init__(*args, **kwargs)
+        self.fields['email'].label = 'E-mail'
+        self.fields['bio'].label = '닉네임'
         self.fields['bio'].label = '자기소개'
-        class_update_fields = ['bio', ]
+        class_update_fields = ['email', 'username', 'bio', ]
         for field_name in class_update_fields:
             self.fields[field_name].widget.attrs.update({
                 'class': 'form-control'
@@ -63,6 +69,8 @@ class ProfileForm(forms.ModelForm):
         model = User
         fields = (
             'profile_image',
+            'email',
+            'username',
             'bio',
         )
 

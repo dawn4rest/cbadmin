@@ -1,0 +1,12 @@
+.gnb { display: none; }
+#content { margin-top: 16px; }
+footer { display: none; }
+
+.toggle-header { text-align: right; }
+.toggle-header h2 { -webkit-text-fill-color: #2699fb; color: #2699fb; }
+
+.toggle-wrap { margin: 0 -30px; text-align: center; }
+.toggle-wrap h5 { margin: 28px 0 40px; font-weight: 400; color: #7F7F7F; }
+.toggle-wrap ul { width: 96px; margin: 0 auto; text-align: left; }
+.toggle-wrap ul li h5 { display: flex; align-items: center; margin: 32px 0 0; font-weight: 700; color: #3d3d3d; }
+.toggle-wrap ul li h5 img { width: 16px; margin-right: 16px; }

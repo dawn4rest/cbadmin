@@ -1,10 +1,9 @@
 /* NAV & BODY STYLE */
 .gnb { display: none; }
-.lnb { position: fixed; width: 100%; top: 0; left: 0; z-index: 2; }
+.lnb { position: fixed; display: flex; width: 100%; top: 0; left: 0; z-index: 2; }
 .lnb .container { justify-content: space-between; }
 
 
-/* SLIDER HEADER STYLE */
 .item-header { text-align: center; }
 .item-header h3 { font-size: 30px; font-weight: 700; }
 .item-header .indicators { display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; }
@@ -36,6 +35,8 @@
 
 
 @media screen and (max-width: 768px) {
+    nav.lnb .nav-icon { margin-top: 2px; }
+    
     .item-body textarea { height: 180px !important; }
     .item-body .fake-btns { min-height: 180px; }
     .item-body .fake-btns h6 { font-size: 14px; }

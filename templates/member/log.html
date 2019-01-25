@@ -10,6 +10,17 @@
 {% endblock %}
 
 {% block content %}
+<nav class="lnb navbar">
+    <div class="container">
+        <a href="javascript:history.back()">
+            <img class="nav-icon" src="{% static '/img/icons/back.png' %}" />
+            <span class="highlight">MY PAGE</span>
+        </a>
+        <h3>활동 로그</h3>
+        <ul class="navbar-nav flex-row"></ul>
+    </div>
+</nav>
+
 <div class="row justify-content-center">
     <div class="col-md-7 p-0 mypage">
         <h2>My Page</h2>
@@ -59,12 +70,21 @@
                         </div>
                         <div class="log-body">
                             <label>Main Title</label>
-                            <h5>{{ log.title }}</h5>
+                            <a href="{% url 'post:post_detail' post_pk=log.pk %}">
+                                <h5>{{ log.title|truncatechars:40 }}</h5>
+                            </a>
                             <label>Background</label>
                             <div class="background">
-                                <h6>{{ log.background|safe|truncatechars:160 }}</h6>
+                                <a href="{% url 'post:post_detail' post_pk=log.pk %}">
+                                    <h6>{{ log.background|safe|truncatechars:160 }}</h6>
+                                </a>
                             </div>
                         </div>
+                        <!-- <form class="btn-wrap row p-0" action="{% url 'post:post_delete' log.pk %}" method="post">
+                            {% csrf_token %}
+                            <div class="col-6"><a class="btn btn-fill btn-full" href="{% url 'post:post_update' log.pk %}">수정하기</a></div>
+                            <div class="col-6"><input class="btn btn-gray btn-full" type="submit" value="삭제하기" onclick="return confirm('정말로 삭제할까요? \n\n게시물을 삭제하시면 해당 게시물의 \n모든 이력도 초기화 됩니다.')"></div>
+                        </form> -->
                     </div>
                     {% endif %}
                     {% if log in comments_sorted %}
@@ -75,17 +95,19 @@
                         </div>
                         <div class="log-body">
                             <label>Main Title</label>
-                            <h5>{{ log.post.title }}</h5>
-                            {% if log in comments_pro %}
-                            <div class="post-title pro">
-                                {{ log.post.pro_title }}
-                            </div>
-                            {% endif %}
-                            {% if log in comments_con %}
-                            <div class="post-title con">
-                                {{ log.post.con_title }}
-                            </div>
-                            {% endif %}
+                            <a href="{% url 'post:post_detail' post_pk=log.post.pk %}">
+                                <h5>{{ log.post.title }}</h5>
+                                {% if log in comments_pro %}
+                                <div class="post-title pro">
+                                    {{ log.post.pro_title }}
+                                </div>
+                                {% endif %}
+                                {% if log in comments_con %}
+                                <div class="post-title con">
+                                    {{ log.post.con_title }}
+                                </div>
+                                {% endif %}
+                            </a>
                             <div class="background">
                                 <div class="comment-header">
                                     {% if log.author.profile_image %}
@@ -115,17 +137,19 @@
                         </div>
                         <div class="log-body">
                             <label>Main Title</label>
-                            <h5>{{ log.post.title }}</h5>
-                            {% if log in likes_pro or log in hates_pro %}
-                            <div class="post-title pro">
-                                {{ log.post.pro_title }}
-                            </div>
-                            {% endif %}
-                            {% if log in likes_con or log in hates_con %}
-                            <div class="post-title con">
-                                {{ log.post.con_title }}
-                            </div>
-                            {% endif %}
+                            <a href="{% url 'post:post_detail' post_pk=log.post.pk %}">
+                                <h5>{{ log.post.title }}</h5>
+                                {% if log in likes_pro or log in hates_pro %}
+                                <div class="post-title pro">
+                                    {{ log.post.pro_title }}
+                                </div>
+                                {% endif %}
+                                {% if log in likes_con or log in hates_con %}
+                                <div class="post-title con">
+                                    {{ log.post.con_title }}
+                                </div>
+                                {% endif %}
+                            </a>
                             <div class="background">
                                 <div class="comment-header">
                                     {% if log.author.profile_image %}

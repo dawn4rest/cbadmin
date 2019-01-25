@@ -1,6 +1,11 @@
 $(document).ready(function () {
-    // CHNAGE REPORT REASEON LABEL COLOR BY CHECKED
-    $('input:checkbox').change(function () {
+    $(document).on('click', '.share-trigger', function () {
+        $('#shareModal .modal-content').empty();
+        $('.fixed-share .share-sns').clone().appendTo('#shareModal .modal-content');
+    });
+
+
+    $('.report-form input:checkbox').change(function () {
         if ($(this).is(':checked')) {
             $(this).parent().css('color', '#3d3d3d');
         } else {
@@ -43,6 +48,27 @@ $(document).ready(function () {
         },
         onStop: function (value, to) {
             this.$el.find('span').text(Math.round(to));
+        }
+    });
+
+    $(document).on('click', '.plzLogin', function () {
+        $('.toast .content').html('<p>의견을 남기시려면 로그인이 필요해요.</p>');
+        $('.toast').toast('show');
+    });
+
+    $(document).on('click', '.comment-toggle', function () {
+        $('html, body').animate({
+            scrollTop: $(this).offset().top
+        }, 1000);
+    });
+
+    $(document).on('click', '.coc-toggle', function () {
+        if ($(this).hasClass('collapsed')) {
+            $(this).children('img').css('opacity', '.32');
+            $(this).children('img').attr('src', '/static/img/icons/comment.png');
+        } else {
+            $(this).children('img').css('opacity', '1');
+            $(this).children('img').attr('src', '/static/img/icons/comment-fill.png');
         }
     });
 });

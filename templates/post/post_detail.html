@@ -6,11 +6,49 @@
 
 {% block customCSS %}
 <link rel="stylesheet" href="{% static 'css/include/pie_chart.css' %}">
+<link rel="stylesheet" href="{% static 'css/post/share.css' %}">
 <link rel="stylesheet" href="{% static 'css/post/post_detail.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="fixed-share web-block">{% include 'post/share.html' %}</div>
+<nav class="lnb navbar">
+    <div class="container">
+        <a class="nav-icon" href="javascript:history.back()"><img class="nav-icon" src="{% static '/img/icons/back.png' %}" /></a>
+        <ul class="navbar-nav ml-auto flex-row">
+            <li class="nav-item">
+                <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}" method="POST">
+                    {% csrf_token %}
+                    {% if post in user.like_posts.all %}
+                    <button class="btn btn-fill">♥ 좋아요</button>
+                    {% else %}
+                    <button class="btn btn-line">♥ 좋아요</button>
+                    {% endif %}
+                </form>
+            </li>
+            <li class="nav-item"><a class="nav-link btn btn-fill share-trigger" data-toggle="modal" data-target="#shareModal">공유하기</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="fixed-share web-block">
+    <div class="share-sns">
+        <a href="javascript:shareFacebook()">
+            <img src="{% static '/img/share-fb.svg' %}" />
+        </a>
+        <a href="javascript:shareNaver()">
+            <img src="{% static '/img/share-naver.svg' %}" />
+        </a>
+        <a href="javascript:shareKatalk()">
+            <img src="{% static '/img/share-kakao.svg' %}" />
+        </a>
+        <a href="javascript:shareLink()">
+            <img src="{% static '/img/share-link.svg' %}" />
+        </a>
+        <input type="text" value="Copy Url" id="linkInput">
+    </div>
+</div>
+
 <div class="post-body m60">
     <h2>{{ post.title }}</h2>
     <div class="detail-header">
@@ -140,10 +178,21 @@
 </div>
 
 {% include 'comment/comment_list.html' %}
+{% include 'include/modal.html' with modal_id='shareModal' %}
 {% endblock %}
-
 
 {% block customJS %}
 <script src="{% static 'js/include/easy_pie_chart.js' %}"></script>
 <script src="{% static 'js/post/post_detail.js' %}"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
+<script src="{% static 'js/post/share.js' %}"></script>
+<script>
+    // ADD SHARE COUNT BY JUST CLICK
+    $(document).ready(function () {
+        $(document).on('click', '.share-sns a', function () {
+            $.ajax({ url: "{% url 'post:add_share_count' post.pk %}", });
+        });
+    });
+</script>
 {% endblock %}

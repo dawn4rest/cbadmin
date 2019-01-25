@@ -6,7 +6,7 @@
     </div>
     <div class="header-right">
         {% if user.is_authenticated %}
-        <a href="#reportModal" data-toggle="modal" onclick="$('.modal-content').load('{% url 'comment:coc_report' coc_pk=coc.pk %}');"><img
+        <a href="#reportModal" data-toggle="modal" onclick="$('#reportModal .modal-content').load('{% url 'comment:coc_report' coc_pk=coc.pk %}');"><img
                 src="{% static '/img/icons/report.png' %}" />
             <span>신고</span>
         </a>

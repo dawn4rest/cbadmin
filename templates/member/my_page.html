@@ -8,6 +8,17 @@
 {% endblock %}
 
 {% block content %}
+<nav class="lnb navbar">
+    <div class="container">
+        <a href="javascript:history.back()">
+            <img class="nav-icon" src="{% static '/img/icons/back.png' %}" />
+            <span class="highlight">MY PAGE</span>
+        </a>
+        <h3>프로필</h3>
+        <ul class="navbar-nav flex-row"></ul>
+    </div>
+</nav>
+
 <div class="row justify-content-center">
     <div class="col-md-7 p-0 mypage">
         <h2>My Page</h2>
@@ -40,16 +51,7 @@
                     <h4>{{ user }}</h4>
                 </div>
                 <div class="form-wrap">
-                    <div class="form-group">
-                        <label>E-mail</label>
-                        <input type="email" class="form-control" placeholder="{{ user.email }}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label>닉네임</label>
-                        <input type="text" class="form-control" placeholder="{{ user.username }}" readonly>
-                    </div>
-
-                    {% include 'include/form.html' with form=profile_form submit_class='btn-full' submit_title='수정하기'%}
+                    {% include 'include/form.html' with form=profile_form submit_class='btn-full' submit_title='수정하기' enctype='file' %}
                 </div>
                 <div class="btn-wrap">
                     <h6>탈퇴를 원하시면 회원탈퇴 버튼을 눌러주세요</h6>

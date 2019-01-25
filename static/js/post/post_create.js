@@ -34,7 +34,7 @@ $("#id_background").keyup(function () {
 
 $("#id_pro_title").on('input', function () {
     $("#pro_title_count").text($(this).val().length);
-    if (($("#id_pro_title").val().length > 7) && ($("#id_con_title").val().length > 7)) {
+    if (($("#id_pro_title").val().length > 3) && ($("#id_con_title").val().length > 3)) {
         $('.nextTo4').removeClass('btn-gray');
         $('.nextTo4').addClass('btn-fill');
         $('.nextTo4').unbind('click', false);
@@ -48,7 +48,7 @@ $("#id_pro_title").on('input', function () {
 
 $("#id_con_title").on('input', function () {
     $("#con_title_count").text($(this).val().length);
-    if (($("#id_pro_title").val().length > 7) && ($("#id_con_title").val().length > 7)) {
+    if (($("#id_pro_title").val().length > 3) && ($("#id_con_title").val().length > 3)) {
         $('.nextTo4').removeClass('btn-gray');
         $('.nextTo4').addClass('btn-fill');
         $('.nextTo4').unbind('click', false);

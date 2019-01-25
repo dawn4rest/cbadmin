@@ -18,7 +18,7 @@
 <div class="comment-footer">
     <div class="btn-wrap">
         <div class="like-hate">
-            <button class="comment-like" name="{{ comment.pk }}">
+            <button class="comment-like {% if not user.is_authenticated %}plzLogin{% endif %}" name="{{ comment.pk }}">
                 {% if comment in user.like_comments.all %}
                 <img src="{% static '/img/icons/like-hate-fill.png' %}" />
                 <p class="count active"> {{ comment.like_comments.count }}</p>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="like-hate">
-            <button class="comment-hate" name="{{ comment.pk }}">
+            <button class="comment-hate {% if not user.is_authenticated %}plzLogin{% endif %}" name="{{ comment.pk }}">
                 {% if comment in user.hate_comments.all %}
                 <img class="hate" src="{% static '/img/icons/like-hate-fill.png' %}" />
                 <p class="count active">{{ comment.hate_comments.count }}</p>
@@ -44,12 +44,12 @@
 
     <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT TOGGLE START @@@@@@@@@@@@@@@@ -->
     <div class="btn-wrap">
-        <button data-toggle="collapse" data-target="#action-{{ comment.pk }}">
-            <img src="{% static '/img/icons/comment.png' %}" style="opacity: .32; margin-right: 4px;" />
+        <button class="coc-toggle collapsed" data-toggle="collapse" data-target="#action-{{ comment.pk }}">
+            <img src="{% static '/img/icons/comment.png' %}" />
             <span class="count">{{ comment.comment_on_comment.count }}</span>
         </button>
         {% if user.is_authenticated %}
-        <button data-toggle="modal" data-target="#reportModal" onclick="$('.modal-content').load('{% url 'comment:comment_report' comment_pk=comment.pk %}');">
+        <button data-toggle="modal" data-target="#reportModal" onclick="$('#reportModal .modal-content').load('{% url 'comment:comment_report' comment_pk=comment.pk %}');">
             <img src="{% static '/img/icons/report.png' %}" />
             <span class="count web-flex">신고하기</span>
         </button>
