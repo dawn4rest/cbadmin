@@ -67,3 +67,10 @@ certbot 이 아니라 letsencrypt 로 SSL 관리, 자동 연장
   
 괜히 화이트리스트 IP 헷갈려서 고치지 말자. 그냥 콜백 URL이 정확하지 않은 것. 
 https://chatterboxes.kr/accounts/facebook/login/callback 이거로 해결.
+
+# [중요] 쿼리셋 최적화
+> https://blog.leop0ld.org/posts/django-query-optimization/  
+게시물 5개에서 유사 및 중복 쿼리 508개 나옴  
+게시물 목록 / 게시물 상세 / 유저 로그  
+이 3개 뷰는 최적화가 필요해보이는데 시간 부족으로 최적화는 건드리지 못함  
+일단 입사 후 짬이 나면 수정하거나 Node React로 이전 고려 중
