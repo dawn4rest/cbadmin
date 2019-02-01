@@ -8,6 +8,7 @@ from django.db.models import Count, Q, Func, F
 
 from .models import Post, Category
 from .forms import PostForm
+from tagging.models import Tag
 from comment import models as comment_models
 from comment import forms as comment_forms
 
@@ -15,8 +16,14 @@ from comment import forms as comment_forms
 def search(request):
     q = request.GET.get('q', '')
     posts = Post.objects.filter(Q(title__icontains=q) | Q(tag__icontains=q))
+    tags = Tag.objects.annotate(tags_count=Count(
+        'items')).order_by('-tags_count')[:40]
 
-    context = {'posts': posts, 'q': q, }
+    context = {
+        'posts': posts,
+        'q': q,
+        'tags': tags,
+    }
     return render(request, 'post/search.html', context)
 
 
@@ -66,20 +73,21 @@ def show_category(request, hierarchy=None):
 def post_list(request):
     sort = request.GET.get('sort', '')
     categories = Category.objects.all()
+    posts = Post.objects.all()
 
     if sort == 'likes':
-        posts = Post.objects.annotate(like_count=Count(
+        posts = posts.annotate(like_count=Count(
             'like_users')).order_by('-like_count')
     elif sort == 'vs':
-        posts = Post.objects.annotate(vs_abs=Count('comment', filter=Q(comment__type=True))-Count(
+        posts = posts.annotate(vs_abs=Count('comment', filter=Q(comment__type=True))-Count(
             'comment', filter=Q(comment__type=False))).order_by('-vs_abs')
     elif sort == 'views':
-        posts = Post.objects.all().order_by('-view_count')
+        posts = posts.order_by('-view_count')
     elif sort == 'comments':
-        posts = Post.objects.annotate(
+        posts = posts.annotate(
             count=Count('comment')).order_by('-count')
     else:
-        posts = Post.objects.all().order_by('-created_at')
+        posts = posts.order_by('-created_at')
 
     paginator = Paginator(posts, 10)
     page = request.GET.get('page')
@@ -105,19 +113,19 @@ def post_detail(request, post_pk):
     report_comment_form = comment_forms.ReportCommentForm()
 
     procomments = comment_models.Comment.objects.filter(post=post, type=True).annotate(
-        like_count=Count('like_comments')).order_by('-like_count')
+        like_count=Count('like_comments')).order_by('-like_count', '-created_at')
     concomments = comment_models.Comment.objects.filter(post=post, type=False).annotate(
-        like_count=Count('like_comments')).order_by('-like_count')
+        like_count=Count('like_comments')).order_by('-like_count', '-created_at')
 
     if request.user.is_authenticated():
         procomments_mine = procomments.filter(author=request.user).annotate(
-            like_count=Count('like_comments')).order_by('-like_count')
+            like_count=Count('like_comments')).order_by('-like_count', '-created_at')
         procomments_exclude = procomments.exclude(author=request.user).annotate(
-            like_count=Count('like_comments')).order_by('-like_count')
+            like_count=Count('like_comments')).order_by('-like_count', '-created_at')
         concomments_mine = concomments.filter(author=request.user).annotate(
-            like_count=Count('like_comments')).order_by('-like_count')
+            like_count=Count('like_comments')).order_by('-like_count', '-created_at')
         concomments_exclude = concomments.exclude(author=request.user).annotate(
-            like_count=Count('like_comments')).order_by('-like_count')
+            like_count=Count('like_comments')).order_by('-like_count', '-created_at')
     else:
         procomments_mine = None
         procomments_exclude = procomments

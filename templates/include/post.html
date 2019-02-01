@@ -3,7 +3,7 @@
 
 <div class="tag-list">
     {% for tag in post.tag|split_tags %}
-    <span class="tag">{{ tag }}</span>
+    <a class="tag" href="/post/search/?q={{ tag }}">{{ tag }}</a>
     {% endfor %}
 </div>
 <a href="{% url 'post:post_detail' post_pk=post.pk %}">
@@ -29,7 +29,7 @@
     </div>
 </div>
 <div class="btn-area">
-    <img src="{% static '/img/icons/view.png' %}" style="margin-top: 4px;" />
+    <img src="{% static '/img/icons/view.png' %}" />
     <h6>{{ post.view_count }}</h6>
     <img src="{% static '/img/icons/heart-gray.png' %}" />
     <h6>{{ post.likes_count }}</h6>

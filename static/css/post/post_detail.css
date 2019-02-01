@@ -9,7 +9,7 @@ footer { display: none; }
 .post-body .detail-header .btn-wrap .btn-line { border-color: #C3C5C7; color: #C3C5C7 !important; }
 
 .post-body .info-btn { width: 100%; background-color: #E9EBEE; border: 1px solid #C3C5C7; }
-.post-body .info-btn img { margin-left: 54px; }
+.post-body .info-btn img { margin-left: 54px; width: 18px; }
 .post-body .collapsed img { margin-left: 64px; }
 .post-body .info-btn span { -webkit-text-fill-color: #7f7f7f; float: right; margin-right: 16px; }
 
@@ -21,22 +21,25 @@ footer { display: none; }
 
 .post-body .detail-info .conditions-wrap { display: flex; align-items: center; margin-bottom: 32px; }
 .post-body .detail-info .conditions-wrap .conditions-item { display: flex; align-items: center; margin-right: 32px; }
-.post-body .detail-info .conditions-wrap .conditions-item img { margin-right: 8px; }
+.post-body .detail-info .conditions-wrap .conditions-item img { margin-right: 8px; width: 16px; }
 .post-body .detail-info .tag-list { margin-bottom: 32px; }
 
 .post-body .detail-hr { border: 2px solid #3d3d3d; }
 
-.post-body .detail-body .thumbnail { max-width: 100%; margin-bottom: 32px; text-align: center; }
-.post-body .detail-body .thumbnail img { max-width: 100%; }
+.post-body .detail-body .post-background { margin-bottom: 60px; }
 .post-body .detail-body .post-background p { font-size: 16px; line-height: 32px; font-weight: 400; color: #3d3d3d; word-break: break-all; }
+
+.post-body .detail-body .thumbnail { max-width: 100%; margin-bottom: 20px; text-align: center; }
+.post-body .detail-body .thumbnail img { max-width: 100%; }
 
 
 /* OPINION STYLE */
 .opinion { padding: 48px 84px; border: 1px solid #C3C5C7; }
 .opinion h2 { font-size: 34px; line-height: 60px; }
 
-.comment_title { margin: 8px 0; }
-.comment_title .col-6 { display: flex; justify-content: space-between; align-items: center; padding: 24px; max-width: calc(50% - 4px); border: 1px solid #C3C5C7; }
+.comment_title { margin: 0; }
+.comment_title .col-6 { display: flex; justify-content: space-between; align-items: center; padding: 24px; max-width: calc(50% - 4px); border: 1px solid #C3C5C7; cursor: pointer; }
+.comment_title .col-6 a { display: flex; }
 .comment_title .col-6 img { width: 32px; height: 32px; cursor: pointer; }
 .comment_title .pro-title { margin-right: 4px; }
 .comment_title .con-title { margin-left: 4px; }
@@ -70,6 +73,8 @@ footer { display: none; }
 
     .post-body .detail-info .btn-wrap { padding: 0 25px; }
     .post-body .detail-info .btn-wrap .col-6 { padding: 0 5px; }
+
+    .post-body .detail-body .post-background { margin-bottom: 40px; }
 
     /* OPINION STYLE */
     .opinion { margin: 40px -30px 20px; padding: 40px 30px 0; border: 0; border-top: 1px solid #E9EBEE; }

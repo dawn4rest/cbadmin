@@ -27,7 +27,7 @@ class CommentOnCommentForm(forms.ModelForm):
         model = CommentOnComment
         fields = ('content',)
         widgets = {
-            'content': forms.TextInput(
+            'content': forms.Textarea(
                 attrs={
                     'class': 'form-control',
                     'placeholder': '직접 입력',

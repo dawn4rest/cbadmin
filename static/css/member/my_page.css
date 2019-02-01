@@ -21,6 +21,10 @@
 .mypage-body #pills-profile .btn-wrap a { margin: 0 20px; }
 .mypage-body #pills-profile .form-wrap h4 { margin-bottom: 20px; }
 
+.empty { text-align: center; padding: 60px 0; }
+.empty img { width: 50%; max-width: 168px; padding: 30px 0 20px; }
+.empty p { color: #C3C5C7; }
+
 
 @media screen and (max-width: 768px) {
     .gnb { display: none; }
@@ -36,8 +40,9 @@
 
     .mypage-body .mypage-header { margin: 15px 0 30px; padding: 30px 15px; }
     .mypage-body #pills-profile .mypage-header .profile_image { width: 120px; height: 120px; }
+    .mypage-body #pills-profile .mypage-header .fake-btn { width: 16px; margin-left: -20px; }
     .mypage-body #pills-profile .mypage-header h4 { margin-top: 28px; font-size: 20px; font-weight: 700; }
-    .mypage-body #pills-profile .btn-wrap a { margin: 0 8px; min-width: 84px; }
+    .mypage-body #pills-profile .btn-wrap a { margin: 0 8px; min-width: 69px; }
 
     .form-wrap .row { padding: 0 15px; }
 }

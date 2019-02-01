@@ -14,10 +14,11 @@
 
 <div class="toggle-wrap">
     <h2>MY PAGE</h2>
-    <h5>
-        자기소개가 비어있습니다.<br />
-        간단하게 프로필을 작성해보아요!
-    </h5>
+    {% if user.bio %}
+    <h5>{{ user.bio }}</h5>
+    {% else %}
+    <h5>자기소개가 비어있습니다.<br />간단하게 프로필을 작성해보아요!</h5>
+    {% endif %}
     <hr />
     <ul>
         <li>

@@ -23,7 +23,7 @@
 .item-body .fake-btns { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; min-height: 300px; border: 1px solid #C3C5C7; cursor: pointer; }
 .item-body .fake-btns h6 { color: #2699FB; font-size: 16px; font-weight: 500; }
 .item-body .fake-btns img { width: 100%; max-width: 100%; }
-.item-body .del-image { position: relative; bottom: -64px; right: 32px; width: 32px; height: 32px; float: right; text-align: center; font-size: 32px; line-height: 25px; color: #2699fb; background-color: #fff; border: 1px solid #2699fb; border-radius: 50%; cursor: pointer; }
+.item-body .del-image { position: relative; bottom: -64px; right: 32px; width: 32px; height: 32px; float: right; text-align: center; font-size: 32px; line-height: 23px; color: #2699fb; background-color: #fff; border: 1px solid #2699fb; border-radius: 50%; cursor: pointer; }
 
 .item-footer { text-align: center; }
 .item-footer label { display: block; text-align: left; margin-bottom: 60px; }

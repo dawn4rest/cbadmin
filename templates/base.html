@@ -6,11 +6,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, shrink-to-fit=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta property="og:url" content="https://chatterboxes.com" />
+    <meta name="title" content="채터박스. 2지선다 오지랖 커뮤니티" />
+    <meta name="description" content="익명으로 썰을 풀고 찬반으로 나누어 의견을 공유해보세요." />
+    <meta property="og:url" content="https://chatterboxes.kr" />
     <meta property="og:type" content="CHATTERBOX" />
-    <meta property="og:title" content="Your Website Title" />
-    <meta property="og:description" content="Your description" />
-    <meta property="og:image" content="https://www.your-domain.com/path/image.jpg" />
+    <meta property="og:title" content="채터박스. 2지선다 오지랖 커뮤니티" />
+    <meta property="og:description" content="익명으로 썰을 풀고 찬반으로 나누어 의견을 공유해보세요." />
+    <meta property="og:image" content="{% static '/img/meta-share.png' %}" />
+    <meta name="twitter:card" content="CHATTERBOX" />
+    <meta name="twitter:title" content="채터박스. 2지선다 오지랖 커뮤니티" />
+    <meta name="twitter:description" content="익명으로 썰을 풀고 찬반으로 나누어 의견을 공유해보세요." />
+    <meta name="twitter:image" content="{% static '/img/meta-share.png' %}" />
+    <meta name="twitter:domain" content="https://chatterboxes.kr" />
+    <meta name="google-site-verification" content="Jj0ax6B6vXxcleDtv2Bp9z68zroJo0mMx-xnwVykN_k" />
+    <meta name="naver-site-verification" content="b3c819d9813b547f4a174e4d5071dac913db8a21" />
 
     <title>{% block title %}{% endblock %}</title>
 
@@ -47,7 +56,7 @@
 
     {% for message in messages %}
     {% if forloop.first %}
-    <div class="message d-none">{{ message }}</div>
+    <div class="message">{{ message }}</div>
     {% endif %}
     {% endfor %}
 

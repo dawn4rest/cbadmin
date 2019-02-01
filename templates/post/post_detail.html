@@ -13,8 +13,9 @@
 {% block content %}
 <nav class="lnb navbar">
     <div class="container">
-        <a class="nav-icon" href="javascript:history.back()"><img class="nav-icon" src="{% static '/img/icons/back.png' %}" /></a>
+        <a class="nav-icon" href="{% url 'post:post_list' %}"><img class="nav-icon" src="{% static '/img/icons/back.png' %}" /></a>
         <ul class="navbar-nav ml-auto flex-row">
+            {% if user.is_authenticated %}
             <li class="nav-item">
                 <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}" method="POST">
                     {% csrf_token %}
@@ -25,6 +26,11 @@
                     {% endif %}
                 </form>
             </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link btn btn-line" href="{% url 'member:login' %}?next={{ request.path }}">LOG IN</a>
+            </li>
+            {% endif %}
             <li class="nav-item"><a class="nav-link btn btn-fill share-trigger" data-toggle="modal" data-target="#shareModal">공유하기</a></li>
         </ul>
     </div>
@@ -42,7 +48,7 @@
         <a href="javascript:shareKatalk()">
             <img src="{% static '/img/share-kakao.svg' %}" />
         </a>
-        <a href="javascript:shareLink()">
+        <a class="web-block" href="javascript:shareLink()">
             <img src="{% static '/img/share-link.svg' %}" />
         </a>
         <input type="text" value="Copy Url" id="linkInput">
@@ -73,7 +79,7 @@
                 <a href="javascript:shareKatalk()">
                     <img src="{% static '/img/kakao.png' %}" />
                 </a>
-                <a href="javascript:shareLink()">
+                <a class="web-block" href="javascript:shareLink()">
                     <img src="{% static '/img/clip.png' %}" />
                 </a>
                 <input type="text" value="Copy Url" id="linkInput">
@@ -122,7 +128,9 @@
             <div class="tags-wrap">
                 <div class="tag-list">
                     {% for tag in post.tag|split_tags %}
-                    <p class="tag">{{ tag }}</p>
+                    <a href="/post/search/?q={{ tag }}">
+                        <p class="tag">{{ tag }}</p>
+                    </a>
                     {% endfor %}
                 </div>
             </div>
@@ -140,7 +148,7 @@
     <hr class="detail-hr m60">
 
     <div class="detail-body">
-        <span class="post-background">{{ post.background|safe|linebreaks }}</span>
+        <div class="post-background">{{ post.background|safe|linebreaksbr }}</div>
 
         {% if post.background_image1 %}
         <div class="thumbnail"><img src="{{ post.background_image1.url }}" /></div>

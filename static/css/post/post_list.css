@@ -10,7 +10,7 @@ footer { display: none; }
 .columns figure .background { margin: 0 20px 20px; }
 .columns figure .background p { font-size: 14px; line-height: 24px; -webkit-text-fill-color: #7f7f7f; color: #7f7f7f; word-break: break-all; }
 .columns figure .btn-area { display: flex; margin: 0 20px; padding-bottom: 20px; }
-.columns figure .btn-area img { opacity: .32; margin-top: 5px; width: 16px; height: 16px; }
+.columns figure .btn-area img { opacity: .32; margin-top: 4px; width: 16px; height: 16px; }
 .columns figure .btn-area h6 { display: inline; margin: 0 28px 0 8px; color: #C3C5C7; font-weight: 700; }
 .columns figure .btn-area span { line-height: 24px; color: #C3C5C7; }
 

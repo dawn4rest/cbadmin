@@ -44,9 +44,9 @@
 
     <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT TOGGLE START @@@@@@@@@@@@@@@@ -->
     <div class="btn-wrap">
-        <button class="coc-toggle collapsed" data-toggle="collapse" data-target="#action-{{ comment.pk }}">
+        <button class="coc-toggle {{ comment.pk }}-toggle collapsed" data-toggle="collapse" data-target="#action-{{ comment.pk }}">
             <img src="{% static '/img/icons/comment.png' %}" />
-            <span class="count">{{ comment.comment_on_comment.count }}</span>
+            <span class="count count-{{ comment.pk }}">{{ comment.comment_on_comment.count }}</span>
         </button>
         {% if user.is_authenticated %}
         <button data-toggle="modal" data-target="#reportModal" onclick="$('#reportModal .modal-content').load('{% url 'comment:comment_report' comment_pk=comment.pk %}');">
@@ -61,8 +61,9 @@
 <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT CONTENT START @@@@@@@@@@@@@@@@ -->
 <div class="comment-action collapse" id="action-{{ comment.pk }}">
     {% if user.is_authenticated %}
-    <div class="coc-form">
+    <div class="coc-form" name="{{ comment.pk }}">
         {{ comment_on_comment_form.content }}
+        <h6 id="coc-count-{{ comment.pk }}" class="coc-count">0</h6>
         <button class="btn btn-fill coc-create" name="{{ comment.pk }}">등록하기</button>
     </div>
     {% endif %}
@@ -72,7 +73,7 @@
         <div class="coc-item">{% include 'include/coc.html' %}</div>
         {% endfor %}
     </div>
-    <button class="coc-fold" data-toggle="collapse" data-target="#action-{{ comment.pk }}">
+    <button class="coc-fold" data-toggle="collapse" data-target="#action-{{ comment.pk }}" name="{{ comment.pk }}">
         <img src="{% static '/img/icons/down.png' %}" alt="">
         <p>접기</p>
     </button>

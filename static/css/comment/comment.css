@@ -3,13 +3,14 @@
 .comment-wrap .pro-comments { margin-right: 4px; }
 .comment-wrap .con-comments { margin-left: 4px; }
 
-.comment-wrap .col-6 .form-wrap { width: 100%; padding: 12px; border: 1px solid; text-align: right; }
+.comment-wrap .col-6 .form-wrap { width: 100%; margin: 0px; margin-top: 8px; padding: 12px; border: 1px solid; text-align: right; }
 .comment-wrap .col-6 .form-wrap textarea { height: 128px; border: 1px solid #C3C5C7; border-radius: 0; }
-.comment-wrap .col-6 .form-wrap button { margin: 12px; margin-right: 0; }
+.comment-wrap .col-6 .form-wrap .comment-count { position: relative; margin: -30px 10px 5px 0; word-break: keep-all; -webkit-text-fill-color: #2699FB; color: #2699FB; }
+.comment-wrap .col-6 .form-wrap button { margin: 12px 0 0 8px; }
 .comment-wrap .col-6 .form-wrap .btn-line { border-color: #C3C5C7; -webkit-text-fill-color: #3D3D3D !important; color: #3D3D3D !important; }
-.comment-wrap .col-6 .pro-form { margin: 8px 0; border-color: #41CC90; }
+.comment-wrap .col-6 .pro-form { border-color: #41CC90; }
 .comment-wrap .col-6 .pro-form .btn-fill { border-color: #41CC90; background-color:  #41CC90; }
-.comment-wrap .col-6 .con-form { margin: 8px 0; border-color: #FF725C; }
+.comment-wrap .col-6 .con-form { border-color: #FF725C; }
 .comment-wrap .col-6 .con-form .btn-fill { border-color: #FF725C; background-color:  #FF725C; }
 .comment-wrap .col-6 .comment-content .comment-update { padding: 0; border: 0; }
 
@@ -36,12 +37,13 @@
 .comment-footer .btn-wrap .like-hate form { padding: 0; border: 0; }
 .comment-wrap .col-6 .comment-footer .btn-wrap button { display: flex; align-items: center; margin: 0; }
 .comment-wrap .col-6 .comment-footer .btn-wrap button a { display: flex; align-items: center; }
-.comment-wrap .col-6 .comment-footer .btn-wrap .coc-toggle img { width: 16px; margin-right: 4px; opacity: .32; }
+.comment-wrap .col-6 .comment-footer .btn-wrap .coc-toggle img { margin-right: 2px; opacity: .32; }
 .comment-wrap .col-6 .comment-footer .btn-wrap .coc-toggle .count { -webkit-text-fill-color: #2699FB; color: #2699FB !important; }
 .comment-wrap .col-6 .comment-footer .btn-wrap .collapsed .count { -webkit-text-fill-color: #C3C5C7; color: #C3C5C7; }
 .comment-footer .btn-wrap button .hate { -webkit-transform:rotate(180deg); -moz-transform: rotate(180deg); -ms-transform: rotate(180deg); -o-transform: rotate(180deg); transform: rotate(180deg); }
 .comment-footer .btn-wrap .count { margin: 0 12px 0 4px; font-weight: 500; -webkit-text-fill-color: #C3C5C7; color: #C3C5C7; }
 .comment-footer .btn-wrap .active { -webkit-text-fill-color: #2699FB; color: #2699FB !important; }
+.btn-wrap button img { width: 16px; height: 16px; }
 
 
 @media screen and (max-width: 768px) {
@@ -50,9 +52,10 @@
     .comment-wrap .pro-comments { margin-right: 4px; }
     .comment-wrap .con-comments { margin-left: 4px; }
 
-    .comment-list .comment { padding: 20px 8px 8px; border: 0; background-color: #fff; }
-    .comment-wrap .col-6 .form-wrap { background-color: #fff; } 
-    .comment-wrap .col-6 .form-wrap button { margin: 8px; margin-right: 0; margin-bottom: 0; }
+    .comment-list .comment { padding: 20px 8px 12px; border: 0; background-color: #fff; }
+    .comment-wrap .col-6 .form-wrap { background-color: #fff; margin-top: 8px; }
+    .comment-wrap .col-6 .form-wrap .comment-count { margin: -24px 8px 4px 0; } 
+    .comment-wrap .col-6 .form-wrap button { margin: 0; margin-top: 5px; padding: 6px 9px; }
     
     .comment-header { flex-direction: column; align-items: left; }
     .comment-header .header-right { justify-content: left; margin-right: auto; padding: 8px 4px; }

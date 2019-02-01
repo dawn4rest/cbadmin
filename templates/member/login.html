@@ -31,17 +31,20 @@
     <div class="login col-md-6">
         <div class="login-header">
             <h2>LOG IN</h2>
+                
             <ul class="nav nav-pills nav-fill">
-                <li class="nav-item"><a class="tab-link active" href="#">
-                        <h5>LOG IN</h5>
-                    </a></li>
-                <li class="nav-item"><a class="tab-link" href="{% url 'member:signup' %}">
-                        <h5>SIGN UP</h5>
-                    </a></li>
+                <li class="nav-item"><a class="tab-link active" data-toggle="pill" href="#login"><h5>LOG IN</h5></a></li>
+                <li class="nav-item"><a class="tab-link" data-toggle="pill" href="#signup"><h5>SIGN UP</h5></a></li>
             </ul>
         </div>
-
-        {% include 'include/form.html' with form=login_form submit_class='btn-full' submit_title='LOG IN' %}
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="login">
+                {% include 'include/form.html' with form=login_form submit_class='btn-full' submit_title='LOG IN' %}
+            </div>
+            <div class="tab-pane fade" id="signup">
+                {% include 'include/form.html' with form=signup_form submit_class='btn-full' submit_title='SIGN UP' enctype='file' %}
+            </div>
+        </div>
 
         <a href="/accounts/password/reset">
             <h5 class="pt-3 sub-link">계정을 잊어버리셨나요?</h5>

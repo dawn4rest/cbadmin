@@ -53,30 +53,9 @@
         <h4>인기 있는 #hashtag</h4>
     </div>
     <div class="tag-list col-md-6 p-0">
-        <span class="tag">제가</span>
-        <span class="tag">잘못한</span>
-        <span class="tag">일인지</span>
-        <span class="tag">객관적인</span>
-        <span class="tag">시선에서</span>
-        <span class="tag">보고</span>
-        <span class="tag">제가</span>
-        <span class="tag">잘못한</span>
-        <span class="tag">일인지</span>
-        <span class="tag">객관적인</span>
-        <span class="tag">시선에서</span>
-        <span class="tag">보고</span>
-        <span class="tag">제가</span>
-        <span class="tag">잘못한</span>
-        <span class="tag">일인지</span>
-        <span class="tag">객관적인</span>
-        <span class="tag">시선에서</span>
-        <span class="tag">보고</span>
-        <span class="tag">제가</span>
-        <span class="tag">잘못한</span>
-        <span class="tag">일인지</span>
-        <span class="tag">객관적인</span>
-        <span class="tag">시선에서</span>
-        <span class="tag">보고</span>
+        {% for tag in tags %}
+        <a class="tag" href="/post/search/?q={{ tag.name }}">{{ tag.name }}</a>
+        {% endfor %}
     </div>
 </div>
 {% endif %}

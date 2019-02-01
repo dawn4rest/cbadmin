@@ -71,4 +71,20 @@ $(document).ready(function () {
             $(this).children('img').attr('src', '/static/img/icons/comment-fill.png');
         }
     });
+
+    $(document).on('click', '.coc-fold', function () {
+        var target = $(this).attr('name');
+        $('.' + target + '-toggle').click();
+    });
+
+    $("#pro-form textarea").keyup(function () {
+        $('#pro-comment-count').text($(this).val().length);
+    });
+    $("#con-form textarea").keyup(function () {
+        $('#con-comment-count').text($(this).val().length);
+    });
+    $(".coc-form textarea").keyup(function () {
+        var pk = $(this).parent().attr('name');
+        $('#coc-count-' + pk).text($(this).val().length);
+    });
 });

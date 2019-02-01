@@ -33,7 +33,7 @@ def get_secret(setting, secrets=secrets):
 
 SECRET_KEY = get_secret('SECRET_KEY')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*', 'chatterboxes.kr', 'www.chatterboxes.kr']
 
@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'comment',
     'tagging',
     'multiselectfield',
+    'debug_toolbar',
 
     'allauth',
     'allauth.account',
@@ -138,7 +139,18 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 3600
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
 
 ROOT_URLCONF = 'chatterbox.urls'
 
@@ -216,3 +228,6 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
+# 이 아이피에서만 디버그 툴바가 보인다.
+INTERNAL_IPS = ('211.179.159.66',)

@@ -1,4 +1,4 @@
-.toast { position: fixed; top: 108px; right: 64px; border: 0; }
+.toast { position: fixed; top: 108px; right: 64px; border: 0; z-index: 1051; }
 .toast-header { padding: 12px 20px; background-color: #3d3d3d; border: 1px solid #fff; border-radius: 5px; }
 .toast-header .content p { -webkit-text-fill-color: #fff; color: #fff; font-weight: 500; }
 .toast-header button { -webkit-text-fill-color: #fff; color: #fff; font-weight: 500; margin-left: 32px; }

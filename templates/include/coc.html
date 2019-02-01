@@ -6,17 +6,17 @@
     </div>
     <div class="header-right">
         {% if user.is_authenticated %}
-        <a href="#reportModal" data-toggle="modal" onclick="$('#reportModal .modal-content').load('{% url 'comment:coc_report' coc_pk=coc.pk %}');"><img
-                src="{% static '/img/icons/report.png' %}" />
-            <span>신고</span>
+        <a href="#reportModal" data-toggle="modal" onclick="$('#reportModal .modal-content').load('{% url 'comment:coc_report' coc_pk=coc.pk %}');">
+            <img src="{% static '/img/icons/report.png' %}" /><span>신고</span>
         </a>
         {% endif %}
         {% if coc.author == request.user %}
-        <a onclick="$('.coc-clear-btn').click();$('#coc-content-{{ coc.pk }}').load('{% url 'comment:coc_update' coc_pk=coc.pk %}');"><img
-                src="{% static '/img/icons/edit.png' %}">
-            수정
+        <a class="coc-update" onclick="$('.coc-clear-btn').click();$('#coc-content-{{ coc.pk }}').load('{% url 'comment:coc_update' coc_pk=coc.pk %}');">
+            <img src="{% static '/img/icons/edit.png' %}">수정
         </a>
-        <a class="coc-delete" name="{{ coc.pk }}"><img src="{% static '/img/icons/delete.png' %}" />삭제</a>
+        <a class="coc-delete" name="{{ coc.pk }}">
+            <img src="{% static '/img/icons/delete.png' %}" />삭제
+        </a>
         {% endif %}
     </div>
 </div>
