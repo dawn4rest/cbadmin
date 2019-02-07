@@ -25,9 +25,8 @@
 {% if posts %}
 <div class="row m60">
     <div class="search-header">
-        <h4>ALL CATEGORY<span>({{ posts.count }})</span></h4>
+        <h4>ALL CATEGORY<span>({{ search_count }})</span></h4>
     </div>
-
     <hr class="search-divider" />
 </div>
 
@@ -62,7 +61,7 @@
 {% endblock %}
 
 {% block customJS %}
+<script src="{% static 'js/post/search.js' %}"></script>
 <script src="{% static 'js/include/easy_pie_chart.js' %}"></script>
 <script src="{% static 'js/post/post_detail.js' %}"></script>
-<script src="{% static 'js/post/search.js' %}"></script>
 {% endblock %}

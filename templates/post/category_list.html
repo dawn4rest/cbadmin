@@ -15,13 +15,16 @@
 </div>
 
 <div class="row justify-content-center p-0">
-    {% if post_set %}
+    {% if posts %}
     <div class="infinite-container columns col-12 p-0 m60">
-        {% for post in post_set %}
+        {% for post in posts %}
         <figure id="post-{{ post.pk }}" class="infinite-item">
             {% include 'include/post.html' %}
         </figure>
         {% endfor %}
+        {% if posts.has_next %}
+        <a class="infinite-more-link d-none" href="?page={{ posts.next_page_number }}">더 보기</a>
+        {% endif %}
     </div>
     {% else %}
     <div class="container text-center my-5 py-5">
@@ -33,5 +36,18 @@
 
 {% block customJS %}
 <script src="{% static 'js/include/easy_pie_chart.js' %}"></script>
+<script src="{% static 'js/include/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/include/infinite.min.js' %}"></script>
 <script src="{% static 'js/post/post_detail.js' %}"></script>
+<script>
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+        onBeforePageLoad: function () {
+
+        },
+        onAfterPageLoad: function ($items) {
+            customChart();
+        }
+    });
+</script>
 {% endblock %}

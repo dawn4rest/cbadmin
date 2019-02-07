@@ -15,14 +15,17 @@ from comment import forms as comment_forms
 
 def search(request):
     q = request.GET.get('q', '')
-    posts = Post.objects.filter(Q(title__icontains=q) | Q(tag__icontains=q))
     tags = Tag.objects.annotate(tags_count=Count(
         'items')).order_by('-tags_count')[:40]
 
+    posts = Post.objects.filter(Q(title__icontains=q) | Q(tag__icontains=q))
+    search_count = posts.count()
+
     context = {
-        'posts': posts,
         'q': q,
         'tags': tags,
+        'posts': posts,
+        'search_count': search_count,
     }
     return render(request, 'post/search.html', context)
 
@@ -31,7 +34,7 @@ def show_category(request, hierarchy=None):
     sort = request.GET.get('sort', '')
     categories = Category.objects.all()
     category_slug = hierarchy.split('/')
-    category_queryset = list(Category.objects.all())
+    category_queryset = list(categories)
     all_slugs = [x.slug for x in category_queryset]
     parent = None
 
@@ -39,35 +42,37 @@ def show_category(request, hierarchy=None):
         if slug in all_slugs:
             target = slug
             parent = get_object_or_404(Category, slug=slug, parent=parent)
+            posts = parent.post_set.all()
 
             if sort == 'likes':
-                post_set = parent.post_set.annotate(
-                    like_count=Count('like_users')).order_by('-like_count')
-            elif sort == 'new':
-                post_set = parent.post_set.all().order_by('-created_at')
+                posts = posts.annotate(like_count=Count(
+                    'like_users')).order_by('-like_count')
             elif sort == 'views':
-                post_set = parent.post_set.all().order_by('-view_count')
+                posts = posts.order_by('-view_count')
             elif sort == 'comments':
-                post_set = parent.post_set.annotate(
-                    count=Count('comment')).order_by('-count')
+                posts = posts.annotate(count=Count(
+                    'comment')).order_by('-count')
             else:
-                post_set = parent.post_set.all().order_by('-created_at')
+                posts = posts.order_by('-created_at')
 
-        else:
-            instance = get_object_or_404(Post, slug=slug)
-            breadcrumbs_link = instance.get_cat_list()
-            category_name = [' '.join(i.split('/')[-1].split('-'))
-                             for i in breadcrumbs_link]
-            breadcrumbs = zip(breadcrumbs_link, category_name)
-            return render(request, "post-detail.html", {'instance': instance, 'breadcrumbs': breadcrumbs})
+    paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
 
-    return render(request, "post/category_list.html", {
-        'post_set': post_set,
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    context = {
+        'posts': posts,
         'sub_categories': parent.children.all(),
         'categories': categories,
         'target': target,
         'sort': sort,
-    })
+    }
+    return render(request, "post/category_list.html", context)
 
 
 def post_list(request):
@@ -78,14 +83,10 @@ def post_list(request):
     if sort == 'likes':
         posts = posts.annotate(like_count=Count(
             'like_users')).order_by('-like_count')
-    elif sort == 'vs':
-        posts = posts.annotate(vs_abs=Count('comment', filter=Q(comment__type=True))-Count(
-            'comment', filter=Q(comment__type=False))).order_by('-vs_abs')
     elif sort == 'views':
         posts = posts.order_by('-view_count')
     elif sort == 'comments':
-        posts = posts.annotate(
-            count=Count('comment')).order_by('-count')
+        posts = posts.annotate(count=Count('comment')).order_by('-count')
     else:
         posts = posts.order_by('-created_at')
 

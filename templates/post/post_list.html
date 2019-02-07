@@ -34,46 +34,15 @@
 <script src="{% static 'js/include/easy_pie_chart.js' %}"></script>
 <script src="{% static 'js/include/jquery.waypoints.min.js' %}"></script>
 <script src="{% static 'js/include/infinite.min.js' %}"></script>
+<script src="{% static 'js/post/post_detail.js' %}"></script>
 <script>
-    function customChart() {
-        $('.pro-chart').easyPieChart({
-            barColor: '#41cc90',
-            scaleColor: false,
-            size: 80,
-            animate: 1000,
-            lineWidth: 8,
-            onStep: function (value) {
-                this.$el.find('span').text(Math.round(value));
-            },
-            onStop: function (value, to) {
-                this.$el.find('span').text(Math.round(to));
-            }
-        });
-        $('.con-chart').easyPieChart({
-            barColor: '#FF725C',
-            scaleColor: false,
-            size: 80,
-            animate: 1000,
-            lineWidth: 8,
-            onStep: function (value) {
-                this.$el.find('span').text(Math.round(value));
-            },
-            onStop: function (value, to) {
-                this.$el.find('span').text(Math.round(to));
-            }
-        });
-    };
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+        onBeforePageLoad: function () {
 
-    customChart();
-
-    $(window).scroll(function () {
-        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-            var infinite = new Waypoint.Infinite({
-                element: $('.infinite-container')[0]
-            });
-            setTimeout(function () {
-                customChart();
-            }, 1000);
+        },
+        onAfterPageLoad: function ($items) {
+            customChart();
         }
     });
 </script>
