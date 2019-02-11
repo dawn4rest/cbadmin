@@ -14,24 +14,24 @@
     {% include 'include/sort.html' %}
 </div>
 
-<div class="row justify-content-center p-0">
-    {% if posts %}
-    <div class="infinite-container columns col-12 p-0 m60">
-        {% for post in posts %}
-        <figure id="post-{{ post.pk }}" class="infinite-item">
-            {% include 'include/post.html' %}
-        </figure>
-        {% endfor %}
-        {% if posts.has_next %}
-        <a class="infinite-more-link d-none" href="?page={{ posts.next_page_number }}">더 보기</a>
-        {% endif %}
+{% if posts %}
+<div class="infinite-container row m60">
+    {% for post in posts %}
+    <div id="post-{{ post.pk }}" class="infinite-item col-lg-4 col-md-6">
+        {% include 'include/post.html' %}
     </div>
-    {% else %}
+    {% endfor %}
+    {% if posts.has_next %}
+    <a class="infinite-more-link d-none" href="?page={{ posts.next_page_number }}">더 보기</a>
+    {% endif %}
+</div>
+{% else %}
+<div class="row justify-content-center p-0">
     <div class="container text-center my-5 py-5">
         <h3>아직 게시물이 없습니다..</h3>
     </div>
-    {% endif %}
 </div>
+{% endif %}
 {% endblock %}
 
 {% block customJS %}

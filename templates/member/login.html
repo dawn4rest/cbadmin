@@ -31,32 +31,29 @@
     <div class="login col-md-6">
         <div class="login-header">
             <h2>LOG IN</h2>
-                
             <ul class="nav nav-pills nav-fill">
-                <li class="nav-item"><a class="tab-link active" data-toggle="pill" href="#login"><h5>LOG IN</h5></a></li>
-                <li class="nav-item"><a class="tab-link" data-toggle="pill" href="#signup"><h5>SIGN UP</h5></a></li>
+                <li class="nav-item"><a class="tab-link active" href="#">
+                        <h5>LOG IN</h5>
+                    </a></li>
+                <li class="nav-item"><a class="tab-link" href="{% url 'member:signup' %}">
+                        <h5>SIGN UP</h5>
+                    </a></li>
             </ul>
         </div>
-        <div class="tab-content">
-            <div class="tab-pane fade show active" id="login">
-                {% include 'include/form.html' with form=login_form submit_class='btn-full' submit_title='LOG IN' %}
-            </div>
-            <div class="tab-pane fade" id="signup">
-                {% include 'include/form.html' with form=signup_form submit_class='btn-full' submit_title='SIGN UP' enctype='file' %}
-            </div>
-        </div>
+
+        {% include 'include/form.html' with form=login_form submit_class='btn-full' submit_title='LOG IN' %}
 
         <a href="/accounts/password/reset">
-            <h5 class="pt-3 sub-link">계정을 잊어버리셨나요?</h5>
+            <h5 class="mt-3 sub-link">계정을 잊어버리셨나요?</h5>
         </a>
 
         <div id="social-login" class="btn-wrap row m60">
             <a class="col-md-6 col-12 social-btn facebook" href="/accounts/facebook/login/?process=login">
                 <img src="{% static '/img/facebook.png' %}" />FACEBOOK으로 계속하기
             </a>
-            <a class="col-md-6 col-12 social-btn google" href="/accounts/google/login/?process=login">
+            <!-- <a class="col-md-6 col-12 social-btn google" href="/accounts/google/login/?process=login">
                 <img src="{% static '/img/google.png' %}" />Google로 계속하기
-            </a>
+            </a> -->
             <a class="col-md-6 col-12 social-btn kakao" href="/accounts/kakao/login/?process=login">
                 <img src="{% static '/img/kakao.png' %}" />Kakao로 계속하기
             </a>

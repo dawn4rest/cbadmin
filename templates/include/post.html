@@ -1,39 +1,40 @@
 {% load static %}
 {% load post_extras %}
-
-<div class="tag-list">
-    {% for tag in post.tag|split_tags %}
-    <a class="tag" href="/post/search/?q={{ tag }}">{{ tag }}</a>
-    {% endfor %}
-</div>
-<a href="{% url 'post:post_detail' post_pk=post.pk %}">
-    <h3>{{ post.title|truncatechars:40 }}</h3>
-
-    <div class="background">
-        <p>{{ post.background|safe|truncatechars:160 }}</p>
+<div class="post-wrap">
+    <div class="tag-list">
+        {% for tag in post.tag|split_tags %}
+        <a class="tag" href="/post/search/?q={{ tag }}">{{ tag }}</a>
+        {% endfor %}
     </div>
-</a>
-<div class="percent-wrap">
-    <div class="chart">
-        <h6 class="label pro-title">{{ post.pro_title|truncatechars:12 }}</h6>
-        <div class="percentage pro-chart" data-percent="{% widthratio post.pro_percent 1 100 %}">
-            <span class="pro-title">{% widthratio post.con_percent 1 100 %}</span><sup class="pro-title">%</sup>
+    <a href="{% url 'post:post_detail' post_pk=post.pk %}">
+        <h3>{{ post.title|truncatechars:40 }}</h3>
+
+        <div class="background">
+            <p>{{ post.background|safe|truncatechars:160 }}</p>
+        </div>
+    </a>
+    <div class="percent-wrap">
+        <div class="chart">
+            <h6 class="label pro-title">{{ post.pro_title|truncatechars:12 }}</h6>
+            <div class="percentage pro-chart" data-percent="{% widthratio post.pro_percent 1 100 %}">
+                <span class="pro-title">{% widthratio post.con_percent 1 100 %}</span><sup class="pro-title">%</sup>
+            </div>
+        </div>
+        <h5>vs</h5>
+        <div class="chart">
+            <h6 class="label con-title">{{ post.con_title|truncatechars:12 }}</h6>
+            <div class="percentage con-chart" data-percent="{% widthratio post.con_percent 1 100 %}">
+                <span class="con-title">{% widthratio post.con_percent 1 100 %}</span><sup class="con-title">%</sup>
+            </div>
         </div>
     </div>
-    <h5>vs</h5>
-    <div class="chart">
-        <h6 class="label con-title">{{ post.con_title|truncatechars:12 }}</h6>
-        <div class="percentage con-chart" data-percent="{% widthratio post.con_percent 1 100 %}">
-            <span class="con-title">{% widthratio post.con_percent 1 100 %}</span><sup class="con-title">%</sup>
-        </div>
+    <div class="btn-area">
+        <img src="{% static '/img/icons/view.png' %}" />
+        <h6>{{ post.view_count }}</h6>
+        <img src="{% static '/img/icons/heart-gray.png' %}" />
+        <h6>{{ post.likes_count }}</h6>
+        <img src="{% static '/img/icons/comment.png' %}" />
+        <h6>{{ post.comment_count }}</h6>
+        <span class="ml-auto">{{ post.natural_time }}</span>
     </div>
-</div>
-<div class="btn-area">
-    <img src="{% static '/img/icons/view.png' %}" />
-    <h6>{{ post.view_count }}</h6>
-    <img src="{% static '/img/icons/heart-gray.png' %}" />
-    <h6>{{ post.likes_count }}</h6>
-    <img src="{% static '/img/icons/comment.png' %}" />
-    <h6>{{ post.comment_count }}</h6>
-    <span class="ml-auto">{{ post.natural_time }}</span>
 </div>

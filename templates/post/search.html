@@ -30,14 +30,12 @@
     <hr class="search-divider" />
 </div>
 
-<div class="row justify-content-center p-0">
-    <div class="infinite-container columns col-12 p-0 m60">
-        {% for post in posts %}
-        <figure id="post-{{ post.pk }}" class="infinite-item">
-            {% include 'include/post.html' %}
-        </figure>
-        {% endfor %}
+<div class="infinite-container row m60">
+    {% for post in posts %}
+    <div id="post-{{ post.pk }}" class="infinite-item col-lg-4 col-md-6">
+        {% include 'include/post.html' %}
     </div>
+    {% endfor %}
 </div>
 {% else %}
 <div class="web-block p60"></div>

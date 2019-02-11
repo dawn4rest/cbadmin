@@ -1,0 +1,7 @@
+{% for post in posts %}
+<div id="post-{{ post.pk }}" class="col-lg-4 col-md-6">
+    <div class="grid-item">
+        {% include 'include/post.html' %}
+    </div>
+</div>
+{% endfor %}

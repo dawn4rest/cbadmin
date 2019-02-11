@@ -27,6 +27,7 @@
 
 .item-footer { text-align: center; }
 .item-footer label { display: block; text-align: left; margin-bottom: 60px; }
+.item-footer img { width: 50%; }
 
 .carousel-item label { font-size: 12px; font-weight: 700; color: #7F7F7F; margin-bottom: 8px; }
 .carousel-item label span { font-weight: 700; color: #FF725C; }

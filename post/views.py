@@ -16,7 +16,7 @@ from comment import forms as comment_forms
 def search(request):
     q = request.GET.get('q', '')
     tags = Tag.objects.annotate(tags_count=Count(
-        'items')).order_by('-tags_count')[:40]
+        'items')).order_by('-tags_count')[:28]
 
     posts = Post.objects.filter(Q(title__icontains=q) | Q(tag__icontains=q))
     search_count = posts.count()

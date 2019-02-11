@@ -24,6 +24,7 @@
 
     <title>{% block title %}{% endblock %}</title>
 
+    <link rel="icon" href="{% static '/img/favicon.ico' %}">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700&amp;subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -57,7 +58,7 @@
 
     {% for message in messages %}
     {% if forloop.first %}
-    <div class="message">{{ message }}</div>
+    <div class="d-none message">{{ message }}</div>
     {% endif %}
     {% endfor %}
 

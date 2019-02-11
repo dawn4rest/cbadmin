@@ -53,9 +53,9 @@ select {
 		linear-gradient(135deg, #2699FB 50%, transparent 50%),
 		linear-gradient(to right, #ccc, #ccc);
 	background-position:
-		calc(100% - 20px) calc(1em + 3px),
-		calc(100% - 15px) calc(1em + 3px),
-		calc(100% - 2.5em) 0.6em;
+		calc(100% - 20px) calc(1em + 5px),
+		calc(100% - 15px) calc(1em + 5px),
+		calc(100% - 2.5em) 0.8em;
 	background-size: 5px 5px, 6px 5px, 2px 1.5em;
 	background-repeat: no-repeat;
 }
@@ -65,9 +65,9 @@ select:focus {
 		linear-gradient(135deg, transparent 50%, #2699FB 50%),
 		linear-gradient(to right, #ccc, #ccc);
 	background-position:
-		calc(100% - 15px) 1em,
-		calc(100% - 20px) 1em,
-		calc(100% - 2.5em) 0.6em;
+		calc(100% - 15px) calc(100% - 20px),
+		calc(100% - 20px) calc(100% - 20px),
+		calc(100% - 2.5em) 0.8em;
 	background-size: 6px 5px, 5px 5px, 2px 1.5em;
 	background-repeat: no-repeat;
 	border-color: #2699FB;
@@ -91,6 +91,8 @@ select:-moz-focusring {
 .mobile-block { display: none !important; }
 .highlight { -webkit-text-fill-color: #2699FB; color: #2699FB; }
 .strong { font-weight: 700; }
+.help-block { -webkit-text-fill-color: #FF725C !important; color: #FF725C !important; }
+.text-danger { -webkit-text-fill-color: #FF725C !important; color: #FF725C !important; }
 
 
 /* NAVBAR STYLE */
@@ -159,7 +161,8 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; wo
     border: 1px solid #C3C5C7; 
 	font-size: 12px;
 	line-height: 3;
-	font-weight: 400;
+    font-weight: 400;
+    -webkit-text-fill-color: #7f7f7f; 
 	color: #7f7f7f;
 	cursor: pointer;
 	word-break: keep-all;
@@ -201,11 +204,13 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; wo
 
 	/* NAVBAR STYLE */
 	nav.navbar { height: 48px; padding: 0; }
-	nav.navbar .container { padding: 0 15px; }
-	nav.navbar .nav-logo { width: 108px; }
+    nav.navbar .container { padding: 0 15px; }
+    nav.navbar .navbar-brand { padding: 0; }
+	nav.navbar .nav-logo { width: 96px; height: 48px; }
 	nav.navbar .nav-item { margin-left: 12px; }
 	nav.navbar .nav-item .btn { padding: 4px 8px; }
-	nav.navbar .nav-icon { width: 20px; margin-top: 6px; }
+    nav.navbar .nav-icon { width: 20px; margin-top: 6px; }
+    nav.navbar .nav-link { padding: 0; }
     nav.navbar .nav-link .nav-img { width: 20px; }
     nav.navbar .nav-link .x2 { width: 32px; }
     
@@ -240,11 +245,11 @@ label { font-size: 16px; line-height: 24px; font-weight: 500; color: #C3C5C7; wo
     .form-wrap .form-group input { height: 40px; font-size: 11px !important; }
     textarea { font-size: 11px !important; }
     select {
-        background-position: calc(100% - 16px) calc(1em + 3px), calc(100% - 10px) calc(1em + 3px), calc(100% - 2.1em) 0.5em;
+        background-position: calc(100% - 16px) calc(1em + 5px), calc(100% - 10px) calc(1em + 5px), calc(100% - 2.8em) 0.8em;
         background-size: 5px 5px, 6px 5px, 1px 1.8em;
     }
     select:focus { 
-        background-position: calc(100% - 10px) 1em, calc(100% - 16px) 1em, calc(100% - 2.1em) 0.5em; 
+        background-position: calc(100% - 10px) calc(100% - 18px), calc(100% - 16px) calc(100% - 18px), calc(100% - 2.8em) 0.8em; 
         background-size: 6px 5px, 5px 5px, 1px 1.8em; 
     }
 }
