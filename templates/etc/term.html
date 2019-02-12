@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block customCSS %}
+<link rel="stylesheet" href="{% static 'css/etc/company.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="row justify-content-center m60">
-    <div class="password-action col-md-10 p-0 m60">
+    <div class="password-action col-md-8 p-0 m60">
         <h2 class="pb-5 text-center">서비스 이용약관</h2>
 
         <h4 class="strong mt-5 py-3">제 1 조 (목적)</h4>
@@ -105,7 +109,8 @@
             ① 회사가 회원에게 제공하는 서비스에 대한 지식재산권을 포함한 일체의 권리는 회사에 귀속됩니다. <br />
             ② 회원은 아래 각 호에 해당하는 행위를 하여서는 안됩니다. <br />
             1. 회원정보에 허위내용을 등록하는 행위 <br />
-            2. 회사의 서비스에 게시된 정보를 변경하거나 서비스를 이용하여 얻은 정보를 회사의 사전 승낙 없이 영리 또는 비영리의 목적으로 복제·출판·방송 등에 사용하거나 제3자에게 제공하는 행위 <br />
+            2. 회사의 서비스에 게시된 정보를 변경하거나 서비스를 이용하여 얻은 정보를 회사의 사전 승낙 없이 영리 또는 비영리의 목적으로 복제·출판·방송 등에 사용하거나 제3자에게 제공하는 행위
+            <br />
             3. 회사가 제공하는 서비스를 이용하여 제3자에게 본인을 홍보할 기회를 제공하거나 제3자의 홍보를 대행하는 등의 방법으로 금전을 수수하거나 서비스를 이용할 권리를 양도하고 이를 대가로 금전을
             수수하는 행위 <br />
             4. 회사 기타 제3자의 명예를 훼손하거나 지식재산권을 침해하는 등 회사나 제3자의 권리를 침해하는 행위 <br />
@@ -177,11 +182,11 @@
         </h6>
         <h4 class="strong mt-5 py-3">본 약관은 2019년 01월 01일부터 적용됩니다.</h4>
 
-        <h2 class="text-center my-5 pt-5">
+        <h2 class="text-center mt-5 pt-5">
             채터박스의 수다쟁이가 <br />
             될 준비가 되었어요!
         </h2>
-        <button class="btn btn-fill btn-full mb-5">구경하러 가기</button>
+        <a href="/"><button class="btn btn-fill btn-full">구경하러 가기</button></a>
     </div>
 </div>
 {% endblock %}

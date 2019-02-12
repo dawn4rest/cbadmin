@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block customCSS %}
+<link rel="stylesheet" href="{% static 'css/etc/company.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="row justify-content-center m60">
-    <div class="password-action col-md-10 p-0 m60">
+    <div class="password-action col-md-8 p-0 m60">
         <h2 class="pb-5 text-center">개인정보 처리방침</h2>
 
 
@@ -173,11 +177,11 @@
 
         <h4 class="strong mt-5 py-3">개인정보 처리방침 시행일자 : 2019년 01월 01일</h4>
 
-        <h2 class="text-center my-5 pt-5">
+        <h2 class="text-center mt-5 pt-5">
             채터박스의 수다쟁이가 <br />
             될 준비가 되었어요!
         </h2>
-        <button class="btn btn-fill btn-full mb-5">구경하러 가기</button>
+        <a href="/"><button class="btn btn-fill btn-full">구경하러 가기</button></a>
     </div>
 </div>
 {% endblock %}

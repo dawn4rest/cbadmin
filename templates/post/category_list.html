@@ -14,10 +14,14 @@
     {% include 'include/sort.html' %}
 </div>
 
+<div class="grid row m60">
+
+</div>
+
 {% if posts %}
-<div class="infinite-container row m60">
+<div class="infinite-container row">
     {% for post in posts %}
-    <div id="post-{{ post.pk }}" class="infinite-item col-lg-4 col-md-6">
+    <div id="post-{{ post.pk }}" class="infinite-item grid-item">
         {% include 'include/post.html' %}
     </div>
     {% endfor %}
@@ -35,11 +39,22 @@
 {% endblock %}
 
 {% block customJS %}
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
 <script src="{% static 'js/include/easy_pie_chart.js' %}"></script>
 <script src="{% static 'js/include/jquery.waypoints.min.js' %}"></script>
 <script src="{% static 'js/include/infinite.min.js' %}"></script>
 <script src="{% static 'js/post/post_detail.js' %}"></script>
 <script>
+    var $grid = $('.grid').masonry({
+        gutter: 15,
+        horizontalOrder: true,
+        itemSelector: '.grid-item',
+    });
+
+    var $items = $('.infinite-container .infinite-item');
+    $grid.append($items).masonry('appended', $items);
+    $('.grid').masonry();
+
     var infinite = new Waypoint.Infinite({
         element: $('.infinite-container')[0],
         onBeforePageLoad: function () {
@@ -47,7 +62,14 @@
         },
         onAfterPageLoad: function ($items) {
             customChart();
+            var $items = $('.infinite-container .infinite-item');
+            $grid.append($items).masonry('appended', $items);
+            $('.grid').masonry();
         }
+    });
+
+    $(document).ready(function () {
+        $('.grid').masonry();
     });
 </script>
 {% endblock %}

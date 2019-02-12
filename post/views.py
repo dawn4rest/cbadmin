@@ -90,7 +90,7 @@ def post_list(request):
     else:
         posts = posts.order_by('-created_at')
 
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, 12)
     page = request.GET.get('page')
 
     try:
