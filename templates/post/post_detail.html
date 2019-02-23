@@ -13,7 +13,8 @@
 {% block content %}
 <nav class="lnb navbar">
     <div class="container">
-        <a class="nav-icon" href="{% url 'post:post_list' %}"><img class="nav-icon" src="{% static '/img/icons/back.png' %}" /></a>
+        <a class="nav-icon" href="{% url 'post:post_list' %}"><img class="nav-icon"
+                src="{% static '/img/icons/back.png' %}" /></a>
         <ul class="navbar-nav ml-auto flex-row">
             {% if user.is_authenticated %}
             <li class="nav-item">
@@ -31,7 +32,8 @@
                 <a class="nav-link btn btn-line" href="{% url 'member:login' %}?next={{ request.path }}">LOG IN</a>
             </li>
             {% endif %}
-            <li class="nav-item"><a class="nav-link btn btn-fill share-trigger" data-toggle="modal" data-target="#shareModal">공유하기</a></li>
+            <li class="nav-item"><a class="nav-link btn btn-fill share-trigger" data-toggle="modal"
+                    data-target="#shareModal">공유하기</a></li>
         </ul>
     </div>
 </nav>
@@ -70,13 +72,13 @@
             </form>
 
             <div class="share-sns">
-                <a href="javascript:shareFacebook()">
+                <a class="share-f" href="javascript:shareFacebook()">
                     <img src="{% static '/img/facebook.png' %}" />
                 </a>
-                <a href="javascript:shareNaver()">
+                <a class="share-n" href="javascript:shareNaver()">
                     <img src="{% static '/img/naver.png' %}" />
                 </a>
-                <a href="javascript:shareKatalk()">
+                <a class="share-k" href="javascript:shareKatalk()">
                     <img src="{% static '/img/kakao.png' %}" />
                 </a>
                 <a class="web-block" href="javascript:shareLink()">
@@ -138,8 +140,10 @@
             {% if request.user == post.author %}
             <form class="btn-wrap row" action="{% url 'post:post_delete' post.pk %}" method="post">
                 {% csrf_token %}
-                <div class="col-6"><a class="btn btn-fill btn-full" href="{% url 'post:post_update' post.pk %}" style="border: 0;">수정하기</a></div>
-                <div class="col-6"><input class="btn btn-gray btn-full" type="submit" value="삭제하기" onclick="return confirm('정말로 삭제할까요? \n\n게시물을 삭제하시면 해당 게시물의 \n모든 이력도 초기화 됩니다.')"></div>
+                <div class="col-6"><a class="btn btn-fill btn-full" href="{% url 'post:post_update' post.pk %}"
+                        style="border: 0;">수정하기</a></div>
+                <div class="col-6"><input class="btn btn-gray btn-full" type="submit" value="삭제하기"
+                        onclick="return confirm('정말로 삭제할까요? \n\n게시물을 삭제하시면 해당 게시물의 \n모든 이력도 초기화 됩니다.')"></div>
             </form>
             {% endif %}
         </div>

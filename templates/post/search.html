@@ -26,17 +26,18 @@
 <div class="row m60">
     <div class="search-header">
         <h4>ALL CATEGORY<span>({{ search_count }})</span></h4>
+        <hr class="search-divider" />
     </div>
-    <hr class="search-divider" />
 </div>
 
-<div class="infinite-container row m60">
+<div class="grid row m60">
     {% for post in posts %}
-    <div id="post-{{ post.pk }}" class="infinite-item col-lg-4 col-md-6">
+    <div id="post-{{ post.pk }}" class="grid-item">
         {% include 'include/post.html' %}
     </div>
     {% endfor %}
 </div>
+
 {% else %}
 <div class="web-block p60"></div>
 <div class="search-empty m60">
@@ -45,11 +46,11 @@
 </div>
 {% endif %}
 {% else %}
-<div class="tag-wrap row p-0 m60">
+<div class="tag-wrap row m60">
     <div class="search-header">
         <h4>인기 있는 #hashtag</h4>
     </div>
-    <div class="tag-list col-md-6 p-0">
+    <div class="tag-list col-md-6">
         {% for tag in tags %}
         <a class="tag" href="/post/search/?q={{ tag.name }}">{{ tag.name }}</a>
         {% endfor %}
@@ -59,7 +60,19 @@
 {% endblock %}
 
 {% block customJS %}
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
 <script src="{% static 'js/post/search.js' %}"></script>
 <script src="{% static 'js/include/easy_pie_chart.js' %}"></script>
 <script src="{% static 'js/post/post_detail.js' %}"></script>
+<script>
+    var $grid = $('.grid').masonry({
+        gutter: 15,
+        horizontalOrder: true,
+        itemSelector: '.grid-item',
+    });
+
+    $(document).ready(function () {
+        $('.grid').masonry();
+    });
+</script>
 {% endblock %}

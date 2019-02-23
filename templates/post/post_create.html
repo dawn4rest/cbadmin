@@ -10,17 +10,17 @@
 {% block content %}
 <nav class="lnb navbar">
     <div class="container">
-        <a class="nav-icon" href="javascript:history.back()" onclick="return confirm('작성 중인 채터박스를 종료할까요? \n\n종료하시면 작성 중이던 정보가 모두 사라집니다.')"><img
-                class="nav-icon" src="{% static '/img/icons/back.png' %}" /></a>
+        <a class="nav-icon" href="javascript:history.back()"
+            onclick="return confirm('작성 중인 채터박스를 종료할까요? \n\n종료하시면 작성 중이던 정보가 모두 사라집니다.')"><img class="nav-icon"
+                src="{% static '/img/icons/back.png' %}" /></a>
         <h4>채터박스를 작성 중입니다</h4>
         <ul class="navbar-nav flex-row"></ul>
     </div>
 </nav>
-
-<div id="create-slider" class="carousel carousel-fade post-create row justify-content-center m60" data-interval="false">
-    <form class="carousel-inner col-md-8 m60 p-0" action="" method="post" enctype="multipart/form-data">
+<div class="row justify-content-center">
+    <form class="tab-content col-md-8 m60 p-0" action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="carousel-item m60 active">
+        <div id="title" class="tab-pane m60 fade show active">
             <div class="item-header">
                 <h3>제목을 입력하세요</h3>
                 <ol class="indicators">
@@ -30,12 +30,13 @@
                     <li></li>
                 </ol>
                 <div class="clearfix">
-                    <a class="control-btn btn btn-gray float-right nextTo2" href="#create-slider" role="button"
-                        data-slide="next">다음으로</a>
+                    <a class="control-btn btn btn-gray float-right nextTo2" href="#background"
+                        data-toggle="pill">다음으로</a>
                 </div>
             </div>
 
-            <div class="form-group item-body m60 {{ post_form.title.name }} {% if post_form.title.errors %} has-error {% endif %}">
+            <div
+                class="form-group item-body m60 {{ post_form.title.name }} {% if post_form.title.errors %} has-error {% endif %}">
                 {{ post_form.title.label_tag }}
                 {{ post_form.title }}
                 <h6 id="title_count" class="count">0</h6>
@@ -53,7 +54,7 @@
             </div>
         </div>
 
-        <div class="carousel-item m60">
+        <div id="background" class="tab-pane fade m60">
             <div class="item-header">
                 <h3>배경을 설명해주세요</h3>
                 <ol class="indicators">
@@ -63,13 +64,13 @@
                     <li></li>
                 </ol>
                 <div class="clearfix">
-                    <a class="btn btn-line float-left" href="#create-slider" role="button" data-slide="prev">이전으로</a>
-                    <a class="control-btn btn btn-gray float-right nextTo3" href="#create-slider" role="button"
-                        data-slide="next">다음으로</a>
+                    <a class="btn btn-line float-left" href="#title" data-toggle="pill">이전으로</a>
+                    <a class="control-btn btn btn-gray float-right nextTo3" href="#opinion" data-toggle="pill">다음으로</a>
                 </div>
             </div>
 
-            <div class="form-group item-body m60 {{ post_form.background.name }} {% if post_form.background.errors %} has-error {% endif %}">
+            <div
+                class="form-group item-body m60 {{ post_form.background.name }} {% if post_form.background.errors %} has-error {% endif %}">
                 {{ post_form.background.label_tag }}
                 {{ post_form.background }}
                 <h6 id="background_count" class="count">0</h6>
@@ -158,7 +159,6 @@
                 <div class="form-group">
                     {{ post_form.background_image5 }}
                 </div>
-
                 <hr />
             </div>
 
@@ -168,7 +168,7 @@
             </div>
         </div>
 
-        <div class="carousel-item m60">
+        <div id="opinion" class="tab-pane fade m60">
             <div class="item-header">
                 <h3>선택지를 입력해주세요</h3>
                 <ol class="indicators">
@@ -178,13 +178,13 @@
                     <li></li>
                 </ol>
                 <div class="clearfix">
-                    <a class="btn btn-line float-left" href="#create-slider" role="button" data-slide="prev">이전으로</a>
-                    <a class="control-btn btn btn-gray float-right nextTo4" href="#create-slider" role="button"
-                        data-slide="next" disabled>다음으로</a>
+                    <a class="btn btn-line float-left" href="#background" data-toggle="pill">이전으로</a>
+                    <a class="control-btn btn btn-gray float-right nextTo4" href="#option" data-toggle="pill">다음으로</a>
                 </div>
             </div>
 
-            <div class="item-body m60 {{ post_form.con_title.name }}{% if post_form.pro_title.errors %} has-error {% endif %}{% if post_form.con_title.errors %} has-error {% endif %}">
+            <div
+                class="item-body m60 {{ post_form.con_title.name }}{% if post_form.pro_title.errors %} has-error {% endif %}{% if post_form.con_title.errors %} has-error {% endif %}">
                 <label>Decision</label>
                 <div class="form-group">
                     {{ post_form.pro_title }}
@@ -213,7 +213,7 @@
             </div>
         </div>
 
-        <div class="carousel-item m60">
+        <div id="option" class="tab-pane fade m60">
             <div class="item-header">
                 <h3>옵션을 선택해주세요</h3>
                 <ol class="indicators">
@@ -223,7 +223,7 @@
                     <li class="active"></li>
                 </ol>
                 <div class="clearfix">
-                    <a class="btn btn-line float-left" href="#create-slider" role="button" data-slide="prev">이전으로</a>
+                    <a class="btn btn-line float-left" href="#opinion" data-toggle="pill">이전으로</a>
                     <button class="btn btn-gray float-right last" type="submit" disabled>게시하기</button>
                 </div>
             </div>
@@ -257,9 +257,25 @@
         </div>
     </form>
 </div>
+
+{% include 'include/toast.html' %}
 {% endblock %}
 
 {% block customJS %}
 <script src="{% static 'js/include/image_preview.js' %}"></script>
 <script src="{% static 'js/post/post_create.js' %}"></script>
+<script>
+    $('.btn-gray').click(function () {
+        if ($(this).hasClass('btn-fill')) {
+
+        } else {
+            $('.toast .content').html('<p>내용을 입력해주세요.</p>');
+            $('.toast').toast('show');
+        }
+    });
+
+    $('.clearfix .btn').click(function () {
+        $('.clearfix .btn').removeClass('active');
+    });
+</script>
 {% endblock %}

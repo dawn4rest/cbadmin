@@ -62,6 +62,12 @@ $(document).ready(function () {
         }, 1000);
     });
 
+    $(document).on('click', '.form-wrap textarea', function () {
+        $('html, body').animate({
+            scrollTop: $(this).offset().top
+        }, 1000);
+    });
+
     $(document).on('click', '.coc-toggle', function () {
         if ($(this).hasClass('collapsed')) {
             $(this).children('img').css('opacity', '.32');

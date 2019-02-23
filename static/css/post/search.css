@@ -1,18 +1,16 @@
-.columns { margin-bottom: 60px; }
-
-#search { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 60px; }
+#search { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 60px; padding: 0 15px; }
 #search input { width: 100%; height: 60px; border: 0; background-color: #E9EBEE; font-size: 20px; font-weight: 700; }
 #search input:focus { box-shadow: none; }
 #search button { padding: 8px 20px; }
 #search .search-icon { width: 60px; height: 60px; padding: 12px; background-color: #E9EBEE; }
 #search #search-reset { margin-right: 36px; padding: 21px; cursor: pointer; }
 
-.search-header { width: 100%; }
+.search-header { width: 100%; padding: 0 15px; }
 .search-header h4 { font-weight: 700; }
 .search-header h4 span { margin-left: 12px; font-size: 20px; font-weight: 700; color: #2699FB; }
 
-.tag-list { margin: 20px 0; }
-.tag-list .tag { line-height: 48px; }
+.tag-wrap .tag-list { margin: 20px 0; padding: 0 15px; }
+.tag-wrap .tag-list .tag { line-height: 48px; }
 .search-divider { width: 100%; margin-top: 60px; border-color: #C3C5C7; }
 
 .search-empty { width: 100%; text-align: center; }
@@ -20,15 +18,15 @@
 
 
 @media screen and (max-width: 768px) {
-    .columns { margin: 0; }
-    #search { margin-top: 40px; }
+    #search { margin-top: 40px; padding: 0; }
     #search input { height: 40px; font-size: 14px; }
     #search button { display: none; }
     #search .search-icon { width: 40px; height: 40px; padding: 8px; }
     #search #search-reset { margin-left: -1px; margin-right: 0; padding: 12px; }
+    .search-header { padding: 0; }
     .search-header h4 span { font-size: 14px; }
-    .tag-wrap { margin: 80px 0; }
-    .tag-wrap .tag-list { margin: 16px 0; }
+    .tag-wrap { margin: 80px 0; padding: 0; }
+    .tag-wrap .tag-list { margin: 16px 0; padding: 0; }
     .tag-wrap .tag-list .tag { line-height: 42px; }
     .search-divider { display: none; }
     .search-empty { padding-top: 40px; }

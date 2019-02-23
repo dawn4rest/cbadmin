@@ -40,7 +40,7 @@ function loopReadURL(input, i) {
     $('.fake-btn' + i + ' h6').hide();
     $('.del-' + i).remove();
     $('.hide' + i).prepend('<span class="del-image del-' + i + '">&times;</span>');
-    $('#background_image' + i + '-clear_id').removeProp('checked');
+    $('#background_image' + i + '-clear_id').prop('checked', false);
 
     var nextHide = i + 1;
     $('.hide' + nextHide).css('display', 'block');
