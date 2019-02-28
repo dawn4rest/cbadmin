@@ -10,11 +10,10 @@
     <meta name="title" content="채터박스. 2지선다 오지랖 커뮤니티" />
     <meta name="description" content="익명으로 썰을 풀고 찬반으로 나누어 의견을 공유해보세요." />
     <meta name="keywords" content="채터박스, 2지선다, 오지랖, 커뮤니티, 익명, 썰, 찬반, 의견, 공유, chatterbox, chatterboxes">
-    <meta property="og:url" content="https://chatterboxes.kr" />
-    <meta property="og:type" content="CHATTERBOX" />
     <meta property="og:title" content="채터박스. 2지선다 오지랖 커뮤니티" />
     <meta property="og:description" content="익명으로 썰을 풀고 찬반으로 나누어 의견을 공유해보세요." />
-    <meta property="og:image" content="{% static '/img/meta-share.png' %}" />
+    <meta property="og:url" content="https://chatterboxes.kr" />
+    <meta property="og:image" content="https://chatterboxes.kr/static/img/meta-share-fb.png" />
     <meta property="kaoimg" content="{% static '/img/meta-share.png' %}">
     <meta name="twitter:card" content="CHATTERBOX" />
     <meta name="twitter:title" content="채터박스. 2지선다 오지랖 커뮤니티" />
@@ -29,6 +28,7 @@
     <link rel="icon" href="{% static '/img/favicon.ico' %}">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700&amp;subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/include/jquery.loadingModal.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block customCSS %}{% endblock %}
     <script src="{% static 'js/include/jquery-3.2.1.min.js' %}"></script>
@@ -46,17 +46,18 @@
             {% endblock %}
         </div>
     </div>
-
     {% include 'include/footer.html' %}
 
-    <script src="{% static 'js/index.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
+    <script src="{% static 'js/include/jquery.loadingModal.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
     {% block customJS %}{% endblock %}
+
     {% if messages %}
     {% include 'include/modal.html' with modal_id='alertModal' %}
 

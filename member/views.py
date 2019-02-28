@@ -23,7 +23,6 @@ def login(request):
         # Data bounded form인스턴스 생성
         # AuthenticationForm의 첫 번째 인수는 해당 request가 되어야 한다
         login_form = LoginForm(request=request, data=request.POST)
-        signup_form = SignupForm(request.POST, files=request.FILES)
 
         # 유효성 검증에 성공할 경우
         # AuthenticationForm을 사용하면 authenticate과정까지 완료되어야 유효성 검증을 통과한다
@@ -37,23 +36,11 @@ def login(request):
                 request, '<p><strong>{0}</strong>으로 로그인 되었습니다.</p>'.format(user.username))
             next = request.GET.get('next')
             return redirect(next if next else 'post:post_list')
-
-        if signup_form.is_valid():
-            # 유저를 생성 후 해당 User를 로그인 시킨다
-            user = signup_form.save()
-            django_login(
-                request, user, backend='django.contrib.auth.backends.ModelBackend')
-            messages.success(
-                request, '<h4>회원가입이 완료되었습니다.</h4><p>채터박스의 회원이 되신 것을 축하드립니다. </p><p>채터박스는 익명으로 썰을 공유하고 </p><p>2지선다로 댓글 의견을 나누는  커뮤니티 입니다.</p>')
-            next = request.GET.get('next')
-            return redirect(next if next else 'post:post_list')
     else:
         login_form = LoginForm()
-        signup_form = SignupForm()
 
     context = {
         'login_form': login_form,
-        'signup_form': signup_form,
     }
     return render(request, 'member/login.html', context)
 
@@ -66,19 +53,17 @@ def logout(request):
     return redirect('post:post_list')
 
 
-def signup(request, backend='django.contrib.auth.backends.ModelBackend'):
+def signup(request):
     if request.method == 'POST':
         signup_form = SignupForm(request.POST, files=request.FILES)
         # 유효성 검증에 통과한 경우 (username의 중복과 password1, 2의 일치 여부)
         if signup_form.is_valid():
             # 유저를 생성 후 해당 User를 로그인 시킨다
             user = signup_form.save()
-            django_login(
-                request, user, backend='django.contrib.auth.backends.ModelBackend')
+
             messages.success(
-                request, '<h4>회원가입이 완료되었습니다.</h4><p>채터박스의 회원이 되신 것을 축하드립니다. </p><p>채터박스는 익명으로 썰을 공유하고 </p><p>2지선다로 댓글 의견을 나누는  커뮤니티 입니다.</p>')
-            next = request.GET.get('next')
-            return redirect(next if next else 'post:post_list')
+                request, '<h4>회원가입이 완료되었습니다.</h4><p>채터박스의 회원이 되신 것을 축하드립니다. </p><p>가입해주신 닉네임으로 로그인해주세요.</p>')
+            return redirect('member:login')
     else:
         signup_form = SignupForm()
 

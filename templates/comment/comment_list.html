@@ -7,13 +7,13 @@
 
 <!-- @@@@@@@@@@@@@@@@ COMMENT TITLE START @@@@@@@@@@@@@@@@ -->
 <div class="row comment_title p-0">
-    <div class="col-6 pro-title comment-toggle {% if not user.is_authenticated %}plzLogin{% endif %}" data-toggle="collapse"
-        data-target="#pro-form">
+    <div class="col-6 pro-title comment-toggle {% if not user.is_authenticated %}plzLogin{% endif %}"
+        data-toggle="collapse" data-target="#pro-form">
         <h5>{{ post.pro_title }}</h5>
         <img class="add-pro" src="{% static '/img/icons/add-pro.svg' %}" />
     </div>
-    <div class="col-6 con-title comment-toggle {% if not user.is_authenticated %}plzLogin{% endif %}" data-toggle="collapse"
-        data-target="#con-form">
+    <div class="col-6 con-title comment-toggle {% if not user.is_authenticated %}plzLogin{% endif %}"
+        data-toggle="collapse" data-target="#con-form">
         <h5>{{ post.con_title }}</h5>
         <img class="add-con" src="{% static '/img/icons/add-con.svg' %}" />
     </div>
@@ -186,6 +186,7 @@
                     $target.text(changeNum);
                     $('.coc-form textarea').val('');
                     $('#action-' + pk + ' .coc-list').prepend('<div class="coc-item">' + data + '</div>');
+                    $('#action-' + pk + ' .coc-empty').hide();
                     $('.toast .content').html('<p>댓글을 작성하셨습니다.</p>');
                     $('.toast').toast('show');
                 }

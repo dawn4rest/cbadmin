@@ -12,10 +12,13 @@ footer { display: none; }
 .post-wrap .background p { font-size: 14px; line-height: 24px; -webkit-text-fill-color: #7f7f7f; color: #7f7f7f; word-break: break-all; }
 .post-wrap .btn-area { display: flex; margin: 0 20px; padding-bottom: 20px; }
 .post-wrap .btn-area img { opacity: .32; margin-top: 4px; width: 16px; height: 16px; }
-.post-wrap .btn-area h6 { display: inline; margin: 0 28px 0 8px; color: #C3C5C7; font-weight: 700; }
-.post-wrap .btn-area span { line-height: 24px; color: #C3C5C7; }
+.post-wrap .btn-area h6 { display: inline; margin: 0 28px 0 8px; -webkit-text-fill-color: #C3C5C7; color: #C3C5C7; font-weight: 700; }
+.post-wrap .btn-area span { line-height: 24px; -webkit-text-fill-color: #C3C5C7; color: #C3C5C7; }
 
 
+@media screen and (max-width: 1200px) {
+    .grid-item { width: calc(50% - 15px); }
+}
 @media screen and (max-width: 768px) {
     .grid { margin-left: -30px; padding: 0; border-top: 4px solid #E8E8E8; border-bottom: 4px solid #E8E8E8; }
     .grid-item { width: 100%; padding: 0; }

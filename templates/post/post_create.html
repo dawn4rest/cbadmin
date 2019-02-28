@@ -277,5 +277,12 @@
     $('.clearfix .btn').click(function () {
         $('.clearfix .btn').removeClass('active');
     });
+
+    $('.last').click(function () {
+        if ($(this).is(':disabled')) {
+        } else {
+            showModal();
+        }
+    });
 </script>
 {% endblock %}

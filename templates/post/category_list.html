@@ -58,9 +58,11 @@
     var infinite = new Waypoint.Infinite({
         element: $('.infinite-container')[0],
         onBeforePageLoad: function () {
-
+            showModal();
         },
         onAfterPageLoad: function ($items) {
+            $('body').loadingModal('destroy');
+
             customChart();
             var $items = $('.infinite-container .infinite-item');
             $grid.append($items).masonry('appended', $items);

@@ -6,7 +6,8 @@
     </div>
     <div class="header-right">
         {% if comment.author == request.user %}
-        <a onclick="$('.clear-btn').click();$('#content-{{ comment.pk }}').load('{% url 'comment:comment_update' comment_pk=comment.pk %}');"><img
+        <a
+            onclick="$('.clear-btn').click();$('#content-{{ comment.pk }}').load('{% url 'comment:comment_update' comment_pk=comment.pk %}');"><img
                 src="{% static '/img/icons/edit.png' %}">수정하기</a>
         <a class="comment-delete" name="{{ comment.pk }}"><img src="{% static '/img/icons/delete.png' %}" />삭제하기</a>
         {% endif %}
@@ -44,12 +45,14 @@
 
     <!-- @@@@@@@@@@@@@@@@ PRO COMMENT'COMMENT N REPORT TOGGLE START @@@@@@@@@@@@@@@@ -->
     <div class="btn-wrap">
-        <button class="coc-toggle {{ comment.pk }}-toggle collapsed" data-toggle="collapse" data-target="#action-{{ comment.pk }}">
+        <button class="coc-toggle {{ comment.pk }}-toggle collapsed" data-toggle="collapse"
+            data-target="#action-{{ comment.pk }}">
             <img src="{% static '/img/icons/comment.png' %}" />
             <span class="count count-{{ comment.pk }}">{{ comment.comment_on_comment.count }}</span>
         </button>
         {% if user.is_authenticated %}
-        <button data-toggle="modal" data-target="#reportModal" onclick="$('#reportModal .modal-content').load('{% url 'comment:comment_report' comment_pk=comment.pk %}');">
+        <button data-toggle="modal" data-target="#reportModal"
+            onclick="$('#reportModal .modal-content').load('{% url 'comment:comment_report' comment_pk=comment.pk %}');">
             <img src="{% static '/img/icons/report.png' %}" />
             <span class="count web-flex">신고하기</span>
         </button>
@@ -69,11 +72,15 @@
     {% endif %}
 
     <div class="coc-list">
+        {% if comment.comment_on_comment.exists %}
         {% for coc in comment.comment_on_comment.all reversed %}
         <div class="coc-item">{% include 'include/coc.html' %}</div>
         {% endfor %}
+        {% else %}
+        <h6 class="coc-empty text-center my-3">등록 된 대댓글이 없습니다.</h6>
+        {% endif %}
     </div>
-    <button class="coc-fold" data-toggle="collapse" data-target="#action-{{ comment.pk }}" name="{{ comment.pk }}">
+    <button class="coc-fold mt-2" data-toggle="collapse" data-target="#action-{{ comment.pk }}" name="{{ comment.pk }}">
         <img src="{% static '/img/icons/down.png' %}" alt="">
         <p>접기</p>
     </button>

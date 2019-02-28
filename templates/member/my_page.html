@@ -58,7 +58,8 @@
                     <a id="pw-change" class="btn btn-line" href="{% url 'member:password_change' %}">비밀번호 변경</a>
                     <form action="{% url 'member:user_delete' %}" method="post">
                         {% csrf_token %}
-                        <input id="del-user" class="btn btn-gray" type="submit" value="회원 탈퇴" onclick="return confirm('정말 삭제하시겠습니까?')">
+                        <input id="del-user" class="btn btn-gray" type="submit" value="회원 탈퇴"
+                            onclick="return confirm('정말 삭제하시겠습니까?')">
                     </form>
                 </div>
             </div>

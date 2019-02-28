@@ -1,3 +1,16 @@
+var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ? true : false;
+
+jQuery(document).ready(function ($) {
+    if (!isMobile) {
+    } else {
+        $(document).on('click', '.form-wrap textarea', function () {
+            $('html, body').animate({
+                scrollTop: $(this).offset().top
+            }, 1000);
+        });
+    }
+});
+
 $(document).ready(function () {
     $(document).on('click', '.share-trigger', function () {
         $('#shareModal .modal-content').empty();
@@ -57,12 +70,6 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.comment-toggle', function () {
-        $('html, body').animate({
-            scrollTop: $(this).offset().top
-        }, 1000);
-    });
-
-    $(document).on('click', '.form-wrap textarea', function () {
         $('html, body').animate({
             scrollTop: $(this).offset().top
         }, 1000);

@@ -1,7 +1,7 @@
 .percent-wrap { display: flex; justify-content: center; align-items: center; }
 .percent-wrap h5 { width: 18px; }
-.percent-wrap .pro-title { color: #41cc90; word-break: break-all; }
-.percent-wrap .con-title { color: #FF725C; word-break: break-all; }
+.percent-wrap .pro-title { -webkit-text-fill-color: #41cc90; color: #41cc90; word-break: break-all; }
+.percent-wrap .con-title { -webkit-text-fill-color: #FF725C; color: #FF725C; word-break: break-all; }
 .percent-wrap .chart { width: 50%; text-align: center; }
 .percent-wrap .easyPieChart { position: relative; margin: 8px auto 32px; text-align: center; }
 .percent-wrap .easyPieChart span { font-size: 16px; }

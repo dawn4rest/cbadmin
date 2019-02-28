@@ -7,15 +7,18 @@
         </a>
 
         {% for category in categories %}
-        <a id="{{ category.slug }}" class="category-link" href="/post/category/{{ category.slug }}">
+        <a id="{{ category.slug }}" class="category-link" href="/post/category/{{ category.slug }}"
+            onclick="showModal();">
             <img class="category-icon" src="/static/img/categories/{{ category.slug }}.png" />
             <h6>{{ category.name }}</h6>
         </a>
         {% endfor %}
     </div>
     <div class="category-paddles">
-        <button class="category-paddle category-paddle-left"><img src="{% static '/img/categories/left.svg' %}"></button>
-        <button class="category-paddle category-paddle-right"><img style="transform: rotate(180deg);" src="{% static '/img/categories/left.svg' %}"></button>
+        <button class="category-paddle category-paddle-left"><img
+                src="{% static '/img/categories/left.svg' %}"></button>
+        <button class="category-paddle category-paddle-right"><img style="transform: rotate(180deg);"
+                src="{% static '/img/categories/left.svg' %}"></button>
     </div>
 </div>
 

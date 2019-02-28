@@ -1,210 +1,316 @@
-{% extends 'base.html' %}
 {% load static %}
 {% load post_extras %}
+<!doctype html>
+<html lang="ko">
 
-{% block title %}Post Detail{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, shrink-to-fit=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="title" content="{{ post.title }}" />
+    <meta name="description" content="{{ post.background|safe|truncatechars:50 }}" />
+    <meta name="keywords" content="채터박스, 2지선다, 오지랖, 커뮤니티, 익명, 썰, 찬반, 의견, 공유, chatterbox, chatterboxes">
+    <meta property="og:title" content="{{ post.title }}" />
+    <meta property="og:description" content="{{ post.background|safe|truncatechars:50 }}" />
+    <meta property="og:url" content="https://chatterboxes.kr/post/{{ post.id }}" />
+    <meta property="og:image" content="https://chatterboxes.kr/static/img/meta-share-fb.png" />
+    <meta property="kaoimg" content="{% static '/img/meta-share.png' %}">
+    <meta name="twitter:card" content="CHATTERBOX" />
+    <meta name="twitter:title" content="{{ post.title }}" />
+    <meta name="twitter:description" content="{{ post.background|safe|truncatechars:50 }}" />
+    <meta name="twitter:image" content="{% static '/img/meta-share.png' %}" />
+    <meta name="twitter:domain" content="https://chatterboxes.kr/post/{{ post.id }}" />
+    <meta name="google-site-verification" content="Jj0ax6B6vXxcleDtv2Bp9z68zroJo0mMx-xnwVykN_k" />
+    <meta name="naver-site-verification" content="b3c819d9813b547f4a174e4d5071dac913db8a21" />
 
-{% block customCSS %}
-<link rel="stylesheet" href="{% static 'css/include/pie_chart.css' %}">
-<link rel="stylesheet" href="{% static 'css/post/share.css' %}">
-<link rel="stylesheet" href="{% static 'css/post/post_detail.css' %}">
-{% endblock %}
+    <title>{{ post.title }}</title>
 
-{% block content %}
-<nav class="lnb navbar">
-    <div class="container">
-        <a class="nav-icon" href="{% url 'post:post_list' %}"><img class="nav-icon"
-                src="{% static '/img/icons/back.png' %}" /></a>
-        <ul class="navbar-nav ml-auto flex-row">
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}" method="POST">
-                    {% csrf_token %}
-                    {% if post in user.like_posts.all %}
-                    <button class="btn btn-fill">♥ 좋아요</button>
-                    {% else %}
-                    <button class="btn btn-line">♥ 좋아요</button>
-                    {% endif %}
-                </form>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link btn btn-line" href="{% url 'member:login' %}?next={{ request.path }}">LOG IN</a>
-            </li>
-            {% endif %}
-            <li class="nav-item"><a class="nav-link btn btn-fill share-trigger" data-toggle="modal"
-                    data-target="#shareModal">공유하기</a></li>
-        </ul>
-    </div>
-</nav>
+    <link rel="icon" href="{% static '/img/favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700&amp;subset=korean" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/include/pie_chart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post/share.css' %}">
+    <link rel="stylesheet" href="{% static 'css/post/post_detail.css' %}">
+    <script src="{% static 'js/include/jquery-3.2.1.min.js' %}"></script>
+</head>
 
+<body>
+    {% include 'include/navbar.html' %}
 
-<div class="fixed-share web-block">
-    <div class="share-sns">
-        <a href="javascript:shareFacebook()">
-            <img src="{% static '/img/share-fb.svg' %}" />
-        </a>
-        <a href="javascript:shareNaver()">
-            <img src="{% static '/img/share-naver.svg' %}" />
-        </a>
-        <a href="javascript:shareKatalk()">
-            <img src="{% static '/img/share-kakao.svg' %}" />
-        </a>
-        <a class="web-block" href="javascript:shareLink()">
-            <img src="{% static '/img/share-link.svg' %}" />
-        </a>
-        <input type="text" value="Copy Url" id="linkInput">
-    </div>
-</div>
+    {% include 'include/slide_menu.html' %}
 
-<div class="post-body m60">
-    <h2>{{ post.title }}</h2>
-    <div class="detail-header">
-        <span>{{ post.updated_at }}</span>
-        <div class="btn-wrap">
-            <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}" method="POST">
-                {% csrf_token %}
-                {% if post in user.like_posts.all %}
-                <button class="btn btn-fill">♥ 좋아요</button>
-                {% else %}
-                <button class="btn btn-line">♥ 좋아요</button>
-                {% endif %}
-            </form>
-
-            <div class="share-sns">
-                <a class="share-f" href="javascript:shareFacebook()">
-                    <img src="{% static '/img/facebook.png' %}" />
-                </a>
-                <a class="share-n" href="javascript:shareNaver()">
-                    <img src="{% static '/img/naver.png' %}" />
-                </a>
-                <a class="share-k" href="javascript:shareKatalk()">
-                    <img src="{% static '/img/kakao.png' %}" />
-                </a>
-                <a class="web-block" href="javascript:shareLink()">
-                    <img src="{% static '/img/clip.png' %}" />
-                </a>
-                <input type="text" value="Copy Url" id="linkInput">
-            </div>
-        </div>
-    </div>
-
-    <div class="btn btn-full info-btn collapsed" data-toggle="collapse" data-target="#info-toggle">
-        <img src="{% static '/img/icons/down.png' %}" />
-        <span>방 정보 펼치기</span>
-    </div>
-
-    <div class="row detail-info collapse m-0" id="info-toggle">
-        <div class="info-left col-md-6">
-            <label>Hwo Asked?</label>
-            <div class="info-header">
-                <img class="profile-image" src="{{ post.author.profile_image.url }}" />
-                <h4>{{ post.author }}<br /><span>Joined {{ post.author.date_joined|date:"Y. m. d" }}</span></h4>
-            </div>
-        </div>
-
-        <div class="info-right col-md-6">
-            <label>Conditions</label>
-            <div class="conditions-wrap">
-                <div class="conditions-item">
-                    <img src="{% static '/img/icons/view.png' %}" />
-                    <h6>{{ post.view_count }}</h6>
+    <div id="content">
+        <div class="container">
+            <nav class="lnb navbar">
+                <div class="container">
+                    <a class="nav-icon" href="{% url 'post:post_list' %}"><img class="nav-icon"
+                            src="{% static '/img/icons/back.png' %}" /></a>
+                    <ul class="navbar-nav ml-auto flex-row">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}" method="POST">
+                                {% csrf_token %}
+                                {% if post in user.like_posts.all %}
+                                <button class="btn btn-fill">♥ 좋아요</button>
+                                {% else %}
+                                <button class="btn btn-line">♥ 좋아요</button>
+                                {% endif %}
+                            </form>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-line" href="{% url 'member:login' %}?next={{ request.path }}">LOG
+                                IN</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item"><a class="nav-link btn btn-fill share-trigger" data-toggle="modal"
+                                data-target="#shareModal">공유하기</a></li>
+                    </ul>
                 </div>
-                <div class="conditions-item">
-                    <img src="{% static '/img/icons/heart-gray.png' %}" />
-                    {% with like_count=post.like_users.count %}
-                    <h6>{{ like_count }}</h6>
-                    {% endwith %}
-                </div>
-                <div class="conditions-item">
-                    <img src="{% static '/img/icons/comment.png' %}" />
-                    <h6>{{ post.share_count }}</h6>
-                </div>
-                <div class="conditions-item">
-                    <img src="{% static '/img/icons/share-empty.png' %}" />
-                    <h6>{{ post.share_count }}</h6>
-                </div>
-            </div>
+            </nav>
 
-            <label>Hashtags</label>
-            <div class="tags-wrap">
-                <div class="tag-list">
-                    {% for tag in post.tag|split_tags %}
-                    <a href="/post/search/?q={{ tag }}">
-                        <p class="tag">{{ tag }}</p>
+
+            <div class="fixed-share web-block">
+                <div class="share-sns">
+                    <a href="javascript:shareFacebook()">
+                        <img src="{% static '/img/share-fb.svg' %}" />
                     </a>
-                    {% endfor %}
+                    <a href="javascript:shareNaver()">
+                        <img src="{% static '/img/share-naver.svg' %}" />
+                    </a>
+                    <a href="javascript:shareKatalk()">
+                        <img src="{% static '/img/share-kakao.svg' %}" />
+                    </a>
+                    <a class="web-block" href="javascript:shareLink()">
+                        <img src="{% static '/img/share-link.svg' %}" />
+                    </a>
+                    <input type="text" value="Copy Url" id="linkInput">
                 </div>
             </div>
 
-            {% if request.user == post.author %}
-            <form class="btn-wrap row" action="{% url 'post:post_delete' post.pk %}" method="post">
-                {% csrf_token %}
-                <div class="col-6"><a class="btn btn-fill btn-full" href="{% url 'post:post_update' post.pk %}"
-                        style="border: 0;">수정하기</a></div>
-                <div class="col-6"><input class="btn btn-gray btn-full" type="submit" value="삭제하기"
-                        onclick="return confirm('정말로 삭제할까요? \n\n게시물을 삭제하시면 해당 게시물의 \n모든 이력도 초기화 됩니다.')"></div>
-            </form>
-            {% endif %}
+            <div class="post-body m60">
+                <h2>{{ post.title }}</h2>
+                <div class="detail-header">
+                    <span>{{ post.updated_at }}</span>
+                    <div class="btn-wrap">
+                        <form action="{% url 'post:post_like_toggle' post_pk=post.pk %}" method="POST">
+                            {% csrf_token %}
+                            {% if post in user.like_posts.all %}
+                            <button class="btn btn-fill">♥ 좋아요</button>
+                            {% else %}
+                            <button class="btn btn-line">♥ 좋아요</button>
+                            {% endif %}
+                        </form>
+
+                        <div class="share-sns">
+                            <a class="share-f" href="javascript:shareFacebook()">
+                                <img src="{% static '/img/facebook.png' %}" />
+                            </a>
+                            <a class="share-n" href="javascript:shareNaver()">
+                                <img src="{% static '/img/naver.png' %}" />
+                            </a>
+                            <a class="share-k" href="javascript:shareKatalk()">
+                                <img src="{% static '/img/kakao.png' %}" />
+                            </a>
+                            <a class="web-block" href="javascript:shareLink()">
+                                <img src="{% static '/img/clip.png' %}" />
+                            </a>
+                            <input type="text" value="Copy Url" id="linkInput">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn btn-full info-btn collapsed" data-toggle="collapse" data-target="#info-toggle">
+                    <img src="{% static '/img/icons/down.png' %}" />
+                    <span>방 정보 펼치기</span>
+                </div>
+
+                <div class="row detail-info collapse m-0" id="info-toggle">
+                    <div class="info-left col-md-6">
+                        <label>Hwo Asked?</label>
+                        <div class="info-header">
+                            <img class="profile-image" src="{{ post.author.profile_image.url }}" />
+                            <h4>{{ post.author }}<br /><span>Joined {{ post.author.date_joined|date:"Y. m. d" }}</span>
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="info-right col-md-6">
+                        <label>Conditions</label>
+                        <div class="conditions-wrap">
+                            <div class="conditions-item">
+                                <img src="{% static '/img/icons/view.png' %}" />
+                                <h6>{{ post.view_count }}</h6>
+                            </div>
+                            <div class="conditions-item">
+                                <img src="{% static '/img/icons/heart-gray.png' %}" />
+                                {% with like_count=post.like_users.count %}
+                                <h6>{{ like_count }}</h6>
+                                {% endwith %}
+                            </div>
+                            <div class="conditions-item">
+                                <img src="{% static '/img/icons/comment.png' %}" />
+                                <h6>{{ post.share_count }}</h6>
+                            </div>
+                            <div class="conditions-item">
+                                <img src="{% static '/img/icons/share-empty.png' %}" />
+                                <h6>{{ post.share_count }}</h6>
+                            </div>
+                        </div>
+
+                        <label>Hashtags</label>
+                        <div class="tags-wrap">
+                            <div class="tag-list">
+                                {% for tag in post.tag|split_tags %}
+                                <a href="/post/search/?q={{ tag }}">
+                                    <p class="tag">{{ tag }}</p>
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        {% if request.user == post.author %}
+                        <form class="btn-wrap row" action="{% url 'post:post_delete' post.pk %}" method="post">
+                            {% csrf_token %}
+                            <div class="col-6"><a class="btn btn-fill btn-full"
+                                    href="{% url 'post:post_update' post.pk %}" style="border: 0;">수정하기</a></div>
+                            <div class="col-6"><input class="btn btn-gray btn-full" type="submit" value="삭제하기"
+                                    onclick="return confirm('정말로 삭제할까요? \n\n게시물을 삭제하시면 해당 게시물의 \n모든 이력도 초기화 됩니다.')">
+                            </div>
+                        </form>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <hr class="detail-hr m60">
+
+                <div class="detail-body">
+                    <div class="post-background">{{ post.background|safe|linebreaksbr }}</div>
+
+                    {% if post.background_image1 %}
+                    <div class="thumbnail"><img src="{{ post.background_image1.url }}" /></div>
+                    {% endif %}
+                    {% if post.background_image2 %}
+                    <div class="thumbnail"><img src="{{ post.background_image2.url }}" /></div>
+                    {% endif %}
+                    {% if post.background_image3 %}
+                    <div class="thumbnail"><img src="{{ post.background_image3.url }}" /></div>
+                    {% endif %}
+                    {% if post.background_image4 %}
+                    <div class="thumbnail"><img src="{{ post.background_image4.url }}" /></div>
+                    {% endif %}
+                    {% if post.background_image5 %}
+                    <div class="thumbnail"><img src="{{ post.background_image5.url }}" /></div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="opinion m60">
+                <h2>A or B 당신의 생각은?</h2>
+            </div>
+
+            <div class="percent-wrap row p-0">
+                <div class="chart">
+                    <div class="percentage pro-chart" data-percent="{% widthratio post.pro_percent 1 100 %}">
+                        <span class="pro-title">{% widthratio post.con_percent 1 100 %}</span><sup
+                            class="pro-title">%</sup>
+                    </div>
+                </div>
+                <div class="chart">
+                    <div class="percentage con-chart" data-percent="{% widthratio post.con_percent 1 100 %}">
+                        <span class="con-title">{% widthratio post.con_percent 1 100 %}</span><sup
+                            class="con-title">%</sup>
+                    </div>
+                </div>
+            </div>
+
+            {% include 'comment/comment_list.html' %}
+            {% include 'include/modal.html' with modal_id='shareModal' %}
         </div>
     </div>
 
-    <hr class="detail-hr m60">
+    {% include 'include/footer.html' %}
 
-    <div class="detail-body">
-        <div class="post-background">{{ post.background|safe|linebreaksbr }}</div>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
 
-        {% if post.background_image1 %}
-        <div class="thumbnail"><img src="{{ post.background_image1.url }}" /></div>
-        {% endif %}
-        {% if post.background_image2 %}
-        <div class="thumbnail"><img src="{{ post.background_image2.url }}" /></div>
-        {% endif %}
-        {% if post.background_image3 %}
-        <div class="thumbnail"><img src="{{ post.background_image3.url }}" /></div>
-        {% endif %}
-        {% if post.background_image4 %}
-        <div class="thumbnail"><img src="{{ post.background_image4.url }}" /></div>
-        {% endif %}
-        {% if post.background_image5 %}
-        <div class="thumbnail"><img src="{{ post.background_image5.url }}" /></div>
-        {% endif %}
-    </div>
-</div>
+    <script src="{% static 'js/include/easy_pie_chart.js' %}"></script>
+    <script src="{% static 'js/post/post_detail.js' %}"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
+    <script>
+        // FACEBOOK SHARE
+        function shareFacebook() {
+            window.open(
+                'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL),
+                'facebooksharedialog',
+                'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600'
+            );
+        }
 
-<div class="opinion m60">
-    <h2>A or B 당신의 생각은?</h2>
-</div>
+        // NAVER SHARE
+        function shareNaver() {
+            window.open(
+                'https://share.naver.com/web/shareView.nhn?url='
+                + encodeURIComponent(document.URL)
+                + '&title='
+                + encodeURIComponent(document.title),
+                'naversharedialog', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600'
+            );
+        }
 
-<div class="percent-wrap row p-0">
-    <div class="chart">
-        <div class="percentage pro-chart" data-percent="{% widthratio post.pro_percent 1 100 %}">
-            <span class="pro-title">{% widthratio post.con_percent 1 100 %}</span><sup class="pro-title">%</sup>
-        </div>
-    </div>
-    <div class="chart">
-        <div class="percentage con-chart" data-percent="{% widthratio post.con_percent 1 100 %}">
-            <span class="con-title">{% widthratio post.con_percent 1 100 %}</span><sup class="con-title">%</sup>
-        </div>
-    </div>
-</div>
+        // KAKAO SHARE
+        Kakao.init('6fba63cdc271830b836d5f9bce148f71');
+        function shareKatalk() {
+            Kakao.Link.sendScrap({
+                requestUrl: location.href
+            });
+        };
 
-{% include 'comment/comment_list.html' %}
-{% include 'include/modal.html' with modal_id='shareModal' %}
-{% endblock %}
+        // COPY URL
+        function shareLink() {
+            /* Get the text field */
+            var copyText = document.getElementById("linkInput");
+            copyText.value = window.location.href
+            /* Select the text field */
+            copyText.select();
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+            /* Alert the copied text */
+            $('.toast .content').html('<p>링크가 복사되었어요.</p><p>익명으로 자유롭게 공유하세요.</p>');
+            $('.toast').toast('show');
+        }
 
-{% block customJS %}
-<script src="{% static 'js/include/easy_pie_chart.js' %}"></script>
-<script src="{% static 'js/post/post_detail.js' %}"></script>
-<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
-<script src="{% static 'js/post/share.js' %}"></script>
-<script>
-    // ADD SHARE COUNT BY JUST CLICK
-    $(document).ready(function () {
-        $(document).on('click', '.share-sns a', function () {
-            $.ajax({ url: "{% url 'post:add_share_count' post.pk %}", });
+        // ADD SHARE COUNT BY JUST CLICK
+        $(document).ready(function () {
+            $(document).on('click', '.share-sns a', function () {
+                $.ajax({ url: "{% url 'post:add_share_count' post.pk %}", });
+            });
         });
-    });
-</script>
-{% endblock %}
+    </script>
+    {% if messages %}
+    {% include 'include/modal.html' with modal_id='alertModal' %}
+
+    {% for message in messages %}
+    {% if forloop.first %}
+    <div class="d-none message">{{ message }}</div>
+    {% endif %}
+    {% endfor %}
+
+    <script>
+        var message = $('.message').text();
+        $('#alertModal .modal-body').html(message);
+        $('#alertModal').modal('show');
+        setTimeout(function () { $('#alertModal').modal('hide') }, 3000);
+    </script>
+    {% endif %}
+</body>
+
+</html>

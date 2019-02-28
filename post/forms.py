@@ -41,7 +41,7 @@ class PostForm(forms.ModelForm):
         )
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': '주제 또는 제목을 입력해주세요. (8자 이상 입력해주세요)', }),
-            'background': forms.Textarea(attrs={'placeholder': '질문에 대한 더 많은 배경 정보를 알려주세요. \n 상세히 적을수록 다양하고 명확한 의견을 들을 수 있어요. \n (50자 이상 입력해주세요)', }),
+            'background': forms.Textarea(attrs={'placeholder': '질문에 대한 더 많은 배경 정보를 알려주세요. \n상세히 적을수록 다양하고 명확한 의견을 들을 수 있어요. \n(50자 이상 입력해주세요)', }),
             'pro_title': forms.TextInput(attrs={'placeholder': '첫 번째 의견을 입력해주세요. (4자 이상 입력해주세요)', }),
             'con_title': forms.TextInput(attrs={'placeholder': '두 번째 의견을 입력해주세요. (4자 이상 입력해주세요)', }),
             'category': forms.Select(attrs={'placeholder': '카테고리를 선택해주세요.', }),

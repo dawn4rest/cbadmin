@@ -1,16 +1,16 @@
 {% load static %}
 <div class="col-12">
     <div class="sort-button" onchange="location = this.value;" name="{{ sort }}">
-        <a class="select-change" data-val="?sort=new">
+        <a class="select-change" data-val="?sort=new" onclick="showModal();">
             <h5 id="new">최신순</h5>
         </a>
-        <a class="select-change" data-val="?sort=views">
+        <a class="select-change" data-val="?sort=views" onclick="showModal();">
             <h5 id="views">조회순</h5>
         </a>
-        <a class="select-change" data-val="?sort=comments">
+        <a class="select-change" data-val="?sort=comments" onclick="showModal();">
             <h5 id="comments">댓글순</h5>
         </a>
-        <a class="select-change" data-val="?sort=likes">
+        <a class="select-change" data-val="?sort=likes" onclick="showModal();">
             <h5 id="likes">지금 인기</h5>
         </a>
     </div>
