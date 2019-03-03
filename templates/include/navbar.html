@@ -1,17 +1,21 @@
 {% load static %}
 <nav class="gnb navbar">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'post:post_list' %}"><img class="nav-logo" src="{% static '/img/logo.svg' %}" /></a>
+        <a class="navbar-brand" href="{% url 'post:post_list' %}" onclick="showModal();">
+            <img class="nav-logo" src="{% static '/img/logo.svg' %}" />
+        </a>
 
         <ul class="navbar-nav ml-auto flex-row">
-            <li class="nav-item"><a class="nav-link" href="{% url 'post:search' %}"><img class="nav-icon x2" src="{% static '/img/icons/search-fill.svg' %}" /></a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'post:search' %}"><img class="nav-icon x2"
+                        src="{% static '/img/icons/search-fill.svg' %}" /></a></li>
             <li class="nav-item web-flex" style="margin-right: 8px;"><a class="nav-link slide-trigger" href="#"><img
                         class="nav-icon" src="{% static '/img/icons/heart-fill.svg' %}" /></a></li>
             {% if user.is_authenticated %}
             <li class="nav-item"><a class="btn btn-fill" href="{% url 'post:post_create' %}">CREATE</a></li>
             <li class="nav-item web-flex"><a class="btn btn-line" href="{% url 'member:my_page' %}">MY PAGE</a></li>
-            <li class="nav-item mobile-flex"><a class="nav-link" href="{% url 'member:get_toggle' %}"><img class="toggle-btn nav-icon x2"
-                        src="{% static '/img/icons/toggle.svg' %}" style="margin-left: 4px;" /></a></li>
+            <li class="nav-item mobile-flex"><a class="nav-link" href="{% url 'member:get_toggle' %}"><img
+                        class="toggle-btn nav-icon x2" src="{% static '/img/icons/toggle.svg' %}"
+                        style="margin-left: 4px;" /></a></li>
             {% else %}
             <li class="nav-item web-flex">
                 <a class="btn btn-fill" href="{% url 'member:login' %}?next={{ request.path }}">LOG IN</a>

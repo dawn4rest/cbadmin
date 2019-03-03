@@ -233,7 +233,6 @@
 
     {% include 'include/footer.html' %}
 
-    <script src="{% static 'js/index.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
         crossorigin="anonymous"></script>
@@ -245,6 +244,7 @@
     <script src="{% static 'js/post/post_detail.js' %}"></script>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.10/clipboard.min.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
     <script>
         // FACEBOOK SHARE
         function shareFacebook() {
@@ -293,6 +293,12 @@
             $(document).on('click', '.share-sns a', function () {
                 $.ajax({ url: "{% url 'post:add_share_count' post.pk %}", });
             });
+
+            window.onpageshow = function (event) {
+                if (event.persisted) {
+                    window.location.reload()
+                }
+            };
         });
     </script>
     {% if messages %}

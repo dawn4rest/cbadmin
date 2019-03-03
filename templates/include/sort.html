@@ -1,29 +1,26 @@
 {% load static %}
 <div class="col-12">
-    <div class="sort-button" onchange="location = this.value;" name="{{ sort }}">
-        <a class="select-change" data-val="?sort=new" onclick="showModal();">
+    <div class="sort-button" name="{{ sort }}">
+        <a class="select-change" href="{% url 'post:post_list' %}">
             <h5 id="new">최신순</h5>
         </a>
-        <a class="select-change" data-val="?sort=views" onclick="showModal();">
+        <a class="select-change" href="{% url 'post:post_list_views' %}">
             <h5 id="views">조회순</h5>
         </a>
-        <a class="select-change" data-val="?sort=comments" onclick="showModal();">
+        <a class="select-change" href="{% url 'post:post_list_comments' %}">
             <h5 id="comments">댓글순</h5>
         </a>
-        <a class="select-change" data-val="?sort=likes" onclick="showModal();">
+        <a class="select-change" href="{% url 'post:post_list_likes' %}">
             <h5 id="likes">지금 인기</h5>
         </a>
     </div>
-
-    <select class="sort-select d-none" onchange="location = this.value;">
-        <option value="?sort=new">최신순</option>
-        <option value="?sort=views">조회순</option>
-        <option value="?sort=comments">댓글순</option>
-        <option value="?sort=likes">지금 인기</option>
-    </select>
 </div>
 
 <script>
+    $('.select-change').click(function () {
+        showModal();
+    });
+
     $(document).ready(function () {
         var sort = $('.sort-button').attr('name');
         if (sort.length) {
@@ -31,9 +28,5 @@
         } else {
             $('#new').addClass('active');
         }
-
-        $('.select-change').click(function () {
-            $('.sort-select').val($(this).data('val')).trigger('change');
-        });
     });
 </script>

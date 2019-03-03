@@ -31,7 +31,7 @@ def search(request):
 
 
 def show_category(request, hierarchy=None):
-    sort = request.GET.get('sort', '')
+    sort = 'new'
     categories = Category.objects.all()
     category_slug = hierarchy.split('/')
     category_queryset = list(categories)
@@ -42,18 +42,111 @@ def show_category(request, hierarchy=None):
         if slug in all_slugs:
             target = slug
             parent = get_object_or_404(Category, slug=slug, parent=parent)
-            posts = parent.post_set.all()
+            posts = parent.post_set.order_by('-created_at')
 
-            if sort == 'likes':
-                posts = posts.annotate(like_count=Count(
-                    'like_users')).order_by('-like_count')
-            elif sort == 'views':
-                posts = posts.order_by('-view_count')
-            elif sort == 'comments':
-                posts = posts.annotate(count=Count(
-                    'comment')).order_by('-count')
-            else:
-                posts = posts.order_by('-created_at')
+    paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    context = {
+        'posts': posts,
+        'sub_categories': parent.children.all(),
+        'categories': categories,
+        'target': target,
+        'sort': sort,
+    }
+    return render(request, "post/category_list.html", context)
+
+
+def show_category_views(request, hierarchy=None):
+    sort = 'views'
+    categories = Category.objects.all()
+    category_slug = hierarchy.split('/')
+    category_queryset = list(categories)
+    all_slugs = [x.slug for x in category_queryset]
+    parent = None
+
+    for slug in category_slug:
+        if slug in all_slugs:
+            target = slug
+            parent = get_object_or_404(Category, slug=slug, parent=parent)
+            posts = parent.post_set.order_by('-view_count')
+
+    paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    context = {
+        'posts': posts,
+        'sub_categories': parent.children.all(),
+        'categories': categories,
+        'target': target,
+        'sort': sort,
+    }
+    return render(request, "post/category_list.html", context)
+
+
+def show_category_comments(request, hierarchy=None):
+    sort = 'comments'
+    categories = Category.objects.all()
+    category_slug = hierarchy.split('/')
+    category_queryset = list(categories)
+    all_slugs = [x.slug for x in category_queryset]
+    parent = None
+
+    for slug in category_slug:
+        if slug in all_slugs:
+            target = slug
+            parent = get_object_or_404(Category, slug=slug, parent=parent)
+            posts = parent.post_set.annotate(count=Count(
+                'comment')).order_by('-count')
+
+    paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    context = {
+        'posts': posts,
+        'sub_categories': parent.children.all(),
+        'categories': categories,
+        'target': target,
+        'sort': sort,
+    }
+    return render(request, "post/category_list.html", context)
+
+
+def show_category_likes(request, hierarchy=None):
+    sort = 'likes'
+    categories = Category.objects.all()
+    category_slug = hierarchy.split('/')
+    category_queryset = list(categories)
+    all_slugs = [x.slug for x in category_queryset]
+    parent = None
+
+    for slug in category_slug:
+        if slug in all_slugs:
+            target = slug
+            parent = get_object_or_404(Category, slug=slug, parent=parent)
+            posts = parent.post_set.annotate(like_count=Count(
+                'like_users')).order_by('-like_count')
 
     paginator = Paginator(posts, 10)
     page = request.GET.get('page')
@@ -76,19 +169,67 @@ def show_category(request, hierarchy=None):
 
 
 def post_list(request):
-    sort = request.GET.get('sort', '')
+    sort = 'new'
     categories = Category.objects.all()
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-created_at')
 
-    if sort == 'likes':
-        posts = posts.annotate(like_count=Count(
-            'like_users')).order_by('-like_count')
-    elif sort == 'views':
-        posts = posts.order_by('-view_count')
-    elif sort == 'comments':
-        posts = posts.annotate(count=Count('comment')).order_by('-count')
-    else:
-        posts = posts.order_by('-created_at')
+    paginator = Paginator(posts, 12)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    context = {'posts': posts, 'categories': categories, 'sort': sort, }
+    return render(request, 'post/post_list.html', context)
+
+
+def post_list_views(request):
+    sort = 'views'
+    categories = Category.objects.all()
+    posts = Post.objects.order_by('-view_count')
+
+    paginator = Paginator(posts, 12)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    context = {'posts': posts, 'categories': categories, 'sort': sort, }
+    return render(request, 'post/post_list.html', context)
+
+
+def post_list_comments(request):
+    sort = 'comments'
+    categories = Category.objects.all()
+    posts = Post.objects.annotate(count=Count('comment')).order_by('-count')
+
+    paginator = Paginator(posts, 12)
+    page = request.GET.get('page')
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    context = {'posts': posts, 'categories': categories, 'sort': sort, }
+    return render(request, 'post/post_list.html', context)
+
+
+def post_list_likes(request):
+    sort = 'likes'
+    categories = Category.objects.all()
+    posts = Post.objects.annotate(like_count=Count(
+        'like_users')).order_by('-like_count')
 
     paginator = Paginator(posts, 12)
     page = request.GET.get('page')

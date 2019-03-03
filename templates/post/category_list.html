@@ -11,7 +11,38 @@
 {% block content %}
 <div class="row">
     {% include 'include/category.html' %}
-    {% include 'include/sort.html' %}
+
+    <div class="col-12">
+        <div class="sort-button" name="{{ sort }}">
+            <a class="select-change" href=".">
+                <h5 id="new">최신순</h5>
+            </a>
+            <a class="select-change" href="./views">
+                <h5 id="views">조회순</h5>
+            </a>
+            <a class="select-change" href="./comments">
+                <h5 id="comments">댓글순</h5>
+            </a>
+            <a class="select-change" href="./likes">
+                <h5 id="likes">지금 인기</h5>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        $('.select-change').click(function () {
+            showModal();
+        });
+
+        $(document).ready(function () {
+            var sort = $('.sort-button').attr('name');
+            if (sort.length) {
+                $('#' + sort).addClass('active');
+            } else {
+                $('#new').addClass('active');
+            }
+        });
+    </script>
 </div>
 
 <div class="grid row m60">

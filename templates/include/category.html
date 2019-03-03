@@ -1,7 +1,7 @@
 {% load static %}
 <div class="category-wrap">
     <div class="category m60" name="{{ target }}">
-        <a id="all" class="category-link" href="{% url 'post:post_list' %}">
+        <a id="all" class="category-link" href="{% url 'post:post_list' %}" onclick="showModal();">
             <img class="category-icon" src="{% static '/img/categories/all.png' %}" />
             <h6>ALL</h6>
         </a>

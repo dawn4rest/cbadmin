@@ -19,30 +19,33 @@ from comment import models as comment_models
 
 
 def login(request):
-    if request.method == 'POST':
-        # Data bounded form인스턴스 생성
-        # AuthenticationForm의 첫 번째 인수는 해당 request가 되어야 한다
-        login_form = LoginForm(request=request, data=request.POST)
-
-        # 유효성 검증에 성공할 경우
-        # AuthenticationForm을 사용하면 authenticate과정까지 완료되어야 유효성 검증을 통과한다
-        if login_form.is_valid():
-            # AuthenticatonForm에서 인증(authenticate)에 성공한 유저를 가져오려면 이 메서드를 사용한다
-            user = login_form.get_user()
-            # Django의 auth앱에서 제공하는 login함수를 실행해 앞으로의 요청/응답에 세션을 유지한다
-            django_login(request, user)
-
-            messages.success(
-                request, '<p><strong>{0}</strong>으로 로그인 되었습니다.</p>'.format(user.username))
-            next = request.GET.get('next')
-            return redirect(next if next else 'post:post_list')
+    if request.user.is_authenticated():
+        return redirect('post:post_list')
     else:
-        login_form = LoginForm()
+        if request.method == 'POST':
+            # Data bounded form인스턴스 생성
+            # AuthenticationForm의 첫 번째 인수는 해당 request가 되어야 한다
+            login_form = LoginForm(request=request, data=request.POST)
 
-    context = {
-        'login_form': login_form,
-    }
-    return render(request, 'member/login.html', context)
+            # 유효성 검증에 성공할 경우
+            # AuthenticationForm을 사용하면 authenticate과정까지 완료되어야 유효성 검증을 통과한다
+            if login_form.is_valid():
+                # AuthenticatonForm에서 인증(authenticate)에 성공한 유저를 가져오려면 이 메서드를 사용한다
+                user = login_form.get_user()
+                # Django의 auth앱에서 제공하는 login함수를 실행해 앞으로의 요청/응답에 세션을 유지한다
+                django_login(request, user)
+
+                messages.success(
+                    request, '<p><strong>{0}</strong>으로 로그인 되었습니다.</p>'.format(user.username))
+                next = request.GET.get('next')
+                return redirect(next if next else 'post:post_list')
+        else:
+            login_form = LoginForm()
+
+        context = {
+            'login_form': login_form,
+        }
+        return render(request, 'member/login.html', context)
 
 
 @login_required
@@ -54,23 +57,26 @@ def logout(request):
 
 
 def signup(request):
-    if request.method == 'POST':
-        signup_form = SignupForm(request.POST, files=request.FILES)
-        # 유효성 검증에 통과한 경우 (username의 중복과 password1, 2의 일치 여부)
-        if signup_form.is_valid():
-            # 유저를 생성 후 해당 User를 로그인 시킨다
-            user = signup_form.save()
-
-            messages.success(
-                request, '<h4>회원가입이 완료되었습니다.</h4><p>채터박스의 회원이 되신 것을 축하드립니다. </p><p>가입해주신 닉네임으로 로그인해주세요.</p>')
-            return redirect('member:login')
+    if request.user.is_authenticated():
+        return redirect('post:post_list')
     else:
-        signup_form = SignupForm()
+        if request.method == 'POST':
+            signup_form = SignupForm(request.POST, files=request.FILES)
+            # 유효성 검증에 통과한 경우 (username의 중복과 password1, 2의 일치 여부)
+            if signup_form.is_valid():
+                # 유저를 생성 후 해당 User를 로그인 시킨다
+                user = signup_form.save()
 
-    context = {
-        'signup_form': signup_form,
-    }
-    return render(request, 'member/signup.html', context)
+                messages.success(
+                    request, '<h4>회원가입이 완료되었습니다.</h4><p>채터박스의 회원이 되신 것을 축하드립니다. </p><p>가입해주신 닉네임으로 로그인해주세요.</p>')
+                return redirect('member:login')
+        else:
+            signup_form = SignupForm()
+
+        context = {
+            'signup_form': signup_form,
+        }
+        return render(request, 'member/signup.html', context)
 
 
 @login_required

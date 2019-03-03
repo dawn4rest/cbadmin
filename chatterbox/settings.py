@@ -33,7 +33,7 @@ def get_secret(setting, secrets=secrets):
 
 SECRET_KEY = get_secret('SECRET_KEY')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*', 'chatterboxes.kr', 'www.chatterboxes.kr']
 
@@ -233,4 +233,4 @@ FILE_UPLOAD_PERMISSIONS = 0o640
 FILE_UPLOAD_MAX_MEMORY_SIZE = 8388608
 
 # 이 아이피에서만 디버그 툴바가 보인다.
-INTERNAL_IPS = ('211.179.159.66',)
+# INTERNAL_IPS = ('211.179.159.66',)
